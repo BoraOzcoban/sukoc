@@ -1,0 +1,60 @@
+ID,Category,Type,Title,OptionsCount,Options,HasDependency,Required
+"daily_shower_count","daily","single","Günde kaç kez duş alıyorsunuz?",3,"1 kez | 2 kez | 2'den fazla",NO,YES
+"daily_vegetable_water_reuse","daily","single","Sebze/meyve yıkama suyunu atıyor musunuz?",2,"Evet | Hayır",NO,YES
+"daily_dishwasher_filter","daily","single","Bulaşık makinesi filtresini düzenli temizliyor musunuz?",2,"Hayır | Evet",NO,YES
+"daily_faucet_aerator","daily","single","Musluklara perlatör (hava karıştırıcı) takılı mı?",2,"Hayır | Evet",NO,YES
+"weekly_laundry_frequency","weekly","single","Haftada kaç kez çamaşır yıkıyorsunuz?",3,"1-2 kez | 3-4 kez | 5 veya daha fazla",NO,YES
+"weekly_laundry_cold_water","weekly","single","Soğuk su yerine sıcak suyla çamaşır yıkıyor musunuz?",2,"Evet | Hayır",NO,YES
+"weekly_dishwasher_eco","weekly","single","Bulaşık makinesini eko programda mı çalıştırıyorsunuz?",2,"Hayır | Evet",NO,YES
+"weekly_food_order","weekly","single","Dışarıdan yemek sipariş sıklığınız nedir?",2,"Çok sık | Nadiren",NO,YES
+"weekly_family_meal_planning","weekly","single","Evde kaç kişilik yemek yapıyorsunuz?",2,"Fazla yapıp çöpe atıyoruz | Tam ihtiyaca göre",NO,YES
+"weekly_car_wash","weekly","single","Aracınızı ne sıklıkla yıkıyorsunuz?",4,"Hiç yıkamam | Ayda 1 kez | Haftada 1 kez | Haftada 1'den fazla",NO,YES
+"weekly_cleaning_products","weekly","single","Evini temizlerken basınçlı buhar/az suyla temizlik ürünleri kullanıyor musunuz?",2,"Hayır | Evet",NO,YES
+"monthly_leak_check","monthly","single","Evdeki su sızıntılarını kontrol ediyor musunuz?",3,"Düzenli olarak kontrol ederim | Bazen kontrol ederim | Hiç kontrol etmem",NO,YES
+"monthly_bill_tracking","monthly","single","Faturaları izleyerek aylık su tüketiminizi takip ediyor musunuz?",2,"Hayır | Evet",NO,YES
+"monthly_appliance_efficiency","monthly","single","Su kullanan cihazlarınızın enerji verimliliği sınıfına baktınız mı?",2,"Hayır | Evet",NO,YES
+"monthly_garden_watering","monthly","single","Bahçenizi ne sıklıkla suluyorsunuz?",4,"Bahçem yok | Nadiren | Haftada 1-2 kez | Neredeyse her gün",NO,YES
+"monthly_garden_water_source","monthly","single","Bahçe sulama için hangi suyu kullanıyorsunuz?",4,"Musluk suyu | Yağmur suyu toplama sistemi | Gri su (mutfak/banyo suyu) | Bahçem yok",YES,YES
+"monthly_garden_watering_time","monthly","single","Bitkilerinizi sabah erken mi yoksa öğlen mi suluyorsunuz?",2,"Öğlen | Sabah",YES,YES
+"monthly_drip_irrigation","monthly","single","Bahçede damla sulama sistemi var mı?",2,"Hayır | Evet",YES,YES
+"monthly_rainwater_collection","monthly","single","Yağmur suyu topluyor musunuz?",2,"Hayır | Evet",NO,YES
+"monthly_water_meter_readings","monthly","single","Evinizde su sayacı verilerini düzenli kaydediyor musunuz?",2,"Hayır | Evet",NO,YES
+"annual_toilet_flush_waste","annual","single","Sifonu gereksiz yere (örneğin peçete atmak için) kullanıyor musunuz?",2,"Evet | Hayır",NO,YES
+"annual_meat_consumption","annual","single","Et tüketim sıklığınız nedir?",3,"Her gün | Haftada birkaç kez | Nadiren",NO,YES
+"annual_dairy_consumption","annual","single","Süt/süt ürünleri tüketiminiz yoğun mu?",2,"Evet | Hayır",NO,YES
+"annual_clothing_habits","annual","single","Giyim alışkanlıklarınız nasıldır?",2,"Sık sık yeni kıyafet alırım | Nadiren alışveriş yaparım",NO,YES
+"annual_electronics_replacement","annual","single","Elektronik ürünleri sık değiştirir misiniz?",2,"Evet | Hayır",NO,YES
+"annual_water_source","annual","single","Şişelenmiş su mu, musluk suyu mu içiyorsunuz?",2,"Şişelenmiş | Musluk",NO,YES
+"annual_online_shopping","annual","single","Online alışveriş kargolarınız fazla mı?",2,"Evet | Hayır",NO,YES
+"annual_garden_plants","annual","single","Yerel/kuraklığa dayanıklı bitki kullanıyor musunuz?",2,"Hayır | Evet",YES,YES
+"annual_graywater_system","annual","single","Çatınızda gri su sistemi var mı (lavabo suyu → rezervuar)?",2,"Hayır | Evet",NO,YES
+"annual_rain_sensor_irrigation","annual","single","Evinizde yağmur sensörlü sulama sistemi var mı?",2,"Hayır | Evet",YES,YES
+"annual_water_usage_sharing","annual","single","Su kullanımını aile/ev arkadaşlarınızla paylaşıyor musunuz?",2,"Hayır | Evet",NO,YES
+"annual_water_saving_goals","annual","single","Su tasarrufu hedefi koydunuz mu?",2,"Hayır | Evet",NO,YES
+"lifestyle_product_reselling","lifestyle","single","Kullanmadığınız ürünleri satıyor/takaslıyor musunuz?",2,"Hayır | Evet",NO,YES
+"lifestyle_standby_devices","lifestyle","single","Elektrikli cihazları stand-by modda bırakıyor musunuz?",2,"Evet | Hayır",NO,YES
+"daily_shower_duration_detailed","daily","single","Günlük duş süreniz ortalama ne kadar?",4,"5 dakikadan az | 5–10 dakika | 10–20 dakika | 20 dakikadan fazla",NO,YES
+"shower_temperature_adjustment","daily","single","Duşta suyun sıcak ayarını yaparken musluğu kapatır mısınız?",4,"Her zaman | Bazen | Nadiren | Hiçbir zaman",NO,YES
+"hand_washing_tap_usage","daily","single","El yıkarken musluğu açık bırakır mısınız?",4,"Hiçbir zaman | Nadiren | Çoğunlukla | Her zaman",NO,YES
+"teeth_brushing_tap_closure","daily","single","Diş fırçalarken musluğu kapatır mısınız",4,"Her zaman | Bazen | Nadiren | Hiçbir zaman",NO,YES
+"shaving_water_usage","daily","single","Traş olurken musluğu nasıl kullanıyorsunuz?",4,"Kapalı tutuyorum, sadece gerektiğinde açıyorum | Arada kapatıyorum | Çoğunlukla açık bırakıyorum | Tamamen açık bırakıyorum",NO,YES
+"household_size","household","single","Evde kaç kişi yaşıyor?",4,"1 | 2–3 | 4–5 | 6 ve üzeri",NO,YES
+"hot_water_system","household","single","Evde sıcak su için hangi sistemi kullanıyorsunuz?",4,"Kombi / Doğalgaz | Elektrikli şofben | Güneş enerjisi | Diğer",NO,YES
+"washing_machine_full_capacity","weekly","single","Çamaşır makinesini ne sıklıkla tam kapasite çalıştırıyorsunuz?",4,"Her zaman | Genellikle | Bazen | Nadiren",NO,YES
+"dishwashing_method_detailed","daily","single","Bulaşıklarınızı yıkarken hangi yöntemi kullanıyorsunuz?",4,"Bulaşık makinesi (ekonomik program) | Bulaşık makinesi (standart program) | Elle (musluk sürekli açık) | Elle (musluk kontrollü)",NO,YES
+"fruit_vegetable_washing_method","daily","single","Meyve-sebzeleri nasıl yıkıyorsunuz?",4,"Kapta suyla | Musluğu kısık şekilde | Musluğu açık uzun süre | Fark etmez",NO,YES
+"water_reuse","daily","single","Kullanılmış suyu tekrar değerlendirir misiniz (haşlama suyu, yağmur suyu)?",4,"Evet, sık sık | Bazen | Nadiren | Hiç",NO,YES
+"garden_availability","garden","single","Bahçeniz var mı?",4,"Yok | Var ama sulama yapılmıyor | Var, hortumla sulama | Var, damlama/otomatik sistem",NO,YES
+"garden_watering_method","garden","single","Bahçenizi hangi yöntemle suluyorsunuz?",4,"Hortum | Damla sulama | Yağmurlama | Hiç sulamıyorum",YES,YES
+"garden_watering_time","garden","single","Bahçe sulamasını hangi saatlerde yapıyorsunuz?",4,"Sabah erken | Akşam üstü | Gün ortası | Düzensiz",YES,YES
+"garden_water_source","garden","single","Bahçe için hangi suyu kullanıyorsunuz?",4,"Şehir şebekesi | Kuyu suyu | Yağmur suyu | Diğer",YES,YES
+"low_water_plants_preference","garden","single","Bahçenizde çim yerine su ihtiyacı düşük bitkiler kullanıyor musunuz?",4,"Evet, çoğunlukla | Kısmen | Hayır | Bahçem yok",NO,YES
+"car_washing_method","weekly","single","Aracınızı yıkarken hangi yöntemi kullanıyorsunuz?",4,"Oto yıkama (geri dönüşümlü su) | Oto yıkama (klasik) | Kendim hortumla su tasarrufu yaparak | Hortumla açık şekilde",NO,YES
+"workplace_water_bottle_usage","lifestyle","single","İş yerinde/okulda pet şişe su mu kullanıyorsunuz?",4,"Her zaman tek kullanımlık şişe | Çoğunlukla tek kullanımlık | Çoğunlukla matara/termos | Her zaman matara/termos",NO,YES
+"workplace_sensor_taps","lifestyle","single","Çalıştığınız/okuduğunuz yerde fotoselli musluklar var mı?",4,"Evet, yaygın | Kısmen | Çok az | Hiç yok",NO,YES
+"water_saving_showerhead","household","single","Evinizde tasarruflu duş başlığı var mı?",4,"Evet, tüm duşlarda | Bazı duşlarda | Hayır | Emin değilim",NO,YES
+"dual_flush_toilet","household","single","Rezervuarınız çift kademeli mi?",4,"Evet, tüm tuvaletlerde | Bazılarında var | Hayır | Emin değilim",NO,YES
+"flow_restrictor_usage","household","single","Musluklarda akış sınırlayıcı kullanıyor musunuz?",4,"Evet, tüm musluklarda | Bazı musluklarda | Hayır | Emin değilim",NO,YES
+"low_rinse_detergent_attention","lifestyle","single","Çamaşır ve bulaşık deterjanı seçiminde ""az suyla durulama"" özelliğine dikkat eder misiniz?",4,"Her zaman | Bazen | Nadiren | Hiç",NO,YES
+"cotton_clothing_reduction","lifestyle","single","Pamuklu kıyafet gibi su tüketimi yüksek ürünleri azaltmaya çalışır mısınız?",4,"Evet, bilinçli olarak | Bazen | Nadiren | Hiç düşünmüyorum",NO,YES
+"restaurant_food_ordering","lifestyle","single","Restoranlarda bitiremeyeceğiniz kadar yemek sipariş eder misiniz?",4,"Hiç | Nadiren | Sıklıkla | Her zaman",NO,YES

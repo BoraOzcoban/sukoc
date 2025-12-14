@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.6;
+    color: theme('colors.accent.800');
+    background-color: theme('colors.accent.50');
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-500 hover:bg-primary-600 text-white font-medium px-6 py-3 rounded-2xl transition-colors duration-200 shadow-soft hover:shadow-medium;
+  }
+  
+  .btn-secondary {
+    @apply bg-white hover:bg-accent-50 text-accent-700 font-medium px-6 py-3 rounded-2xl border border-accent-200 transition-colors duration-200 shadow-soft hover:shadow-medium;
+  }
+  
+  .btn-outline {
+    @apply bg-transparent hover:bg-primary-50 text-primary-600 font-medium px-6 py-3 rounded-2xl border border-primary-200 hover:border-primary-300 transition-colors duration-200;
+  }
+  
+  .card {
+    @apply bg-white rounded-2xl shadow-soft border border-accent-100 p-6;
+  }
+  
+  .card-hover {
+    @apply card hover:shadow-medium transition-shadow duration-200 cursor-pointer;
+  }
+  
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl border border-accent-200 focus:border-primary-300 focus:ring-2 focus:ring-primary-100 outline-none transition-colors duration-200;
+  }
+  
+  .progress-bar {
+    @apply w-full bg-accent-200 rounded-full h-2 overflow-hidden;
+  }
+  
+  .progress-fill {
+    @apply h-full bg-gradient-to-r from-primary-400 to-primary-600 transition-all duration-500 ease-out;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

@@ -1,0 +1,354 @@
+{
+  "daily_hygiene": [
+    {
+      "id": "teeth_brushing_water_off",
+      "title": "Diş Fırçalarken Musluğu Kapatın",
+      "description": "Diş fırçalarken musluğu kapatarak günde 10-13 litre su tasarrufu sağlayabilirsiniz. 2 dakikalık fırçalama sırasında musluk açık kalırsa günde 15L, kapalıysa sadece 2L su harcanır.",
+      "impact": 13,
+      "difficulty": "easy",
+      "feasibility": 0.95,
+      "category": "daily_hygiene"
+    },
+    {
+      "id": "shower_timer",
+      "title": "Duş Süresini Kısaltın",
+      "description": "Duş sürenizi 15 dakikadan 8 dakikaya düşürerek kişi başı günde 50 litre su tasarrufu sağlayabilirsiniz. Ortalama duş başlığı dakikada 7 litre su harcar.",
+      "impact": 50,
+      "difficulty": "easy",
+      "feasibility": 0.8,
+      "category": "daily_hygiene"
+    },
+    {
+      "id": "shower_water_off",
+      "title": "Duş Sırasında Suyu Kapatın",
+      "description": "Şampuanlama ve sabunlama sırasında musluğu kapatarak kişi başı günde 15-20 litre su tasarrufu sağlayabilirsiniz. Bu sadece 2-3 dakikalık su kesilmesi demek.",
+      "impact": 18,
+      "difficulty": "easy",
+      "feasibility": 0.8,
+      "category": "daily_hygiene"
+    },
+    {
+      "id": "hand_washing_efficient",
+      "title": "El Yıkarken Musluğu Kapatın",
+      "description": "Sabunlarken musluğu kapatarak günde 12-22 litre su tasarrufu sağlayabilirsiniz. Günde 8-10 kez el yıkamada büyük fark yaratır.",
+      "impact": 15,
+      "difficulty": "easy",
+      "feasibility": 0.9,
+      "category": "daily_hygiene"
+    },
+    {
+      "id": "reduce_shower_frequency",
+      "title": "Duş Sıklığını Azaltın",
+      "description": "Günde 2 duş yerine 1 duş alarak kişi başı günde 50-100 litre su tasarrufu sağlayabilirsiniz. Gerekmedikçe ekstra duş almayın.",
+      "impact": 75,
+      "difficulty": "medium",
+      "feasibility": 0.6,
+      "category": "daily_hygiene"
+    }
+  ],
+  "kitchen": [
+    {
+      "id": "hand_dishwashing_efficient",
+      "title": "Elde Bulaşık Yıkama Tekniği",
+      "description": "Bulaşıkları önce deterjanlı suda yıkayıp sonra durulayarak günde 20-25 litre su tasarrufu sağlayabilirsiniz. Musluk sürekli açık yerine kontrollü kullanım.",
+      "impact": 25,
+      "difficulty": "easy",
+      "feasibility": 0.9,
+      "category": "kitchen"
+    },
+    {
+      "id": "dishwasher_full_loads",
+      "title": "Bulaşık Makinesini Dolu Çalıştırın",
+      "description": "Bulaşık makinesini sadece dolu olduğunda çalıştırarak günde 3-8 litre su tasarrufu sağlayabilirsiniz. Yarım yük yerine tam yük çok daha verimli.",
+      "impact": 5,
+      "difficulty": "easy",
+      "feasibility": 0.85,
+      "category": "kitchen"
+    },
+    {
+      "id": "fruit_vegetable_bowl_washing",
+      "title": "Sebze/Meyveleri Kapta Yıkayın",
+      "description": "Sebze ve meyveleri akan su altında değil, geniş bir kapta yıkayarak günde 8-12 litre su tasarrufu sağlayabilirsiniz. Musluk altında yıkama 15L, kapta yıkama sadece 3L harcar.",
+      "impact": 12,
+      "difficulty": "easy",
+      "feasibility": 0.9,
+      "category": "kitchen"
+    },
+    {
+      "id": "measured_water_boiling",
+      "title": "Su Kaynatırken Ölçü Kullanın",
+      "description": "Kahve ve çay için gereken suyu ölçerek kaynatmak hem su hem enerji tasarrufu sağlar.",
+      "impact": 5,
+      "difficulty": "easy",
+      "feasibility": 0.8,
+      "category": "kitchen"
+    },
+    {
+      "id": "cooking_water_reuse",
+      "title": "Haşlama Sularını Yeniden Kullanın",
+      "description": "Makarna ve sebze haşlama sularını soğutup bitki sulama için kullanabilirsiniz.",
+      "impact": 12,
+      "difficulty": "easy",
+      "feasibility": 0.7,
+      "category": "kitchen"
+    }
+  ],
+  "laundry": [
+    {
+      "id": "laundry_full_loads",
+      "title": "Çamaşır Makinesini Dolu Çalıştırın",
+      "description": "Çamaşır makinesini sadece dolu olduğunda çalıştırarak haftada 30 litre su tasarrufu sağlayabilirsiniz.",
+      "impact": 4,
+      "difficulty": "easy",
+      "feasibility": 0.9,
+      "category": "laundry"
+    },
+    {
+      "id": "reduce_laundry_frequency",
+      "title": "Çamaşır Sıklığını Azaltın",
+      "description": "Haftada 5+ yıkama yerine 3-4 yıkama yaparak haftada 40 litre su tasarrufu sağlayabilirsiniz.",
+      "impact": 6,
+      "difficulty": "medium",
+      "feasibility": 0.8,
+      "category": "laundry"
+    },
+    {
+      "id": "cold_water_washing",
+      "title": "Soğuk Su ile Yıkama",
+      "description": "Çamaşırları soğuk su ile yıkayarak hem su hem enerji tasarrufu sağlayabilirsiniz. Günde 5 litre tasarruf.",
+      "impact": 5,
+      "difficulty": "easy",
+      "feasibility": 0.8,
+      "category": "laundry"
+    }
+  ],
+  "bathroom": [
+    {
+      "id": "dual_flush_toilet",
+      "title": "Çift Kademeli Rezervuar",
+      "description": "Çift kademeli rezervuar kullanarak %30 su tasarrufu sağlayabilirsiniz. Küçük işler için küçük sifon kullanın.",
+      "impact": 25,
+      "difficulty": "hard",
+      "feasibility": 0.3,
+      "category": "bathroom"
+    },
+    {
+      "id": "toilet_water_saver",
+      "title": "Tuvalet Su Tasarruf Aparatı",
+      "description": "Rezervuara su tasarruf aparatı yerleştirerek %20 su tasarrufu sağlayabilirsiniz.",
+      "impact": 20,
+      "difficulty": "medium",
+      "feasibility": 0.6,
+      "category": "bathroom"
+    },
+    {
+      "id": "reduce_toilet_flush",
+      "title": "Gereksiz Sifon Kullanımını Azaltın",
+      "description": "Peçete gibi küçük çöpleri çöpe atarak gereksiz sifon kullanımını azaltabilirsiniz.",
+      "impact": 8,
+      "difficulty": "easy",
+      "feasibility": 0.9,
+      "category": "bathroom"
+    }
+  ],
+  "garden": [
+    {
+      "id": "morning_evening_watering",
+      "title": "Sabah/Akşam Sulama",
+      "description": "Bahçenizi sabah erken veya akşam geç saatlerde sulayarak buharlaşmayı azaltabilir ve %20 su tasarrufu sağlayabilirsiniz.",
+      "impact": 10,
+      "difficulty": "easy",
+      "feasibility": 0.7,
+      "category": "garden"
+    },
+    {
+      "id": "drip_irrigation",
+      "title": "Damla Sulama Sistemi",
+      "description": "Geleneksel hortum yerine damla sulama sistemi kullanarak %50 su tasarrufu sağlayabilirsiniz.",
+      "impact": 25,
+      "difficulty": "medium",
+      "feasibility": 0.5,
+      "category": "garden"
+    },
+    {
+      "id": "drought_resistant_plants",
+      "title": "Kuraklığa Dayanıklı Bitkiler",
+      "description": "Çim yerine kuraklığa dayanıklı bitkiler kullanarak su tüketimini %50 azaltabilirsiniz.",
+      "impact": 30,
+      "difficulty": "medium",
+      "feasibility": 0.4,
+      "category": "garden"
+    },
+    {
+      "id": "rainwater_collection",
+      "title": "Yağmur Suyu Toplama Sistemi",
+      "description": "Yağmur suyu toplama sistemi kurarak bahçe sulama için musluk suyu kullanımınızı %80 azaltabilirsiniz.",
+      "impact": 30,
+      "difficulty": "medium",
+      "feasibility": 0.6,
+      "category": "garden"
+    }
+  ],
+  "lifestyle": [
+    {
+      "id": "reduce_meat_consumption",
+      "title": "Et Tüketimini Azaltın",
+      "description": "Haftada 1-2 gün et yerine sebze/bakliyat tercih ederek yüzlerce litre sanal su tasarrufu sağlayabilirsiniz.",
+      "impact": 40,
+      "difficulty": "medium",
+      "feasibility": 0.6,
+      "category": "lifestyle"
+    },
+    {
+      "id": "sustainable_clothing",
+      "title": "Sürdürülebilir Giyim Alışkanlıkları",
+      "description": "Daha az ama kaliteli ürün almak, ikinci el tercih etmek su ayak izini azaltır.",
+      "impact": 35,
+      "difficulty": "medium",
+      "feasibility": 0.5,
+      "category": "lifestyle"
+    },
+    {
+      "id": "tap_water_instead_bottled",
+      "title": "Musluk Suyu Kullanın",
+      "description": "Şişelenmiş su yerine filtrelenmiş musluk suyu kullanarak üretim ve taşıma kaynaklı su tüketimini azaltabilirsiniz.",
+      "impact": 20,
+      "difficulty": "easy",
+      "feasibility": 0.8,
+      "category": "lifestyle"
+    },
+    {
+      "id": "reduce_food_waste",
+      "title": "Gıda İsrafını Azaltın",
+      "description": "İsraf edilen her yemek, üretiminde harcanan suyun da israfı demek. Porsiyonları planlayın.",
+      "impact": 25,
+      "difficulty": "medium",
+      "feasibility": 0.7,
+      "category": "lifestyle"
+    }
+  ],
+  "appliances": [
+    {
+      "id": "water_efficient_appliances",
+      "title": "Su Verimli Cihazlar",
+      "description": "Tüm su kullanan cihazlarınızı A+++ sınıfı ile değiştirerek toplam günde 35 litre su tasarrufu sağlayabilirsiniz.",
+      "impact": 35,
+      "difficulty": "hard",
+      "feasibility": 0.2,
+      "category": "appliances"
+    },
+    {
+      "id": "low_flow_showerhead",
+      "title": "Düşük Akışlı Duş Başlığı",
+      "description": "Verimli duş başlığı kullanarak su tüketiminizi %30 azaltabilirsiniz. Yatırım maliyeti düşük, tasarruf yüksek.",
+      "impact": 25,
+      "difficulty": "medium",
+      "feasibility": 0.7,
+      "category": "appliances"
+    },
+    {
+      "id": "faucet_aerator",
+      "title": "Musluk Perlatörü (Hava Karıştırıcı)",
+      "description": "Musluklara perlatör takarak %50 su tasarrufu sağlayabilirsiniz. Ucuz ve kolay uygulanabilir.",
+      "impact": 12,
+      "difficulty": "easy",
+      "feasibility": 0.8,
+      "category": "appliances"
+    }
+  ],
+  "leaks": [
+    {
+      "id": "regular_leak_check",
+      "title": "Düzenli Sızıntı Kontrolü",
+      "description": "Evdeki tüm musluk ve boruları düzenli kontrol ederek sızıntıları erken tespit edin. Günde 15 litre tasarruf.",
+      "impact": 15,
+      "difficulty": "easy",
+      "feasibility": 0.8,
+      "category": "leaks"
+    },
+    {
+      "id": "fix_dripping_taps",
+      "title": "Damlayan Muslukları Onarın",
+      "description": "Damlayan muslukları hemen onarın. Tek bir damlayan musluk günde 20 litre su israfına neden olabilir.",
+      "impact": 20,
+      "difficulty": "medium",
+      "feasibility": 0.7,
+      "category": "leaks"
+    }
+  ],
+  "monitoring": [
+    {
+      "id": "water_meter_monitoring",
+      "title": "Su Sayacı Takibi",
+      "description": "Aylık su sayacı okumalarınızı takip ederek anormal kullanımı erken tespit edin. %10 tasarruf.",
+      "impact": 8,
+      "difficulty": "easy",
+      "feasibility": 0.6,
+      "category": "monitoring"
+    },
+    {
+      "id": "bill_analysis",
+      "title": "Su Faturası Analizi",
+      "description": "Aylık su faturalarınızı analiz ederek değişimleri takip edin ve tasarruf hedefleri koyun.",
+      "impact": 5,
+      "difficulty": "easy",
+      "feasibility": 0.7,
+      "category": "monitoring"
+    },
+    {
+      "id": "water_conscious_habits",
+      "title": "Su Bilinci Geliştirin",
+      "description": "Aile üyelerinizle su tasarrufu konusunda bilinç geliştirin. Küçük değişiklikler büyük fark yaratır.",
+      "impact": 5,
+      "difficulty": "easy",
+      "feasibility": 0.8,
+      "category": "monitoring"
+    }
+  ],
+  "challenges": [
+    {
+      "id": "challenge_shower_reduction",
+      "title": "Duş Süresi Meydan Okuması",
+      "description": "Bu hafta duş sürenizi 2 dakika kısaltın ve farkı görün!",
+      "impact": 20,
+      "difficulty": "easy",
+      "feasibility": 0.9,
+      "category": "challenges",
+      "isChallenge": true,
+      "challengeText": "Bu hafta duş sürenizi 2 dakika kısaltın ve farkı görün!"
+    },
+    {
+      "id": "challenge_teeth_brushing",
+      "title": "Diş Fırçalama Alışkanlığı",
+      "description": "Bu hafta diş fırçalarken musluğu kapatma alışkanlığı edinin!",
+      "impact": 12,
+      "difficulty": "easy",
+      "feasibility": 0.95,
+      "category": "challenges",
+      "isChallenge": true,
+      "challengeText": "Bu hafta diş fırçalarken musluğu kapatma alışkanlığı edinin!"
+    },
+    {
+      "id": "challenge_meat_free_day",
+      "title": "Etsiz Gün Meydan Okuması",
+      "description": "Bu ay en az 1 gün et tüketmeyin ve farkı görün!",
+      "impact": 40,
+      "difficulty": "medium",
+      "feasibility": 0.6,
+      "category": "challenges",
+      "isChallenge": true,
+      "challengeText": "Bu ay en az 1 gün et tüketmeyin ve farkı görün!"
+    },
+    {
+      "id": "challenge_bottled_water_free",
+      "title": "Şişe Su Meydan Okuması",
+      "description": "Bu hafta sadece musluk suyu kullanın!",
+      "impact": 20,
+      "difficulty": "easy",
+      "feasibility": 0.8,
+      "category": "challenges",
+      "isChallenge": true,
+      "challengeText": "Bu hafta sadece musluk suyu kullanın!"
+    }
+  ]
+}

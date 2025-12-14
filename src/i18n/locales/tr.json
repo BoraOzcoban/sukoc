@@ -1,0 +1,126 @@
+{
+  "app": {
+    "title": "SuKoç",
+    "subtitle": "Su Tasarrufu Rehberi",
+    "tagline": "Su kullanım alışkanlıklarınızı analiz edin ve kişiselleştirilmiş tasarruf önerileri alın"
+  },
+  "navigation": {
+    "home": "Ana Sayfa",
+    "quiz": "Quiz",
+    "results": "Sonuçlar",
+    "admin": "Yönetim"
+  },
+  "landing": {
+    "hero": {
+      "title": "Su tasarrufuna başlamak hiç bu kadar kolay olmamıştı",
+      "description": "5 dakikalık quiz ile su kullanım alışkanlıklarınızı öğrenin ve kişiselleştirilmiş öneriler alın.",
+      "cta": "Quiz'e Başla"
+    },
+    "features": {
+      "personalized": {
+        "title": "Kişiselleştirilmiş Analiz",
+        "description": "Ev tipiniz, bölgeniz ve alışkanlıklarınıza göre özel öneriler"
+      },
+      "actionable": {
+        "title": "Uygulanabilir Öneriler",
+        "description": "Hemen hayata geçirebileceğiniz pratik çözümler"
+      },
+      "tracking": {
+        "title": "İlerleme Takibi",
+        "description": "Tasarruf hedeflerinizi takip edin ve başarılarınızı kutlayın"
+      }
+    },
+    "testimonial": {
+      "text": "SuKoç sayesinde aylık su faturasında %30 tasarruf sağladım. Öneriler çok pratik ve uygulanabilir.",
+      "author": "Ayşe K., İstanbul"
+    }
+  },
+  "onboarding": {
+    "title": "Hadi tanışalım!",
+    "subtitle": "Size en uygun önerileri verebilmek için birkaç soru sormamız gerekiyor.",
+    "householdSize": {
+      "label": "Kaç kişilik bir aile?",
+      "placeholder": "Seçiniz"
+    },
+    "region": {
+      "label": "Hangi bölgede yaşıyorsunuz?",
+      "placeholder": "Bölge seçiniz"
+    },
+    "mainWaterUses": {
+      "label": "Ana su kullanım alanlarınız (birden fazla seçebilirsiniz)",
+      "options": {
+        "shower": "Duş/Banyo",
+        "kitchen": "Mutfak",
+        "laundry": "Çamaşır",
+        "garden": "Bahçe",
+        "car": "Araç Yıkama"
+      }
+    },
+    "continue": "Devam Et"
+  },
+  "quiz": {
+    "progress": "İlerleme",
+    "skip": "Geç",
+    "previous": "Önceki",
+    "next": "İleri",
+    "finish": "Bitir",
+    "categories": {
+      "daily": "Günlük",
+      "weekly": "Haftalık",
+      "monthly": "Aylık",
+      "annual": "Yıllık"
+    }
+  },
+  "results": {
+    "title": "Su Kullanım Analiziniz",
+    "currentUsage": "Mevcut Kullanım",
+    "potentialSavings": "Potansiyel Tasarruf",
+    "daily": "Günlük",
+    "yearly": "Yıllık",
+    "liters": "Litre",
+    "suggestions": {
+      "title": "Öneriler",
+      "impact": "Etki",
+      "difficulty": "Zorluk",
+      "easy": "Kolay",
+      "medium": "Orta",
+      "hard": "Zor"
+    },
+    "comparison": {
+      "title": "Benzer Profildekilerle Karşılaştırma",
+      "more": "Benzer profildekilerden %{{percent}} daha fazla su kullanıyorsunuz",
+      "less": "Benzer profildekilerden %{{percent}} daha az su kullanıyorsunuz",
+      "average": "Benzer profildekilerle aynı seviyedesiniz"
+    },
+    "export": {
+      "pdf": "PDF Olarak İndir",
+      "share": "Paylaş"
+    }
+  },
+  "common": {
+    "loading": "Yükleniyor...",
+    "error": "Bir hata oluştu",
+    "retry": "Tekrar Dene",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "close": "Kapat",
+    "yes": "Evet",
+    "no": "Hayır",
+    "required": "Gerekli",
+    "optional": "Opsiyonel"
+  },
+  "badges": {
+    "waterSaver": {
+      "title": "Su Koruyucu",
+      "description": "İlk quiz'inizi tamamladınız"
+    },
+    "ecoWarrior": {
+      "title": "Çevre Savaşçısı",
+      "description": "5 öneriyi uyguladınız"
+    },
+    "conservationist": {
+      "title": "Koruma Uzmanı",
+      "description": "Aylık %20 tasarruf sağladınız"
+    }
+  }
+}
