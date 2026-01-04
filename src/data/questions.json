@@ -1,119 +1,88 @@
 [
   {
-    "id": "daily_shower_count",
+    "id": "weekly_shower_total_minutes",
+    "category": "weekly",
+    "type": "numeric",
+    "title": "Haftalık toplam duş süreniz (dakika olarak)",
+    "min": 0,
+    "max": 600,
+    "step": 5,
+    "unit": "dakika",
+    "required": true
+  },
+  {
+    "id": "general_faucet_closure",
     "category": "daily",
     "type": "single",
-    "title": "Günde kaç kez duş alıyorsunuz?",
+    "title": "Musluk kullanırken genel olarak suyu kapatır mısınız?",
     "options": [
       {
-        "id": "once",
-        "label": "1 kez",
-        "value": "once"
+        "id": "kapatirim",
+        "label": "Kapatırım",
+        "value": "kapatirim"
       },
       {
-        "id": "twice",
-        "label": "2 kez",
-        "value": "twice"
+        "id": "arada_kapatirim",
+        "label": "Arada kapatırım",
+        "value": "arada_kapatirim"
       },
       {
-        "id": "more",
-        "label": "2'den fazla",
-        "value": "more"
+        "id": "hic_kapatmam",
+        "label": "Hiç kapatmam",
+        "value": "hic_kapatmam"
       }
     ],
     "required": true
   },
   {
-    "id": "daily_bathtub_use",
+    "id": "dishwashing_method_detailed",
     "category": "daily",
     "type": "single",
-    "title": "Duş süreniz ortalama kaç dakika?",
+    "title": "Bulaşıkları genelde nasıl yıkıyorsunuz?",
     "options": [
       {
-        "id": "yes",
-        "label": "Evet",
-        "value": "yes"
+        "id": "dishwasher_eco",
+        "label": "Bulaşık makinesi - eco programı",
+        "value": "dishwasher_eco"
       },
       {
-        "id": "no",
-        "label": "Hayır",
-        "value": "no"
+        "id": "dishwasher_standard",
+        "label": "Bulaşık makinesi - standart program",
+        "value": "dishwasher_standard"
+      },
+      {
+        "id": "hand_tap_controlled",
+        "label": "Elde - musluğu kontrollü açıp kapatarak",
+        "value": "hand_tap_controlled"
+      },
+      {
+        "id": "hand_tap_open",
+        "label": "Elde - musluk sürekli açık",
+        "value": "hand_tap_open"
       }
     ],
     "required": true
   },
   {
-    "id": "daily_vegetable_water_reuse",
+    "id": "fruit_vegetable_washing_method",
     "category": "daily",
     "type": "single",
-    "title": "Duşta su ısınana kadar musluğu açık bırakıyor musunuz?",
+    "title": "Meyve/sebzeyi nasıl yıkarsınız?",
     "options": [
       {
-        "id": "yes",
-        "label": "Evet",
-        "value": "yes"
+        "id": "bowl_water",
+        "label": "Kapta suyla",
+        "value": "bowl_water"
       },
       {
-        "id": "no",
-        "label": "Hayır",
-        "value": "no"
-      }
-    ],
-    "required": true
-  },
-  {
-    "id": "daily_dishwasher_filter",
-    "category": "daily",
-    "type": "single",
-    "title": "Duşta tasarruflu duş başlığı kullanıyor musunuz?",
-    "options": [
-      {
-        "id": "no",
-        "label": "Hayır",
-        "value": "no"
+        "id": "tap_low_flow",
+        "label": "Musluğu kısarak, kısa süre",
+        "value": "tap_low_flow"
       },
       {
-        "id": "yes",
-        "label": "Evet",
-        "value": "yes"
-      }
-    ],
-    "required": true
-  },
-  {
-    "id": "daily_faucet_aerator",
-    "category": "daily",
-    "type": "single",
-    "title": "El yıkarken sabunlarken musluğu kapatıyor musunuz?",
-    "options": [
-      {
-        "id": "no",
-        "label": "Hayır",
-        "value": "no"
-      },
-      {
-        "id": "yes",
-        "label": "Evet",
-        "value": "yes"
-      }
-    ],
-    "required": true
-  },
-  {
-    "id": "daily_tap_dripping",
-    "category": "daily",
-    "type": "single",
-    "title": "Diş fırçalarken musluğu kapatıyor musunuz?",
-    "options": [
-      {
-        "id": "yes",
-        "label": "Evet",
-        "value": "yes"
-      },
-      {
-        "id": "no",
-        "label": "Hayır",
-        "value": "no"
+        "id": "tap_long_open",
+        "label": "Musluk açık, uzun süre",
+        "value": "tap_long_open"
       }
     ],
     "required": true
@@ -122,486 +91,407 @@
     "id": "weekly_laundry_frequency",
     "category": "weekly",
     "type": "single",
-    "title": "Tıraş olurken musluğu açık bırakıyor musunuz?",
+    "title": "Haftada kaç kez çamaşır yıkarsınız?",
     "options": [
       {
-        "id": "yes",
-        "label": "Evet",
-        "value": "yes"
+        "id": "1-2",
+        "label": "Haftada 1-2 kez",
+        "value": "1-2"
       },
       {
-        "id": "no",
-        "label": "Hayır",
-        "value": "no"
+        "id": "3-4",
+        "label": "Haftada 3-4 kez",
+        "value": "3-4"
+      },
+      {
+        "id": "5+",
+        "label": "Haftada 5 ve üzeri",
+        "value": "5+"
       }
     ],
     "required": true
   },
   {
-    "id": "weekly_laundry_cold_water",
-    "category": "weekly",
-    "type": "single",
-    "title": "Küvet doldurarak banyo yapıyor musunuz? (haftada kaç kez?)",
-    "options": [
-      {
-        "id": "yes",
-        "label": "Evet",
-        "value": "yes"
-      },
-      {
-        "id": "no",
-        "label": "Hayır",
-        "value": "no"
-      }
-    ],
-    "required": true
-  },
-  {
-    "id": "weekly_dishwasher_eco",
-    "category": "weekly",
-    "type": "single",
-    "title": "Rezervuarınız çift kademeli mi?",
-    "options": [
-      {
-        "id": "no",
-        "label": "Hayır",
-        "value": "no"
-      },
-      {
-        "id": "yes",
-        "label": "Evet",
-        "value": "yes"
-      }
-    ],
-    "required": true
-  },
-  {
-    "id": "weekly_food_order",
+    "id": "weekly_toilet_flushes",
     "category": "weekly",
     "type": "single",
     "title": "Günde ortalama kaç kez sifon çekiyorsunuz?",
     "options": [
       {
-        "id": "often",
-        "label": "Çok sık",
-        "value": "often"
+        "id": "per_day_1_3",
+        "label": "Günde 1-3",
+        "value": "per_day_1_3"
       },
       {
-        "id": "rarely",
-        "label": "Nadiren",
-        "value": "rarely"
+        "id": "per_day_4_6",
+        "label": "Günde 4-6",
+        "value": "per_day_4_6"
+      },
+      {
+        "id": "per_day_7_9",
+        "label": "Günde 7-9",
+        "value": "per_day_7_9"
+      },
+      {
+        "id": "per_day_10_plus",
+        "label": "Günde 10+",
+        "value": "per_day_10_plus"
       }
     ],
-    "required": true
+    "required": false
   },
   {
-    "id": "weekly_family_meal_planning",
+    "id": "weekly_ai_usage",
     "category": "weekly",
     "type": "single",
-    "title": "Evde damlatan musluk/kaçak var mı?",
+    "title": "Yapay zeka araçlarını haftada ne kadar kullanırsınız?",
     "options": [
       {
-        "id": "yes",
-        "label": "Evet",
-        "value": "yes"
+        "id": "lt1",
+        "label": "1 saatten az",
+        "value": "lt1"
       },
       {
-        "id": "no",
-        "label": "Hayır",
-        "value": "no"
+        "id": "1_3",
+        "label": "1-3 saat",
+        "value": "1_3"
+      },
+      {
+        "id": "3_7",
+        "label": "3-7 saat",
+        "value": "3_7"
+      },
+      {
+        "id": "gt7",
+        "label": "7 saatten fazla",
+        "value": "gt7"
       }
     ],
-    "required": true
+    "required": false
   },
   {
-    "id": "weekly_car_wash",
+    "id": "weekly_garden_watering_minutes",
+    "category": "weekly",
+    "type": "numeric",
+    "title": "Haftada toplam kaç dakika bahçe/bitki sulamaya ayırırsınız?",
+    "min": 0,
+    "max": 600,
+    "step": 5,
+    "unit": "dakika",
+    "required": false
+  },
+  {
+    "id": "weekly_red_meat_kg",
     "category": "weekly",
     "type": "single",
-    "title": "Meyve-sebzeyi akan su altında mı yıkıyorsunuz?",
-    "options": [
-      {
-        "id": "yes",
-        "label": "Evet",
-        "value": "yes"
-      },
-      {
-        "id": "no",
-        "label": "Hayır",
-        "value": "no"
-      }
-    ],
-    "required": true
-  },
-  {
-    "id": "weekly_cleaning_products",
-    "category": "weekly",
-    "type": "single",
-    "title": "Bulaşıkları elde mi, bulaşık makinesinde mi yıkıyorsunuz?",
-    "options": [
-      {
-        "id": "no",
-        "label": "Hayır",
-        "value": "no"
-      },
-      {
-        "id": "yes",
-        "label": "Evet",
-        "value": "yes"
-      }
-    ],
-    "required": true
-  },
-  {
-    "id": "monthly_leak_check",
-    "category": "monthly",
-    "type": "single",
-    "title": "Bulaşık makinesi kullanıyorsanız programınız hangisi?",
-    "options": [
-      {
-        "id": "regular",
-        "label": "Düzenli olarak kontrol ederim",
-        "value": "regular"
-      },
-      {
-        "id": "sometimes",
-        "label": "Bazen kontrol ederim",
-        "value": "sometimes"
-      },
-      {
-        "id": "never",
-        "label": "Hiç kontrol etmem",
-        "value": "never"
-      }
-    ],
-    "required": true
-  },
-  {
-    "id": "monthly_bill_tracking",
-    "category": "monthly",
-    "type": "single",
-    "title": "Bulaşıkları makineye koymadan önce uzun ön durulama yapıyor musunuz?",
-    "options": [
-      {
-        "id": "no",
-        "label": "Hayır",
-        "value": "no"
-      },
-      {
-        "id": "yes",
-        "label": "Evet",
-        "value": "yes"
-      }
-    ],
-    "required": true
-  },
-  {
-    "id": "monthly_appliance_efficiency",
-    "category": "monthly",
-    "type": "single",
-    "title": "Makarna/sebze haşladıktan sonra suyu döküyor musunuz?",
-    "options": [
-      {
-        "id": "no",
-        "label": "Hayır",
-        "value": "no"
-      },
-      {
-        "id": "yes",
-        "label": "Evet",
-        "value": "yes"
-      }
-    ],
-    "required": true
-  },
-  {
-    "id": "monthly_garden_watering",
-    "category": "monthly",
-    "type": "single",
-    "title": "Donmuş gıdaları akan su altında çözdürüyor musunuz?",
+    "title": "Haftada kaç kilo kırmızı et tüketiyorsunuz?",
     "options": [
       {
         "id": "none",
-        "label": "Bahçem yok",
+        "label": "Tüketmiyorum",
         "value": "none"
       },
       {
-        "id": "rarely",
-        "label": "Nadiren",
-        "value": "rarely"
+        "id": "lt1",
+        "label": "1 kilodan az",
+        "value": "lt1"
       },
       {
-        "id": "weekly",
-        "label": "Haftada 1-2 kez",
-        "value": "weekly"
+        "id": "1_2",
+        "label": "1-2 kilo arası",
+        "value": "1_2"
       },
       {
-        "id": "daily",
-        "label": "Neredeyse her gün",
-        "value": "daily"
+        "id": "gt2",
+        "label": "2 kilodan fazla",
+        "value": "gt2"
       }
     ],
-    "required": true
+    "required": false
   },
   {
-    "id": "monthly_garden_water_source",
-    "category": "monthly",
-    "type": "single",
-    "title": "Haftada kaç kez çamaşır yıkıyorsunuz?",
-    "options": [
-      {
-        "id": "tap",
-        "label": "Musluk suyu",
-        "value": "tap"
-      },
-      {
-        "id": "rainwater",
-        "label": "Yağmur suyu toplama sistemi",
-        "value": "rainwater"
-      },
-      {
-        "id": "greywater",
-        "label": "Gri su (mutfak/banyo suyu)",
-        "value": "greywater"
-      },
-      {
-        "id": "none",
-        "label": "Bahçem yok",
-        "value": "none"
-      }
-    ],
-    "required": true
-  },
-  {
-    "id": "monthly_garden_watering_time",
-    "category": "monthly",
-    "type": "single",
-    "title": "Çamaşır makinesini genelde tam dolu mu çalıştırıyorsunuz?",
-    "options": [
-      {
-        "id": "noon",
-        "label": "Öğlen",
-        "value": "noon"
-      },
-      {
-        "id": "morning",
-        "label": "Sabah",
-        "value": "morning"
-      }
-    ],
-    "required": true
-  },
-  {
-    "id": "monthly_drip_irrigation",
-    "category": "monthly",
-    "type": "single",
-    "title": " Ev temizliğinde (yer silme vb.) kova ile mi, sürekli su akıtarak mı yapıyorsunuz?",
-    "options": [
-      {
-        "id": "no",
-        "label": "Hayır",
-        "value": "no"
-      },
-      {
-        "id": "yes",
-        "label": "Evet",
-        "value": "yes"
-      }
-    ],
-    "required": true
-  },
-  {
-    "id": "monthly_rainwater_collection",
-    "category": "monthly",
-    "type": "single",
-    "title": "Musluklarda perlatör (hava karıştırıcı) kullanıyor musunuz?",
-    "options": [
-      {
-        "id": "no",
-        "label": "Hayır",
-        "value": "no"
-      },
-      {
-        "id": "yes",
-        "label": "Evet",
-        "value": "yes"
-      }
-    ],
-    "required": true
-  },
-  {
-    "id": "monthly_water_meter_readings",
-    "category": "monthly",
-    "type": "single",
-    "title": "Evde bitki/bahçe sulaması yapıyor musunuz?",
-    "options": [
-      {
-        "id": "no",
-        "label": "Hayır",
-        "value": "no"
-      },
-      {
-        "id": "yes",
-        "label": "Evet",
-        "value": "yes"
-      }
-    ],
-    "required": true
-  },
-  {
-    "id": "annual_toilet_flush_waste",
-    "category": "annual",
-    "type": "single",
-    "title": "Sulamada damla sulama sistemi kullanıyor musunuz?",
-    "options": [
-      {
-        "id": "yes",
-        "label": "Evet",
-        "value": "yes"
-      },
-      {
-        "id": "no",
-        "label": "Hayır",
-        "value": "no"
-      }
-    ],
-    "required": true
-  },
-  {
-    "id": "annual_meat_consumption",
-    "category": "annual",
-    "type": "single",
-    "title": "Aracınızı ne sıklıkla yıkıyorsunuz?",
-    "options": [
-      {
-        "id": "daily",
-        "label": "Her gün",
-        "value": "daily"
-      },
-      {
-        "id": "weekly",
-        "label": "Haftada birkaç kez",
-        "value": "weekly"
-      },
-      {
-        "id": "rarely",
-        "label": "Nadiren",
-        "value": "rarely"
-      }
-    ],
-    "required": true
-  },
-  {
-    "id": "annual_dairy_consumption",
-    "category": "annual",
-    "type": "single",
-    "title": "Aracınızı hangi yöntemle yıkıyorsunuz?",
-    "options": [
-      {
-        "id": "yes",
-        "label": "Evet",
-        "value": "yes"
-      },
-      {
-        "id": "no",
-        "label": "Hayır",
-        "value": "no"
-      }
-    ],
-    "required": true
-  },
-  {
-    "id": "annual_clothing_habits",
-    "category": "annual",
-    "type": "single",
-    "title": "Günde ne kadar su içiyorsunuz?",
-    "options": [
-      {
-        "id": "frequent",
-        "label": "Sık sık yeni kıyafet alırım",
-        "value": "frequent"
-      },
-      {
-        "id": "rare",
-        "label": "Nadiren alışveriş yaparım",
-        "value": "rare"
-      }
-    ],
-    "required": true
-  },
-  {
-    "id": "annual_electronics_replacement",
-    "category": "annual",
-    "type": "single",
-    "title": "Şişelenmiş su mu, musluk suyu mu tercih ediyorsunuz?",
-    "options": [
-      {
-        "id": "yes",
-        "label": "Evet",
-        "value": "yes"
-      },
-      {
-        "id": "no",
-        "label": "Hayır",
-        "value": "no"
-      }
-    ],
-    "required": true
-  },
-  {
-    "id": "annual_water_source",
-    "category": "annual",
-    "type": "single",
-    "title": "Kırmızı et tüketim sıklığınız nedir?",
-    "options": [
-      {
-        "id": "bottled",
-        "label": "Şişelenmiş",
-        "value": "bottled"
-      },
-      {
-        "id": "tap",
-        "label": "Musluk",
-        "value": "tap"
-      }
-    ],
-    "required": true
-  },
-  {
-    "id": "annual_online_shopping",
-    "category": "annual",
+    "id": "weekly_dairy_consumption",
+    "category": "weekly",
     "type": "single",
     "title": "Süt/süt ürünlerini sık tüketiyor musunuz?",
     "options": [
       {
-        "id": "yes",
-        "label": "Evet",
-        "value": "yes"
+        "id": "very_often",
+        "label": "Çok sık",
+        "value": "very_often"
       },
       {
-        "id": "no",
-        "label": "Hayır",
-        "value": "no"
+        "id": "average",
+        "label": "Ortalama",
+        "value": "average"
+      },
+      {
+        "id": "low",
+        "label": "Az",
+        "value": "low"
+      },
+      {
+        "id": "none",
+        "label": "Hiç",
+        "value": "none"
       }
     ],
-    "required": true
+    "required": false
   },
   {
-    "id": "annual_garden_plants",
-    "category": "annual",
+    "id": "clothing_purchase_frequency",
+    "category": "weekly",
     "type": "single",
     "title": "Yeni kıyafet (özellikle pamuklu) alışveriş sıklığınız nedir?",
     "options": [
       {
-        "id": "no",
-        "label": "Hayır",
-        "value": "no"
+        "id": "week_1_2",
+        "label": "Haftada 1-2 kere",
+        "value": "week_1_2"
       },
       {
-        "id": "yes",
-        "label": "Evet",
-        "value": "yes"
+        "id": "month_1_2",
+        "label": "Ayda 1-2 kere",
+        "value": "month_1_2"
+      },
+      {
+        "id": "year_1_2",
+        "label": "Yılda 1-2 kere",
+        "value": "year_1_2"
       }
     ],
-    "required": true
+    "required": false
+  },
+  {
+    "id": "car_wash_frequency",
+    "category": "weekly",
+    "type": "single",
+    "title": "Aracınızı ne sıklıkla yıkıyorsunuz?",
+    "options": [
+      {
+        "id": "never",
+        "label": "Yıkamıyorum",
+        "value": "never"
+      },
+      {
+        "id": "week_3_plus",
+        "label": "Haftada 3+",
+        "value": "week_3_plus"
+      },
+      {
+        "id": "week_1",
+        "label": "Haftada 1",
+        "value": "week_1"
+      },
+      {
+        "id": "month_1",
+        "label": "Ayda 1",
+        "value": "month_1"
+      }
+    ],
+    "required": false
+  },
+  {
+    "id": "weekly_white_meat_kg",
+    "category": "weekly",
+    "type": "single",
+    "title": "Haftada kaç kilo beyaz et (tavuk/hindi) tüketiyorsunuz?",
+    "options": [
+      {
+        "id": "none",
+        "label": "Tüketmiyorum",
+        "value": "none"
+      },
+      {
+        "id": "lt1",
+        "label": "1 kilodan az",
+        "value": "lt1"
+      },
+      {
+        "id": "1_2",
+        "label": "1-2 kilo arası",
+        "value": "1_2"
+      },
+      {
+        "id": "gt2",
+        "label": "2 kilodan fazla",
+        "value": "gt2"
+      }
+    ],
+    "required": false
+  },
+  {
+    "id": "garden_style",
+    "category": "weekly",
+    "type": "single",
+    "title": "Bahçenizin/bitki düzeninizin su ihtiyacı nasıl?",
+    "options": [
+      {
+        "id": "none",
+        "label": "Bahçe/bitki yok",
+        "value": "none"
+      },
+      {
+        "id": "drought",
+        "label": "Düşük su (kaktüs/sukulent/xeriscape)",
+        "value": "drought"
+      },
+      {
+        "id": "mixed",
+        "label": "Karışık bitkiler/orta su ihtiyacı",
+        "value": "mixed"
+      },
+      {
+        "id": "lawn_heavy",
+        "label": "Çim/ağaç ağırlıklı, yüksek su ihtiyacı",
+        "value": "lawn_heavy"
+      },
+      {
+        "id": "balcony_pots",
+        "label": "Balkon/saksı bitkileri",
+        "value": "balcony_pots"
+      }
+    ],
+    "required": false
+  },
+  {
+    "id": "pool_hot_tub",
+    "category": "weekly",
+    "type": "single",
+    "title": "Havuz/Jakuzi için haftalık su ekleme ihtiyacınız var mı?",
+    "options": [
+      {
+        "id": "none",
+        "label": "Havuz/jakuzi yok",
+        "value": "none"
+      },
+      {
+        "id": "small_inflatable",
+        "label": "Küçük şişme havuz",
+        "value": "small_inflatable"
+      },
+      {
+        "id": "above_ground",
+        "label": "Orta/büyük üstten havuz",
+        "value": "above_ground"
+      },
+      {
+        "id": "inground",
+        "label": "Yerleşik havuz/jakuzi",
+        "value": "inground"
+      }
+    ],
+    "required": false
+  },
+  {
+    "id": "irrigation_practice",
+    "category": "weekly",
+    "type": "single",
+    "title": "Sulama yöntemi (bahçe/tarım için)",
+    "options": [
+      {
+        "id": "none",
+        "label": "Sulama yapmıyorum",
+        "value": "none"
+      },
+      {
+        "id": "drip_or_timer",
+        "label": "Damla/otomatik zamanlı (verimli)",
+        "value": "drip_or_timer"
+      },
+      {
+        "id": "hose_controlled",
+        "label": "Hortum/kova kontrollü",
+        "value": "hose_controlled"
+      },
+      {
+        "id": "sprinkler_midday",
+        "label": "Fıskiye / öğlen/sıcak saatlerde",
+        "value": "sprinkler_midday"
+      },
+      {
+        "id": "flood_irrigation",
+        "label": "Salma/taşkın sulama (çok su tüketir)",
+        "value": "flood_irrigation"
+      }
+    ],
+    "required": false
+  },
+  {
+    "id": "weekly_electronics_shopping",
+    "category": "weekly",
+    "type": "single",
+    "title": "Elektronik ürün alışveriş sıklığınız nedir?",
+    "options": [
+      {
+        "id": "year_0_1",
+        "label": "Senede 1 veya daha az",
+        "value": "year_0_1"
+      },
+      {
+        "id": "year_1_2",
+        "label": "Senede 1-2",
+        "value": "year_1_2"
+      },
+      {
+        "id": "year_3_4",
+        "label": "Senede 3-4",
+        "value": "year_3_4"
+      },
+      {
+        "id": "month_1_plus",
+        "label": "Ayda bir veya daha fazla",
+        "value": "month_1_plus"
+      }
+    ],
+    "required": false
+  },
+  {
+    "id": "shower_flow_intensity",
+    "category": "weekly",
+    "type": "single",
+    "title": "Duşta suyu ne kadar açıyorsunuz?",
+    "options": [
+      {
+        "id": "low",
+        "label": "Kısık/yarım basınç",
+        "value": "low"
+      },
+      {
+        "id": "medium",
+        "label": "Orta basınç",
+        "value": "medium"
+      },
+      {
+        "id": "high",
+        "label": "Tam basınç",
+        "value": "high"
+      }
+    ],
+    "required": false
+  },
+  {
+    "id": "faucet_flow_intensity",
+    "category": "weekly",
+    "type": "single",
+    "title": "Musluğu ne kadar açıyorsunuz? (mutfak/banyo)",
+    "options": [
+      {
+        "id": "low",
+        "label": "Kısık/yarım basınç",
+        "value": "low"
+      },
+      {
+        "id": "medium",
+        "label": "Orta basınç",
+        "value": "medium"
+      },
+      {
+        "id": "high",
+        "label": "Tam basınç",
+        "value": "high"
+      }
+    ],
+    "required": false
   }
 ]

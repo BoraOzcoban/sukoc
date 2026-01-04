@@ -12,10 +12,10 @@ import { Badge } from '../components/ui/Badge'
 export const ResultsPage: React.FC = () => {
   const navigate = useNavigate()
   const { t } = useTranslation()
-  const { results, user } = useAppStore()
+  const { results } = useAppStore()
   const [exported, setExported] = useState(false)
 
-  if (!results || !user) {
+  if (!results) {
     navigate('/')
     return null
   }
@@ -56,13 +56,24 @@ export const ResultsPage: React.FC = () => {
     { name: 'Potansiyel Tasarruf', value: results.potentialDailySavings },
   ]
 
-  const categoryData = [
-    { name: 'Duş/Banyo', value: results.currentDailyUsage * 0.35 },
-    { name: 'Mutfak', value: results.currentDailyUsage * 0.25 },
-    { name: 'Çamaşır', value: results.currentDailyUsage * 0.15 },
-    { name: 'Bahçe', value: results.currentDailyUsage * 0.15 },
-    { name: 'Diğer', value: results.currentDailyUsage * 0.10 },
-  ]
+  const categoryLabels: Record<string, string> = {
+    daily_hygiene: 'Duş/Banyo',
+    kitchen: 'Mutfak',
+    laundry: 'Çamaşır',
+    garden: 'Bahçe',
+    bathroom: 'Banyo',
+    lifestyle: 'Yaşam Tarzı',
+    other: 'Diğer',
+  }
+
+  const categoryData = results.categoryBreakdown
+    ? Object.entries(results.categoryBreakdown)
+        .filter(([, value]) => value > 0)
+        .map(([key, value]) => ({
+          name: categoryLabels[key] || key,
+          value,
+        }))
+    : []
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 py-8">

@@ -10,30 +10,85 @@ describe('WaterCalculator', () => {
 
   describe('calculateWaterUsage', () => {
     const mockAnswers: Record<string, QuizAnswer> = {
-      daily_shower_duration: {
-        questionId: 'daily_shower_duration',
-        value: 10, // 10 minutes
+      weekly_shower_total_minutes: {
+        questionId: 'weekly_shower_total_minutes',
+        value: 70, // minutes per week
+        category: 'weekly'
+      },
+      general_faucet_closure: {
+        questionId: 'general_faucet_closure',
+        value: 'arada_kapatirim',
         category: 'daily'
       },
-      daily_shower_frequency: {
-        questionId: 'daily_shower_frequency',
-        value: '1',
+      dishwashing_method_detailed: {
+        questionId: 'dishwashing_method_detailed',
+        value: 'dishwasher_eco',
         category: 'daily'
       },
-      shower_water_saving: {
-        questionId: 'shower_water_saving',
-        value: 'never',
-        category: 'daily'
+      weekly_laundry_frequency: {
+        questionId: 'weekly_laundry_frequency',
+        value: '3-4',
+        category: 'weekly'
       },
-      daily_teeth_brushing: {
-        questionId: 'daily_teeth_brushing',
-        value: 'always',
-        category: 'daily'
+      weekly_garden_watering_minutes: {
+        questionId: 'weekly_garden_watering_minutes',
+        value: 60,
+        category: 'weekly'
       },
-      daily_dishwashing: {
-        questionId: 'daily_dishwashing',
-        value: 'machine',
-        category: 'daily'
+      weekly_red_meat_kg: {
+        questionId: 'weekly_red_meat_kg',
+        value: '1_2',
+        category: 'weekly'
+      },
+      weekly_dairy_consumption: {
+        questionId: 'weekly_dairy_consumption',
+        value: 'average',
+        category: 'weekly'
+      },
+      clothing_purchase_frequency: {
+        questionId: 'clothing_purchase_frequency',
+        value: 'month_1_2',
+        category: 'weekly'
+      },
+      car_wash_frequency: {
+        questionId: 'car_wash_frequency',
+        value: 'week_1',
+        category: 'weekly'
+      },
+      weekly_electronics_shopping: {
+        questionId: 'weekly_electronics_shopping',
+        value: 'year_1_2',
+        category: 'weekly'
+      },
+      weekly_white_meat_kg: {
+        questionId: 'weekly_white_meat_kg',
+        value: 'lt1',
+        category: 'weekly'
+      },
+      garden_style: {
+        questionId: 'garden_style',
+        value: 'mixed',
+        category: 'weekly'
+      },
+      irrigation_practice: {
+        questionId: 'irrigation_practice',
+        value: 'hose_controlled',
+        category: 'weekly'
+      },
+      shower_flow_intensity: {
+        questionId: 'shower_flow_intensity',
+        value: 'medium',
+        category: 'weekly'
+      },
+      faucet_flow_intensity: {
+        questionId: 'faucet_flow_intensity',
+        value: 'medium',
+        category: 'weekly'
+      },
+      pool_hot_tub: {
+        questionId: 'pool_hot_tub',
+        value: 'none',
+        category: 'weekly'
       }
     }
 
@@ -57,9 +112,9 @@ describe('WaterCalculator', () => {
     it('includes relevant suggestions based on answers', () => {
       const result = calculator.calculateWaterUsage(mockAnswers, 1)
       
-      // Should include shower suggestions since we answered shower questions
-      const showerSuggestions = result.suggestions.filter(s => s.category === 'shower')
-      expect(showerSuggestions.length).toBeGreaterThan(0)
+      // Should include daily hygiene suggestions since we answered hygiene questions
+      const hygieneSuggestions = result.suggestions.filter(s => s.category === 'daily_hygiene')
+      expect(hygieneSuggestions.length).toBeGreaterThan(0)
     })
 
     it('sorts suggestions by priority', () => {
@@ -95,10 +150,10 @@ describe('WaterCalculator', () => {
 
   describe('getQuestionById', () => {
     it('returns question by id', () => {
-      const question = calculator.getQuestionById('daily_shower_duration')
+      const question = calculator.getQuestionById('weekly_shower_total_minutes')
       
       expect(question).toBeDefined()
-      expect(question?.id).toBe('daily_shower_duration')
+      expect(question?.id).toBe('weekly_shower_total_minutes')
     })
 
     it('returns undefined for non-existent id', () => {

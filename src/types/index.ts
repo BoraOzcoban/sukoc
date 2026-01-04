@@ -75,6 +75,7 @@ export interface WaterUsageAnalysis {
     percentile: number
     message: string
   }
+  categoryBreakdown?: Record<string, number> // daily liters by category
 }
 
 

@@ -19,11 +19,6 @@ export const QuizPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    if (!user) {
-      navigate('/onboarding')
-      return
-    }
-
     // Load questions based on user's main water uses
     const allQuestions = waterCalculator.getAllQuestions()
     
@@ -80,16 +75,15 @@ export const QuizPage: React.FC = () => {
   }
 
   const handleFinishQuiz = () => {
-    if (!user) return
-
+    const effectiveUser = user || { id: 'guest', householdSize: 1, region: '', mainWaterUses: [] }
     // Calculate results
-    const analysis = waterCalculator.calculateWaterUsage(quizAnswers, user.householdSize)
+    const analysis = waterCalculator.calculateWaterUsage(quizAnswers, effectiveUser.householdSize || 1)
     setResults(analysis)
 
     // Create quiz session
     const quizSession = {
       id: `quiz-${Date.now()}`,
-      userId: user.id,
+      userId: effectiveUser.id,
       answers: Object.values(quizAnswers),
       completedAt: new Date(),
       createdAt: new Date(),

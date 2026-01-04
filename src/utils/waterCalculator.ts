@@ -3,165 +3,135 @@ import questionsData from '../data/questions.json'
 import suggestionsData from '../data/suggestions.json'
 
 // Realistic water usage calculations based on actual behaviors
-// All values in liters per day per person unless specified
-
+// Values are weekly totals (liters per week) unless stated otherwise.
 const WATER_CALCULATIONS = {
-  // SHOWER CALCULATIONS (liters per shower)
-  daily_shower_duration_detailed: {
-    less_than_5: 30, // 5 min × 6L/min = 30L per shower
-    '5_to_10': 52.5, // 7.5 min avg × 7L/min = 52.5L per shower  
-    '10_to_20': 105, // 15 min avg × 7L/min = 105L per shower
-    more_than_20: 168, // 24 min avg × 7L/min = 168L per shower
-  },
-  
-  daily_shower_count: {
-    once: 1, // multiplier for shower frequency
-    twice: 2,
-    more: 2.5, // assuming 2.5 times per day average
+  // Q1: shower minutes → 14 L per minute (weekly total)
+  shower_liters_per_minute_weekly: 14,
+
+  // Q2: faucet closure habit → weekly add-ons
+  faucet_closure_weekly: {
+    hic_kapatmam: 300,
+    arada_kapatirim: 150,
+    kapatirim: 0,
   },
 
-  shower_temperature_adjustment: {
-    always: 0.9, // 10% savings from efficient behavior
-    sometimes: 0.95, // 5% savings
-    rarely: 1.05, // 5% waste
-    never: 1.15, // 15% waste from leaving water running
-  },
-
-  // TEETH BRUSHING (liters per day)
-  teeth_brushing_tap_closure: {
-    always: 2, // Efficient: only rinse water
-    sometimes: 6, // Mixed behavior
-    rarely: 10, // Mostly wasteful
-    never: 15, // Tap running entire time
-  },
-
-  // HAND WASHING (liters per day, assuming 8-10 times)
-  hand_washing_tap_usage: {
-    never: 8, // Very efficient: 0.8L per wash
-    rarely: 12, // Mostly efficient: 1.2L per wash
-    often: 20, // Often wasteful: 2L per wash
-    always: 30, // Always wasteful: 3L per wash
-  },
-
-  // SHAVING (liters per session, for those who shave)
-  shaving_water_usage: {
-    closed_when_possible: 2, // Very efficient
-    sometimes_close: 4, // Moderately efficient
-    mostly_open: 8, // Wasteful
-    always_open: 15, // Very wasteful
-  },
-
-  // TOILET USAGE (liters per day)
-  dual_flush_toilet: {
-    yes: 24, // 6 flushes × (3L small + 1×6L large) = 24L
-    no_considering: 36, // 6 flushes × 6L = 36L
-    no: 36,
-    dont_know: 36,
-  },
-
-  // KITCHEN WATER USAGE
+  // Q3: dishwashing → weekly add-ons
   dishwashing_method_detailed: {
-    dishwasher_eco: 12, // Eco cycle uses ~12L per load
-    dishwasher_standard: 15, // Standard cycle ~15L per load  
-    hand_tap_open: 45, // Very wasteful hand washing
-    hand_tap_controlled: 20, // Efficient hand washing
+    dishwasher_eco: 50,
+    dishwasher_standard: 100,
+    hand_tap_controlled: 300,
+    hand_tap_open: 700,
   },
 
+  // Q4: fruit/vegetable washing → weekly add-ons
   fruit_vegetable_washing_method: {
-    bowl_water: 3, // Using bowl: ~3L per day
-    tap_low_flow: 6, // Low flow tap: ~6L per day
-    tap_long_open: 15, // Wasteful running water: ~15L per day
-    no_matter: 10, // Average behavior
+    bowl_water: 28,
+    tap_low_flow: 90,
+    tap_long_open: 200,
   },
 
-  cooking_water_usage: {
-    never: 8, // Minimal cooking water
-    rarely: 12, // Light cooking
-    often: 20, // Heavy cooking
-    always: 30, // Excessive water use in cooking
-  },
-
-  water_reuse: {
-    often: 0.8, // 20% reduction from reusing water
-    sometimes: 0.9, // 10% reduction
-    rarely: 1.0, // No reduction
-    never: 1.0, // No reduction
-  },
-
-  // LAUNDRY WATER USAGE (liters per week / 7 for daily average)
-  washing_machine_full_capacity: {
-    always: 50, // ~7L/day (efficient full loads)
-    usually: 60, // ~8.5L/day  
-    sometimes: 90, // ~13L/day (some half loads)
-    rarely: 120, // ~17L/day (many half loads)
-  },
-
+  // Q5: laundry frequency → weekly add-ons
   weekly_laundry_frequency: {
-    '1-2': 45, // 1.5 × 30L = 45L per week = ~6.5L/day
-    '3-4': 105, // 3.5 × 30L = 105L per week = 15L/day
-    '5+': 180, // 6 × 30L = 180L per week = ~26L/day
+    '1-2': 50,
+    '3-4': 100,
+    '5+': 150,
   },
 
-  // GARDEN WATER USAGE (liters per day)
-  garden_availability: {
-    no: 0, // No garden
-    yes_no_watering: 0, // Garden but no watering
-    yes_hose: 50, // Manual hose watering
-    yes_drip_automatic: 30, // Efficient drip system
+  // Q7: garden watering minutes → 17 L per minute (weekly total)
+  garden_liters_per_minute_weekly: 17,
+
+  // Toilet flush frequency (weekly liters)
+  weekly_toilet_flushes: {
+    per_day_1_3: 84,   // ~2/day * 6L * 7
+    per_day_4_6: 210,  // ~5/day * 6L * 7
+    per_day_7_9: 336,  // ~8/day * 6L * 7
+    per_day_10_plus: 462, // ~11/day * 6L * 7
   },
 
-  garden_watering_method: {
-    hose: 1.5, // 50% more water than drip
-    drip_irrigation: 1.0, // Base efficient amount
-    sprinkler: 1.3, // 30% more than drip
-    no_watering: 0, // No watering
+  // Red meat consumption (weekly liters)
+  weekly_red_meat_kg: {
+    none: 0,
+    lt1: 10000,
+    '1_2': 25000,
+    gt2: 40000,
   },
 
-  garden_watering_time: {
-    early_morning: 0.9, // 10% less due to reduced evaporation
-    evening: 0.95, // 5% less evaporation  
-    noon: 1.4, // 40% more due to high evaporation
-    irregular: 1.1, // 10% more due to poor timing
+  // Dairy consumption (weekly liters)
+  weekly_dairy_consumption: {
+    very_often: 10000,
+    average: 2500,
+    low: 500,
+    none: 0,
   },
 
-  garden_water_source: {
-    city_network: 1.0, // Full municipal water use
-    well_water: 1.0, // Same usage, different source
-    rainwater: 0.5, // 50% reduction in municipal water
-    other: 1.0,
+  // Clothing purchases (weekly liters)
+  clothing_purchase_frequency: {
+    week_1_2: 20000,
+    month_1_2: 5000,
+    year_1_2: 400,
   },
 
-  // CAR WASHING (liters per wash, assuming weekly)
-  car_washing_method: {
-    car_wash_recycled: 6, // 40L per wash / 7 days = ~6L/day
-    car_wash_classic: 10, // 70L per wash / 7 days = 10L/day
-    self_hose_efficient: 8, // 55L per wash / 7 days = ~8L/day
-    hose_open: 20, // 140L per wash / 7 days = 20L/day
+  // Car wash frequency (weekly liters)
+  car_wash_frequency: {
+    never: 0,
+    week_3_plus: 400,
+    week_1: 120,
+    month_1: 30,
   },
 
-  // WATER EFFICIENCY FEATURES (multipliers for overall usage)
-  water_saving_showerhead: {
-    yes: 0.85, // 15% savings on shower water
-    partial: 0.92, // 8% savings
-    no_considering: 1.0,
-    no: 1.0,
+  // White meat consumption (weekly liters)
+  weekly_white_meat_kg: {
+    none: 0,
+    lt1: 4000,
+    '1_2': 8000,
+    gt2: 12000,
   },
 
-  flow_restrictor_usage: {
-    yes: 0.88, // 12% savings on tap water
-    no_considering: 1.0,
-    no_unnecessary: 1.0,
-    no_knowledge: 1.0,
+  // Garden style (weekly liters)
+  garden_style: {
+    none: 0,
+    drought: 80,
+    mixed: 250,
+    lawn_heavy: 500,
+    balcony_pots: 120,
   },
 
-  // LEAK IMPACT (additional daily usage if leaks present)
-  leaky_tap_repair: {
-    immediately: 0, // No leak waste
-    '1_2_days': 2, // Minor leak waste
-    '1_week': 8, // Moderate leak waste  
-    long_wait: 20, // Major leak waste
+  // Pool / hot tub top-ups (weekly liters)
+  pool_hot_tub: {
+    none: 0,
+    small_inflatable: 200,
+    above_ground: 400,
+    inground: 700,
   },
 
+  // Irrigation practices (weekly liters)
+  irrigation_practice: {
+    none: 0,
+    drip_or_timer: 80,
+    hose_controlled: 200,
+    sprinkler_midday: 400,
+    flood_irrigation: 700,
+  },
+
+  // Electronics shopping (weekly liters)
+  weekly_electronics_shopping: {
+    year_0_1: 250, // ~13000L / 52
+    year_1_2: 375, // 1.5 purchases/year
+    year_3_4: 875, // 3.5 purchases/year
+    month_1_plus: 3000, // ~12 purchases/year
+  },
+
+  // Flow intensity factors (multipliers)
+  shower_flow_intensity: {
+    low: 0.5,
+    medium: 0.75,
+    high: 1.0,
+  },
+  faucet_flow_intensity: {
+    low: 0.5,
+    medium: 0.75,
+    high: 1.0,
+  },
 }
 
 export class WaterCalculator {
@@ -175,14 +145,17 @@ export class WaterCalculator {
 
   calculateWaterUsage(answers: Record<string, QuizAnswer>, householdSize: number): WaterUsageAnalysis {
     let totalDailyUsage = 0
+    let categoryBreakdown: Record<string, number> = {}
     let potentialSavings = 0
     const relevantSuggestions: Suggestion[] = []
 
     // Calculate actual water usage based on user answers
-    totalDailyUsage = this.calculateActualUsage(answers, householdSize)
+    const { totalDailyUsage: dailyUsage, categoryUsage } = this.calculateActualUsage(answers, householdSize)
+    totalDailyUsage = dailyUsage
+    categoryBreakdown = categoryUsage
 
-    // Generate suggestions based on answers
-    const suggestionCategories = this.getRelevantSuggestionCategories(answers)
+    // Generate suggestions based on answers and actual usage
+    const suggestionCategories = this.getRelevantSuggestionCategories(answers, categoryBreakdown)
     
     suggestionCategories.forEach(category => {
       const categorySuggestions = this.suggestions[category] || []
@@ -212,10 +185,11 @@ export class WaterCalculator {
       potentialYearlySavings: potentialSavings * 365,
       suggestions: prioritizedSuggestions,
       comparison,
+      categoryBreakdown,
     }
   }
 
-  private getRelevantSuggestionCategories(answers: Record<string, QuizAnswer>): string[] {
+  private getRelevantSuggestionCategories(answers: Record<string, QuizAnswer>, categoryUsage: Record<string, number> = {}): string[] {
     const categories: string[] = []
 
     // Always include general suggestions
@@ -225,69 +199,46 @@ export class WaterCalculator {
     Object.entries(answers).forEach(([questionId, answer]) => {
       switch (questionId) {
         // Daily hygiene
-        case 'daily_teeth_brushing_water':
-        case 'daily_shower_duration':
-        case 'daily_shower_water_off':
-        case 'daily_hand_washing':
-        case 'daily_shower_count':
-          if (!categories.includes('daily_hygiene')) categories.push('daily_hygiene')
+        case 'weekly_shower_total_minutes':
+        case 'general_faucet_closure':
+          if ((categoryUsage['daily_hygiene'] || 0) > 0 && !categories.includes('daily_hygiene')) categories.push('daily_hygiene')
           break
         
         // Kitchen
-        case 'daily_dishwashing_method':
-        case 'daily_fruit_vegetable_washing':
-        case 'daily_coffee_tea_water':
-        case 'weekly_cooking_water':
-          if (!categories.includes('kitchen')) categories.push('kitchen')
+        case 'dishwashing_method_detailed':
+        case 'fruit_vegetable_washing_method':
+          if ((categoryUsage['kitchen'] || 0) > 0 && !categories.includes('kitchen')) categories.push('kitchen')
           break
         
         // Laundry
         case 'weekly_laundry_frequency':
-        case 'weekly_laundry_full_load':
-          if (!categories.includes('laundry')) categories.push('laundry')
-          break
-        
-        // Bathroom
-        case 'annual_toilet_system':
-          if (!categories.includes('bathroom')) categories.push('bathroom')
+          if ((categoryUsage['laundry'] || 0) > 0 && !categories.includes('laundry')) categories.push('laundry')
           break
         
         // Garden
-        case 'monthly_garden_watering':
-          if (answer.value !== 'never' && !categories.includes('garden')) {
-            categories.push('garden')
-          }
+        case 'weekly_garden_watering_minutes':
+        case 'garden_style':
+        case 'pool_hot_tub':
+        case 'irrigation_practice':
+          if ((categoryUsage['garden'] || 0) > 0 && !categories.includes('garden')) categories.push('garden')
+          break
+
+        // Bathroom
+        case 'weekly_toilet_flushes':
+          if ((categoryUsage['bathroom'] || 0) > 0 && !categories.includes('bathroom')) categories.push('bathroom')
+          break
+
+        // Lifestyle/consumption
+        case 'weekly_red_meat_kg':
+        case 'weekly_dairy_consumption':
+        case 'clothing_purchase_frequency':
+        case 'car_wash_frequency':
+        case 'weekly_white_meat_kg':
+        case 'weekly_electronics_shopping':
+          if ((categoryUsage['lifestyle'] || 0) > 0 && !categories.includes('lifestyle')) categories.push('lifestyle')
           break
         
-        // Lifestyle
-        case 'annual_meat_consumption':
-        case 'annual_clothing_habits':
-        case 'annual_water_source':
-          if (!categories.includes('lifestyle')) categories.push('lifestyle')
-          break
-        
-        // Appliances
-        case 'monthly_appliance_efficiency':
-          if (!categories.includes('appliances')) categories.push('appliances')
-          break
-        
-        // Leaks
-        case 'monthly_leak_check':
-          if (!categories.includes('leaks')) categories.push('leaks')
-          break
-        
-        // Monitoring
-        case 'monthly_bill_tracking':
-          if (!categories.includes('monitoring')) categories.push('monitoring')
-          break
-        
-        // Challenges
-        case 'challenge_shower_time':
-        case 'challenge_teeth_brushing':
-        case 'challenge_meat_free_day':
-        case 'challenge_bottled_water':
-          if (!categories.includes('challenges')) categories.push('challenges')
-          break
+        // Appliances and fixtures
       }
     })
 
@@ -319,166 +270,145 @@ export class WaterCalculator {
     return { percentile, message }
   }
 
-  private calculateActualUsage(answers: Record<string, QuizAnswer>, householdSize: number): number {
-    let dailyUsage = 0
+  private calculateActualUsage(answers: Record<string, QuizAnswer>, householdSize: number): { totalDailyUsage: number, categoryUsage: Record<string, number> } {
+    let weeklyUsage = 0
+    const categoryUsage: Record<string, number> = {}
 
-    // SHOWER CALCULATION
-    const showerDuration = this.getAnswerValue(answers, 'daily_shower_duration_detailed')
-    const showerCount = this.getAnswerValue(answers, 'daily_shower_count') || 'once'
-    const tempAdjustment = this.getAnswerValue(answers, 'shower_temperature_adjustment') || 'sometimes'
+    // Q1: shower minutes (weekly)
+    const weeklyShowerMinutes = this.getNumericAnswer(answers, 'weekly_shower_total_minutes') || 0
+    const showerFlow = this.getAnswerValue(answers, 'shower_flow_intensity') || 'high'
+    const showerMultiplier = this.getWaterValue(WATER_CALCULATIONS.shower_flow_intensity, showerFlow, 1)
+    const showerWeekly = weeklyShowerMinutes * WATER_CALCULATIONS.shower_liters_per_minute_weekly * showerMultiplier
+    weeklyUsage += showerWeekly
+    categoryUsage['daily_hygiene'] = (categoryUsage['daily_hygiene'] || 0) + showerWeekly
 
-    let showerUsage = 0
-    if (showerDuration && (WATER_CALCULATIONS.daily_shower_duration_detailed as any)[showerDuration]) {
-      showerUsage = (WATER_CALCULATIONS.daily_shower_duration_detailed as any)[showerDuration]
-    } else {
-      showerUsage = 52.5 // Default average (7.5 min shower)
+    // Q2: faucet closure habit (weekly add-on)
+    const faucetClosure = this.getAnswerValue(answers, 'general_faucet_closure')
+    if (faucetClosure) {
+      weeklyUsage += this.getWaterValue(WATER_CALCULATIONS.faucet_closure_weekly, faucetClosure, 0)
+      categoryUsage['daily_hygiene'] = (categoryUsage['daily_hygiene'] || 0) + this.getWaterValue(WATER_CALCULATIONS.faucet_closure_weekly, faucetClosure, 0)
     }
+    const faucetFlow = this.getAnswerValue(answers, 'faucet_flow_intensity') || 'high'
+    const faucetMultiplier = this.getWaterValue(WATER_CALCULATIONS.faucet_flow_intensity, faucetFlow, 1)
+    categoryUsage['daily_hygiene'] = (categoryUsage['daily_hygiene'] || 0) * faucetMultiplier
 
-    const showerFrequency = (WATER_CALCULATIONS.daily_shower_count as any)[showerCount] || 1
-    const tempEfficiency = (WATER_CALCULATIONS.shower_temperature_adjustment as any)[tempAdjustment] || 1
-    
-    dailyUsage += showerUsage * showerFrequency * tempEfficiency * householdSize
-
-    // TEETH BRUSHING
-    const teethBrushing = this.getAnswerValue(answers, 'teeth_brushing_tap_closure')
-    if (teethBrushing) {
-      const teethWater = this.getWaterValue(WATER_CALCULATIONS.teeth_brushing_tap_closure, teethBrushing, 6)
-      dailyUsage += teethWater * householdSize
-    } else {
-      dailyUsage += 6 * householdSize // Default teeth brushing water
-    }
-
-    // HAND WASHING
-    const handWashing = this.getAnswerValue(answers, 'hand_washing_tap_usage')
-    if (handWashing) {
-      const handWater = this.getWaterValue(WATER_CALCULATIONS.hand_washing_tap_usage, handWashing, 15)
-      dailyUsage += handWater * householdSize
-    } else {
-      dailyUsage += 15 * householdSize // Default hand washing water
-    }
-
-    // SHAVING (assuming 50% of household shaves)
-    const shaving = this.getAnswerValue(answers, 'shaving_water_usage')
-    if (shaving) {
-      const shavingWater = this.getWaterValue(WATER_CALCULATIONS.shaving_water_usage, shaving, 5)
-      dailyUsage += shavingWater * householdSize * 0.5 // Only half the household
-    }
-
-    // TOILET USAGE
-    const toiletType = this.getAnswerValue(answers, 'dual_flush_toilet')
-    if (toiletType) {
-      const toiletWater = this.getWaterValue(WATER_CALCULATIONS.dual_flush_toilet, toiletType, 36)
-      dailyUsage += toiletWater * householdSize
-    } else {
-      dailyUsage += 36 * householdSize // Default toilet usage
-    }
-
-    // KITCHEN USAGE
+    // Q3: dishwashing method (weekly add-on)
     const dishwashing = this.getAnswerValue(answers, 'dishwashing_method_detailed')
     if (dishwashing) {
-      const dishWater = this.getWaterValue(WATER_CALCULATIONS.dishwashing_method_detailed, dishwashing, 20)
-      dailyUsage += dishWater
-    } else {
-      dailyUsage += 20 // Default dishwashing water
+      weeklyUsage += this.getWaterValue(WATER_CALCULATIONS.dishwashing_method_detailed, dishwashing, 0)
+      categoryUsage['kitchen'] = (categoryUsage['kitchen'] || 0) + this.getWaterValue(WATER_CALCULATIONS.dishwashing_method_detailed, dishwashing, 0)
     }
 
-    const fruitVegWashing = this.getAnswerValue(answers, 'fruit_vegetable_washing_method')
-    if (fruitVegWashing) {
-      const fruitVegWater = this.getWaterValue(WATER_CALCULATIONS.fruit_vegetable_washing_method, fruitVegWashing, 8)
-      dailyUsage += fruitVegWater
-    } else {
-      dailyUsage += 8 // Default fruit/vegetable washing
+    // Q4: fruit/vegetable washing (weekly add-on)
+    const fruitVeg = this.getAnswerValue(answers, 'fruit_vegetable_washing_method')
+    if (fruitVeg) {
+      weeklyUsage += this.getWaterValue(WATER_CALCULATIONS.fruit_vegetable_washing_method, fruitVeg, 0)
+      categoryUsage['kitchen'] = (categoryUsage['kitchen'] || 0) + this.getWaterValue(WATER_CALCULATIONS.fruit_vegetable_washing_method, fruitVeg, 0)
     }
 
-    const cooking = this.getAnswerValue(answers, 'cooking_water_usage')
-    if (cooking) {
-      const cookingWater = this.getWaterValue(WATER_CALCULATIONS.cooking_water_usage, cooking, 15)
-      dailyUsage += cookingWater
-    }
-
-    // Apply water reuse multiplier
-    const waterReuse = this.getAnswerValue(answers, 'water_reuse')
-    if (waterReuse) {
-      const reuseMultiplier = this.getWaterValue(WATER_CALCULATIONS.water_reuse, waterReuse, 1)
-      dailyUsage *= reuseMultiplier
-    }
-
-    // LAUNDRY USAGE
+    // Q5: laundry frequency (weekly add-on)
     const laundryFreq = this.getAnswerValue(answers, 'weekly_laundry_frequency')
-    const laundryCapacity = this.getAnswerValue(answers, 'washing_machine_full_capacity')
-    
-    let laundryWater = 0
     if (laundryFreq) {
-      laundryWater = this.getWaterValue(WATER_CALCULATIONS.weekly_laundry_frequency, laundryFreq, 105) / 7 // Convert weekly to daily
-    } else if (laundryCapacity) {
-      const capacityWater = this.getWaterValue(WATER_CALCULATIONS.washing_machine_full_capacity, laundryCapacity, 60)
-      laundryWater = capacityWater / 7 // Convert to daily
-    } else {
-      laundryWater = 15 // Default laundry water (105L/week ÷ 7)
-    }
-    dailyUsage += laundryWater
-
-    // GARDEN USAGE
-    const garden = this.getAnswerValue(answers, 'garden_availability')
-    if (garden) {
-      let gardenWater = this.getWaterValue(WATER_CALCULATIONS.garden_availability, garden, 0)
-      
-      if (gardenWater > 0) {
-        // Apply garden modifiers
-        const method = this.getAnswerValue(answers, 'garden_watering_method')
-        const timing = this.getAnswerValue(answers, 'garden_watering_time')
-        const source = this.getAnswerValue(answers, 'garden_water_source')
-        
-        if (method) {
-          gardenWater *= this.getWaterValue(WATER_CALCULATIONS.garden_watering_method, method, 1)
-        }
-        if (timing) {
-          gardenWater *= this.getWaterValue(WATER_CALCULATIONS.garden_watering_time, timing, 1)
-        }
-        if (source) {
-          gardenWater *= this.getWaterValue(WATER_CALCULATIONS.garden_water_source, source, 1)
-        }
-      }
-      
-      dailyUsage += gardenWater
+      weeklyUsage += this.getWaterValue(WATER_CALCULATIONS.weekly_laundry_frequency, laundryFreq, 0)
+      categoryUsage['laundry'] = (categoryUsage['laundry'] || 0) + this.getWaterValue(WATER_CALCULATIONS.weekly_laundry_frequency, laundryFreq, 0)
     }
 
-    // CAR WASHING
-    const carWashing = this.getAnswerValue(answers, 'car_washing_method')
-    if (carWashing) {
-      const carWater = this.getWaterValue(WATER_CALCULATIONS.car_washing_method, carWashing, 0)
-      dailyUsage += carWater
+    // Toilet flush frequency (weekly add-on)
+    const toiletFlush = this.getAnswerValue(answers, 'weekly_toilet_flushes')
+    if (toiletFlush) {
+      weeklyUsage += this.getWaterValue(WATER_CALCULATIONS.weekly_toilet_flushes, toiletFlush, 0)
+      categoryUsage['bathroom'] = (categoryUsage['bathroom'] || 0) + this.getWaterValue(WATER_CALCULATIONS.weekly_toilet_flushes, toiletFlush, 0)
     }
 
-    // LEAK IMPACT
-    const leakRepair = this.getAnswerValue(answers, 'leaky_tap_repair')
-    if (leakRepair) {
-      const leakWater = this.getWaterValue(WATER_CALCULATIONS.leaky_tap_repair, leakRepair, 0)
-      dailyUsage += leakWater * householdSize
+    // Q7: garden watering minutes (weekly)
+    const weeklyGardenMinutes = this.getNumericAnswer(answers, 'weekly_garden_watering_minutes') || 0
+    const gardenWaterWeekly = weeklyGardenMinutes * WATER_CALCULATIONS.garden_liters_per_minute_weekly
+    weeklyUsage += gardenWaterWeekly
+    if (gardenWaterWeekly > 0) {
+      categoryUsage['garden'] = (categoryUsage['garden'] || 0) + gardenWaterWeekly
     }
 
-    // Apply efficiency multipliers
-    const showerHead = this.getAnswerValue(answers, 'water_saving_showerhead')
-    if (showerHead) {
-      const showerMultiplier = this.getWaterValue(WATER_CALCULATIONS.water_saving_showerhead, showerHead, 1)
-      dailyUsage *= showerMultiplier
+    // Lifestyle add-ons (weekly)
+    const redMeat = this.getAnswerValue(answers, 'weekly_red_meat_kg')
+    if (redMeat) {
+      weeklyUsage += this.getWaterValue(WATER_CALCULATIONS.weekly_red_meat_kg, redMeat, 0)
     }
 
-    const flowRestrictor = this.getAnswerValue(answers, 'flow_restrictor_usage')
-    if (flowRestrictor) {
-      const flowMultiplier = this.getWaterValue(WATER_CALCULATIONS.flow_restrictor_usage, flowRestrictor, 1)
-      dailyUsage *= flowMultiplier
+    const dairy = this.getAnswerValue(answers, 'weekly_dairy_consumption')
+    if (dairy) {
+      weeklyUsage += this.getWaterValue(WATER_CALCULATIONS.weekly_dairy_consumption, dairy, 0)
+      categoryUsage['lifestyle'] = (categoryUsage['lifestyle'] || 0) + this.getWaterValue(WATER_CALCULATIONS.weekly_dairy_consumption, dairy, 0)
     }
 
-    // Add basic drinking and other essential water (5L per person per day)
-    dailyUsage += 5 * householdSize
+    const clothing = this.getAnswerValue(answers, 'clothing_purchase_frequency')
+    if (clothing) {
+      weeklyUsage += this.getWaterValue(WATER_CALCULATIONS.clothing_purchase_frequency, clothing, 0)
+      categoryUsage['lifestyle'] = (categoryUsage['lifestyle'] || 0) + this.getWaterValue(WATER_CALCULATIONS.clothing_purchase_frequency, clothing, 0)
+    }
 
-    return Math.max(0, dailyUsage)
+    const whiteMeat = this.getAnswerValue(answers, 'weekly_white_meat_kg')
+    if (whiteMeat) {
+      weeklyUsage += this.getWaterValue(WATER_CALCULATIONS.weekly_white_meat_kg, whiteMeat, 0)
+      categoryUsage['lifestyle'] = (categoryUsage['lifestyle'] || 0) + this.getWaterValue(WATER_CALCULATIONS.weekly_white_meat_kg, whiteMeat, 0)
+    }
+
+    const carWash = this.getAnswerValue(answers, 'car_wash_frequency')
+    if (carWash) {
+      weeklyUsage += this.getWaterValue(WATER_CALCULATIONS.car_wash_frequency, carWash, 0)
+      categoryUsage['lifestyle'] = (categoryUsage['lifestyle'] || 0) + this.getWaterValue(WATER_CALCULATIONS.car_wash_frequency, carWash, 0)
+    }
+
+    const electronics = this.getAnswerValue(answers, 'weekly_electronics_shopping')
+    if (electronics) {
+      weeklyUsage += this.getWaterValue(WATER_CALCULATIONS.weekly_electronics_shopping, electronics, 0)
+      categoryUsage['lifestyle'] = (categoryUsage['lifestyle'] || 0) + this.getWaterValue(WATER_CALCULATIONS.weekly_electronics_shopping, electronics, 0)
+    }
+
+    // Garden style
+    const gardenStyle = this.getAnswerValue(answers, 'garden_style')
+    if (gardenStyle) {
+      weeklyUsage += this.getWaterValue(WATER_CALCULATIONS.garden_style, gardenStyle, 0)
+      categoryUsage['garden'] = (categoryUsage['garden'] || 0) + this.getWaterValue(WATER_CALCULATIONS.garden_style, gardenStyle, 0)
+    }
+
+    // Irrigation practice
+    const irrigation = this.getAnswerValue(answers, 'irrigation_practice')
+    if (irrigation) {
+      weeklyUsage += this.getWaterValue(WATER_CALCULATIONS.irrigation_practice, irrigation, 0)
+      categoryUsage['garden'] = (categoryUsage['garden'] || 0) + this.getWaterValue(WATER_CALCULATIONS.irrigation_practice, irrigation, 0)
+    }
+
+    // Pool / hot tub
+    const poolHotTub = this.getAnswerValue(answers, 'pool_hot_tub')
+    if (poolHotTub) {
+      weeklyUsage += this.getWaterValue(WATER_CALCULATIONS.pool_hot_tub, poolHotTub, 0)
+      categoryUsage['garden'] = (categoryUsage['garden'] || 0) + this.getWaterValue(WATER_CALCULATIONS.pool_hot_tub, poolHotTub, 0)
+    }
+
+    // Convert to daily; inputs already represent household totals
+    const dailyUsage = weeklyUsage / 7
+    const categoryUsageDaily = Object.fromEntries(
+      Object.entries(categoryUsage).map(([key, value]) => [key, value / 7])
+    )
+
+    return {
+      totalDailyUsage: Math.max(0, dailyUsage),
+      categoryUsage: categoryUsageDaily,
+    }
   }
 
   private getAnswerValue(answers: Record<string, QuizAnswer>, questionId: string): string | null {
     const answer = answers[questionId]
     return answer ? String(answer.value) : null
+  }
+
+  private getNumericAnswer(answers: Record<string, QuizAnswer>, questionId: string): number | null {
+    const answer = answers[questionId]
+    if (!answer) return null
+    const value = answer.value
+    if (typeof value === 'number') return value
+    const parsed = parseFloat(String(value))
+    return isNaN(parsed) ? null : parsed
   }
 
   private getWaterValue(calculations: any, key: string, defaultValue: number = 0): number {

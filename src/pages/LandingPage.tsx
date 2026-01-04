@@ -10,7 +10,7 @@ export const LandingPage: React.FC = () => {
   const { t } = useTranslation()
 
   const handleStartQuiz = () => {
-    navigate('/onboarding')
+    navigate('/quiz')
   }
 
   const features = [
