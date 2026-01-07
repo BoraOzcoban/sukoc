@@ -78,7 +78,7 @@ export const ResultItem: React.FC<ResultItemProps> = ({
             <div className="flex items-center space-x-4">
               <div className="text-center">
                 <div className="text-2xl font-bold text-primary-600">
-                  {suggestion.impact}
+                  {suggestion.impact.toFixed(1)}
                 </div>
                 <div className="text-sm text-accent-500">L/gün</div>
               </div>

@@ -76,6 +76,7 @@ export interface WaterUsageAnalysis {
     message: string
   }
   categoryBreakdown?: Record<string, number> // daily liters by category
+  lifestyleBreakdown?: Record<string, number> // daily liters by lifestyle subcategory
 }
 
 

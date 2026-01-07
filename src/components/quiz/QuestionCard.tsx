@@ -60,7 +60,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
       <div className="mb-8">
         <div className="flex justify-between items-center mb-2">
           <span className="text-sm font-medium text-accent-600">
-            İlerleme: {Math.round(progress)}%
+            İlerleme: %{Math.round(progress)}
           </span>
           <Badge variant="primary">{question.category}</Badge>
         </div>

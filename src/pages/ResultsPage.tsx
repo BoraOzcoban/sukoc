@@ -8,6 +8,8 @@ import { ChartWrapper } from '../components/results/ChartWrapper'
 import { Button } from '../components/ui/Button'
 import { Card } from '../components/ui/Card'
 import { Badge } from '../components/ui/Badge'
+import html2canvas from 'html2canvas'
+import jsPDF from 'jspdf'
 
 export const ResultsPage: React.FC = () => {
   const navigate = useNavigate()
@@ -32,22 +34,24 @@ export const ResultsPage: React.FC = () => {
   }
 
   const handleExportPDF = () => {
-    // This would generate and download a PDF
-    setExported(true)
-    setTimeout(() => setExported(false), 3000)
-  }
+    const storyElement = document.getElementById('sukoc-story-export')
+    if (!storyElement) return
 
-  const handleShare = () => {
-    if (navigator.share) {
-      navigator.share({
-        title: 'SuKoç - Su Kullanım Analizi',
-        text: `Su kullanım analizi sonuçlarım: Günde ${results.currentDailyUsage.toFixed(0)} litre kullanıyorum ve ${results.potentialDailySavings.toFixed(0)} litre tasarruf edebilirim!`,
-        url: window.location.href,
+    setExported(true)
+    html2canvas(storyElement, { scale: 2 })
+      .then((canvas) => {
+        const imageData = canvas.toDataURL('image/png')
+        const pdf = new jsPDF({
+          orientation: 'portrait',
+          unit: 'px',
+          format: [1080, 1920],
+        })
+        pdf.addImage(imageData, 'PNG', 0, 0, 1080, 1920)
+        pdf.save('sukoc-story.pdf')
       })
-    } else {
-      // Fallback to copying to clipboard
-      navigator.clipboard.writeText(window.location.href)
-    }
+      .finally(() => {
+        setTimeout(() => setExported(false), 1000)
+      })
   }
 
   // Prepare chart data
@@ -66,18 +70,96 @@ export const ResultsPage: React.FC = () => {
     other: 'Diğer',
   }
 
+  const lifestyleLabels: Record<string, string> = {
+    red_meat: 'Kırmızı Et',
+    dairy: 'Süt Ürünleri',
+    clothing: 'Giyim',
+    white_meat: 'Beyaz Et',
+    car_wash: 'Araç Yıkama',
+    electronics: 'Elektronik',
+  }
+
+  const lifestyleData = results.lifestyleBreakdown
+    ? Object.entries(results.lifestyleBreakdown)
+        .filter(([, value]) => value > 0)
+        .map(([key, value]) => ({
+          name: lifestyleLabels[key] || key,
+          value,
+        }))
+    : []
+
+  const targetDailyUsage = Math.max(
+    0,
+    results.currentDailyUsage - results.potentialDailySavings
+  )
+
   const categoryData = results.categoryBreakdown
     ? Object.entries(results.categoryBreakdown)
         .filter(([, value]) => value > 0)
-        .map(([key, value]) => ({
-          name: categoryLabels[key] || key,
-          value,
-        }))
+        .flatMap(([key, value]) => {
+          if (key === 'lifestyle' && lifestyleData.length > 0) {
+            return lifestyleData
+          }
+          return [{ name: categoryLabels[key] || key, value }]
+        })
     : []
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 py-8">
       <div className="max-w-6xl mx-auto px-4">
+        <div
+          id="sukoc-story-export"
+          className="fixed left-[-9999px] top-0"
+          style={{ width: 1080, height: 1920 }}
+        >
+          <div className="w-full h-full relative overflow-hidden text-white bg-gradient-to-br from-slate-900 via-sky-900 to-blue-900">
+            <div className="absolute -top-24 -right-32 w-96 h-96 bg-cyan-400/30 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 -left-24 w-96 h-96 bg-emerald-400/20 rounded-full blur-3xl"></div>
+            <div className="absolute top-1/3 right-10 w-40 h-40 border border-white/20 rounded-full"></div>
+            <div className="absolute bottom-1/4 left-16 w-28 h-28 border border-white/10 rounded-full"></div>
+
+            <div className="absolute inset-0 px-16 py-20 flex flex-col justify-between">
+              <div>
+                <div className="text-sm tracking-[0.4em] uppercase text-white/70">
+                  SuKoç
+                </div>
+                <h2 className="mt-6 text-5xl font-bold leading-tight">
+                  Günlük su ayak izim {results.currentDailyUsage.toFixed(1)} litre civarında,
+                  bunu {targetDailyUsage.toFixed(1)} litreye düşürmek için SuKoç'un önerilerini uygulayacağım.
+                </h2>
+                <p className="mt-8 text-xl text-white/80">
+                  Küçük değişiklikler, büyük tasarruf.
+                </p>
+              </div>
+
+              <div className="space-y-8">
+                <div className="grid grid-cols-2 gap-8 text-white/90">
+                  <div className="rounded-2xl bg-white/10 p-6 backdrop-blur">
+                    <div className="text-4xl font-bold">2.2 Milyar</div>
+                    <p className="mt-2 text-sm text-white/70">kişi güvenli suya erişemiyor</p>
+                  </div>
+                  <div className="rounded-2xl bg-white/10 p-6 backdrop-blur">
+                    <div className="text-4xl font-bold">13.000 L</div>
+                    <p className="mt-2 text-sm text-white/70">1 telefon üretimi için gereken su</p>
+                  </div>
+                  <div className="rounded-2xl bg-white/10 p-6 backdrop-blur">
+                    <div className="text-4xl font-bold">2.400 L</div>
+                    <p className="mt-2 text-sm text-white/70">1 hamburgerin su ayak izi</p>
+                  </div>
+                  <div className="rounded-2xl bg-white/10 p-6 backdrop-blur">
+                    <div className="text-4xl font-bold">2.700 L</div>
+                    <p className="mt-2 text-sm text-white/70">1 tişört üretimi için su</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between text-white/70">
+                  <span className="text-sm">#SuKoç #SuAyakİzi</span>
+                  <span className="text-sm">sukoc.app</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -93,7 +175,7 @@ export const ResultsPage: React.FC = () => {
         </motion.div>
 
         {/* Global Water Crisis Stats */}
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -126,11 +208,11 @@ export const ResultsPage: React.FC = () => {
                 Su Tüketimi Gerçekleri
               </h3>
               <div className="text-4xl font-bold text-blue-600 mb-2">
-                70%
+                %70
               </div>
               <p className="text-blue-700 font-medium">dünya suyu tarımda kullanılıyor</p>
               <div className="text-2xl font-semibold text-blue-800 mt-4">
-                20%
+                %20
               </div>
               <p className="text-blue-700">endüstriyel kullanım</p>
             </Card>
@@ -148,7 +230,7 @@ export const ResultsPage: React.FC = () => {
               <div className="text-4xl mb-3">🏭</div>
               <h4 className="text-lg font-bold text-yellow-900 mb-2">Endüstriyel Kullanım</h4>
               <div className="text-3xl font-bold text-yellow-600 mb-1">1 Hamburger</div>
-              <p className="text-yellow-700 text-sm">= 2,400 litre su</p>
+              <p className="text-yellow-700 text-sm">= 2.400 litre su</p>
             </Card>
           </motion.div>
 
@@ -161,7 +243,7 @@ export const ResultsPage: React.FC = () => {
               <div className="text-4xl mb-3">👕</div>
               <h4 className="text-lg font-bold text-green-900 mb-2">Tekstil Sektörü</h4>
               <div className="text-3xl font-bold text-green-600 mb-1">1 Tişört</div>
-              <p className="text-green-700 text-sm">= 2,700 litre su</p>
+              <p className="text-green-700 text-sm">= 2.700 litre su</p>
             </Card>
           </motion.div>
 
@@ -174,7 +256,7 @@ export const ResultsPage: React.FC = () => {
               <div className="text-4xl mb-3">📱</div>
               <h4 className="text-lg font-bold text-purple-900 mb-2">Teknoloji</h4>
               <div className="text-3xl font-bold text-purple-600 mb-1">1 Telefon</div>
-              <p className="text-purple-700 text-sm">= 13,000 litre su</p>
+              <p className="text-purple-700 text-sm">= 13.000 litre su</p>
             </Card>
           </motion.div>
         </div>
@@ -193,13 +275,13 @@ export const ResultsPage: React.FC = () => {
               </h3>
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
-                  <div className="text-4xl font-bold text-primary-600 mb-2">
-                    {results.currentDailyUsage.toFixed(0)} L
-                  </div>
-                  <p className="text-accent-600 mb-4">Günlük su kullanımınız</p>
-                  <div className="text-2xl font-semibold text-accent-700">
-                    {results.potentialDailySavings.toFixed(0)} L
-                  </div>
+          <div className="text-4xl font-bold text-primary-600 mb-2">
+            {results.currentDailyUsage.toFixed(1)} L
+          </div>
+          <p className="text-accent-600 mb-4">Günlük su kullanımınız</p>
+          <div className="text-2xl font-semibold text-accent-700">
+            {results.potentialDailySavings.toFixed(1)} L
+          </div>
                   <p className="text-accent-600">Günlük tasarruf potansiyeliniz</p>
                 </div>
                 <div className="text-left">
@@ -283,7 +365,7 @@ export const ResultsPage: React.FC = () => {
           </div>
 
           <div className="space-y-6">
-            {results.suggestions.slice(0, 5).map((suggestion, index) => (
+            {results.suggestions.map((suggestion, index) => (
               <motion.div
                 key={suggestion.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -315,17 +397,6 @@ export const ResultsPage: React.FC = () => {
             <span>📄</span>
             <span>{exported ? 'PDF İndiriliyor...' : 'PDF Olarak İndir'}</span>
           </Button>
-
-          <Button
-            size="lg"
-            variant="secondary"
-            onClick={handleShare}
-            className="flex items-center space-x-2"
-          >
-            <span>📤</span>
-            <span>Paylaş</span>
-          </Button>
-
         </motion.div>
 
         {/* Next Steps */}

@@ -146,13 +146,15 @@ export class WaterCalculator {
   calculateWaterUsage(answers: Record<string, QuizAnswer>, householdSize: number): WaterUsageAnalysis {
     let totalDailyUsage = 0
     let categoryBreakdown: Record<string, number> = {}
+    let lifestyleBreakdown: Record<string, number> = {}
     let potentialSavings = 0
     const relevantSuggestions: Suggestion[] = []
 
     // Calculate actual water usage based on user answers
-    const { totalDailyUsage: dailyUsage, categoryUsage } = this.calculateActualUsage(answers, householdSize)
+    const { totalDailyUsage: dailyUsage, categoryUsage, lifestyleUsage } = this.calculateActualUsage(answers, householdSize)
     totalDailyUsage = dailyUsage
     categoryBreakdown = categoryUsage
+    lifestyleBreakdown = lifestyleUsage
 
     // Generate suggestions based on answers and actual usage
     const suggestionCategories = this.getRelevantSuggestionCategories(answers, categoryBreakdown)
@@ -161,6 +163,9 @@ export class WaterCalculator {
       const categorySuggestions = this.suggestions[category] || []
       relevantSuggestions.push(...categorySuggestions)
     })
+
+    const bestOptionSuggestions = this.getBestOptionSuggestions(answers)
+    relevantSuggestions.push(...bestOptionSuggestions)
 
     // Calculate potential savings from suggestions
     relevantSuggestions.forEach(suggestion => {
@@ -186,6 +191,7 @@ export class WaterCalculator {
       suggestions: prioritizedSuggestions,
       comparison,
       categoryBreakdown,
+      lifestyleBreakdown,
     }
   }
 
@@ -245,34 +251,117 @@ export class WaterCalculator {
     return categories
   }
 
+  private getBestOptionSuggestions(answers: Record<string, QuizAnswer>): Suggestion[] {
+    const suggestions: Suggestion[] = []
+
+    this.questions.forEach((question) => {
+      if (question.type !== 'single' || !question.options?.length) return
+      const answer = answers[question.id]
+      if (!answer) return
+
+      const calculations: Record<string, number> | undefined = (WATER_CALCULATIONS as any)[question.id]
+      if (!calculations) return
+
+      const optionsWithUsage = question.options
+        .map((option) => ({
+          value: String(option.value),
+          label: option.label,
+          usage: calculations[String(option.value)],
+        }))
+        .filter((option) => typeof option.usage === 'number')
+        .sort((a, b) => (b.usage || 0) - (a.usage || 0))
+
+      if (!optionsWithUsage.length) return
+
+      const currentValue = String(answer.value)
+      const currentIndex = optionsWithUsage.findIndex((option) => option.value === currentValue)
+      if (currentIndex === -1) return
+
+      const currentOption = optionsWithUsage[currentIndex]
+      const nextOption = optionsWithUsage[currentIndex + 1]
+      if (!nextOption) return
+
+      if (question.id === 'faucet_flow_intensity') return
+
+      let currentWeekly = currentOption.usage
+      let nextWeekly = nextOption.usage
+
+      if (question.id === 'shower_flow_intensity') {
+        const weeklyShowerMinutes = this.getNumericAnswer(answers, 'weekly_shower_total_minutes') || 0
+        const baseWeekly = weeklyShowerMinutes * WATER_CALCULATIONS.shower_liters_per_minute_weekly
+        currentWeekly = baseWeekly * currentOption.usage
+        nextWeekly = baseWeekly * nextOption.usage
+      }
+
+      const weeklySavings = currentWeekly - nextWeekly
+      if (weeklySavings <= 0) return
+
+      const currentDaily = currentWeekly / 7
+      const nextDaily = nextWeekly / 7
+      const dailySavings = weeklySavings / 7
+      const category = this.getSuggestionCategoryForQuestion(question.id)
+
+      suggestions.push({
+        id: `best_option_${question.id}`,
+        title: question.title,
+        description: `Bu soru için mevcut seçiminiz: "${currentOption.label}" (~${currentDaily.toFixed(1)} L/gün). Bir alt seçenek: "${nextOption.label}" (~${nextDaily.toFixed(1)} L/gün). Günlük yaklaşık ${dailySavings.toFixed(1)} L tasarruf edebilirsiniz.`,
+        impact: dailySavings,
+        difficulty: 'easy',
+        feasibility: 0.85,
+        category,
+        priority: 0,
+      })
+    })
+
+    return suggestions
+  }
+
+  private getSuggestionCategoryForQuestion(questionId: string): string {
+    switch (questionId) {
+      case 'weekly_shower_total_minutes':
+      case 'general_faucet_closure':
+      case 'shower_flow_intensity':
+      case 'faucet_flow_intensity':
+        return 'daily_hygiene'
+      case 'dishwashing_method_detailed':
+      case 'fruit_vegetable_washing_method':
+        return 'kitchen'
+      case 'weekly_laundry_frequency':
+        return 'laundry'
+      case 'weekly_garden_watering_minutes':
+      case 'garden_style':
+      case 'pool_hot_tub':
+      case 'irrigation_practice':
+        return 'garden'
+      case 'weekly_toilet_flushes':
+        return 'bathroom'
+      case 'weekly_red_meat_kg':
+      case 'weekly_dairy_consumption':
+      case 'clothing_purchase_frequency':
+      case 'car_wash_frequency':
+      case 'weekly_white_meat_kg':
+      case 'weekly_electronics_shopping':
+        return 'lifestyle'
+      default:
+        return 'general'
+    }
+  }
+
   private calculateComparison(currentUsage: number, householdSize: number): {
     percentile: number
     message: string
   } {
     // Mock comparison data - in real app, this would come from database
-    const averageUsagePerPerson = 150 // liters per day
-    const userUsagePerPerson = currentUsage / householdSize
-    
-    let percentile: number
-    let message: string
-
-    if (userUsagePerPerson < averageUsagePerPerson * 0.7) {
-      percentile = 20
-      message = `Benzer profildekilerden %${Math.round((averageUsagePerPerson - userUsagePerPerson) / averageUsagePerPerson * 100)} daha az su kullanıyorsunuz`
-    } else if (userUsagePerPerson > averageUsagePerPerson * 1.3) {
-      percentile = 80
-      message = `Benzer profildekilerden %${Math.round((userUsagePerPerson - averageUsagePerPerson) / averageUsagePerPerson * 100)} daha fazla su kullanıyorsunuz`
-    } else {
-      percentile = 50
-      message = 'Benzer profildekilerle aynı seviyedesiniz'
-    }
+    const percentile = 50
+    const message = 'Türkiye\'de ortalama kişi başı su kullanımı günlük yaklaşık 4500 litre, dünya ortalaması ise yaklaşık 3800 litredir.'
 
     return { percentile, message }
   }
 
-  private calculateActualUsage(answers: Record<string, QuizAnswer>, householdSize: number): { totalDailyUsage: number, categoryUsage: Record<string, number> } {
+  private calculateActualUsage(answers: Record<string, QuizAnswer>, householdSize: number): { totalDailyUsage: number, categoryUsage: Record<string, number>, lifestyleUsage: Record<string, number> } {
     let weeklyUsage = 0
     const categoryUsage: Record<string, number> = {}
+    const lifestyleUsage: Record<string, number> = {}
 
     // Q1: shower minutes (weekly)
     const weeklyShowerMinutes = this.getNumericAnswer(answers, 'weekly_shower_total_minutes') || 0
@@ -331,37 +420,50 @@ export class WaterCalculator {
     // Lifestyle add-ons (weekly)
     const redMeat = this.getAnswerValue(answers, 'weekly_red_meat_kg')
     if (redMeat) {
-      weeklyUsage += this.getWaterValue(WATER_CALCULATIONS.weekly_red_meat_kg, redMeat, 0)
+      const redMeatUsage = this.getWaterValue(WATER_CALCULATIONS.weekly_red_meat_kg, redMeat, 0)
+      weeklyUsage += redMeatUsage
+      categoryUsage['lifestyle'] = (categoryUsage['lifestyle'] || 0) + redMeatUsage
+      lifestyleUsage['red_meat'] = (lifestyleUsage['red_meat'] || 0) + redMeatUsage
     }
 
     const dairy = this.getAnswerValue(answers, 'weekly_dairy_consumption')
     if (dairy) {
-      weeklyUsage += this.getWaterValue(WATER_CALCULATIONS.weekly_dairy_consumption, dairy, 0)
-      categoryUsage['lifestyle'] = (categoryUsage['lifestyle'] || 0) + this.getWaterValue(WATER_CALCULATIONS.weekly_dairy_consumption, dairy, 0)
+      const dairyUsage = this.getWaterValue(WATER_CALCULATIONS.weekly_dairy_consumption, dairy, 0)
+      weeklyUsage += dairyUsage
+      categoryUsage['lifestyle'] = (categoryUsage['lifestyle'] || 0) + dairyUsage
+      lifestyleUsage['dairy'] = (lifestyleUsage['dairy'] || 0) + dairyUsage
     }
 
     const clothing = this.getAnswerValue(answers, 'clothing_purchase_frequency')
     if (clothing) {
-      weeklyUsage += this.getWaterValue(WATER_CALCULATIONS.clothing_purchase_frequency, clothing, 0)
-      categoryUsage['lifestyle'] = (categoryUsage['lifestyle'] || 0) + this.getWaterValue(WATER_CALCULATIONS.clothing_purchase_frequency, clothing, 0)
+      const clothingUsage = this.getWaterValue(WATER_CALCULATIONS.clothing_purchase_frequency, clothing, 0)
+      weeklyUsage += clothingUsage
+      categoryUsage['lifestyle'] = (categoryUsage['lifestyle'] || 0) + clothingUsage
+      lifestyleUsage['clothing'] = (lifestyleUsage['clothing'] || 0) + clothingUsage
     }
 
     const whiteMeat = this.getAnswerValue(answers, 'weekly_white_meat_kg')
     if (whiteMeat) {
-      weeklyUsage += this.getWaterValue(WATER_CALCULATIONS.weekly_white_meat_kg, whiteMeat, 0)
-      categoryUsage['lifestyle'] = (categoryUsage['lifestyle'] || 0) + this.getWaterValue(WATER_CALCULATIONS.weekly_white_meat_kg, whiteMeat, 0)
+      const whiteMeatUsage = this.getWaterValue(WATER_CALCULATIONS.weekly_white_meat_kg, whiteMeat, 0)
+      weeklyUsage += whiteMeatUsage
+      categoryUsage['lifestyle'] = (categoryUsage['lifestyle'] || 0) + whiteMeatUsage
+      lifestyleUsage['white_meat'] = (lifestyleUsage['white_meat'] || 0) + whiteMeatUsage
     }
 
     const carWash = this.getAnswerValue(answers, 'car_wash_frequency')
     if (carWash) {
-      weeklyUsage += this.getWaterValue(WATER_CALCULATIONS.car_wash_frequency, carWash, 0)
-      categoryUsage['lifestyle'] = (categoryUsage['lifestyle'] || 0) + this.getWaterValue(WATER_CALCULATIONS.car_wash_frequency, carWash, 0)
+      const carWashUsage = this.getWaterValue(WATER_CALCULATIONS.car_wash_frequency, carWash, 0)
+      weeklyUsage += carWashUsage
+      categoryUsage['lifestyle'] = (categoryUsage['lifestyle'] || 0) + carWashUsage
+      lifestyleUsage['car_wash'] = (lifestyleUsage['car_wash'] || 0) + carWashUsage
     }
 
     const electronics = this.getAnswerValue(answers, 'weekly_electronics_shopping')
     if (electronics) {
-      weeklyUsage += this.getWaterValue(WATER_CALCULATIONS.weekly_electronics_shopping, electronics, 0)
-      categoryUsage['lifestyle'] = (categoryUsage['lifestyle'] || 0) + this.getWaterValue(WATER_CALCULATIONS.weekly_electronics_shopping, electronics, 0)
+      const electronicsUsage = this.getWaterValue(WATER_CALCULATIONS.weekly_electronics_shopping, electronics, 0)
+      weeklyUsage += electronicsUsage
+      categoryUsage['lifestyle'] = (categoryUsage['lifestyle'] || 0) + electronicsUsage
+      lifestyleUsage['electronics'] = (lifestyleUsage['electronics'] || 0) + electronicsUsage
     }
 
     // Garden style
@@ -390,10 +492,14 @@ export class WaterCalculator {
     const categoryUsageDaily = Object.fromEntries(
       Object.entries(categoryUsage).map(([key, value]) => [key, value / 7])
     )
+    const lifestyleUsageDaily = Object.fromEntries(
+      Object.entries(lifestyleUsage).map(([key, value]) => [key, value / 7])
+    )
 
     return {
       totalDailyUsage: Math.max(0, dailyUsage),
       categoryUsage: categoryUsageDaily,
+      lifestyleUsage: lifestyleUsageDaily,
     }
   }
 

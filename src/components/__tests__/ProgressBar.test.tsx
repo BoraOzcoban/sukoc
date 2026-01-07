@@ -19,7 +19,7 @@ describe('ProgressBar Component', () => {
   it('shows percentage when requested', () => {
     render(<ProgressBar progress={60} showPercentage />)
     
-    expect(screen.getByText('60%')).toBeInTheDocument()
+    expect(screen.getByText('%60')).toBeInTheDocument()
   })
 
   it('renders with different sizes', () => {
@@ -40,16 +40,16 @@ describe('ProgressBar Component', () => {
 
   it('clamps progress value between 0 and 100', () => {
     const { rerender } = render(<ProgressBar progress={-10} showPercentage />)
-    expect(screen.getByText('0%')).toBeInTheDocument()
+    expect(screen.getByText('%0')).toBeInTheDocument()
 
     rerender(<ProgressBar progress={150} showPercentage />)
-    expect(screen.getByText('100%')).toBeInTheDocument()
+    expect(screen.getByText('%100')).toBeInTheDocument()
   })
 
   it('displays both label and percentage', () => {
     render(<ProgressBar progress={80} label="Loading" showPercentage />)
     
     expect(screen.getByText('Loading')).toBeInTheDocument()
-    expect(screen.getByText('80%')).toBeInTheDocument()
+    expect(screen.getByText('%80')).toBeInTheDocument()
   })
 })

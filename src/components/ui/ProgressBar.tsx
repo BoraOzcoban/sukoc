@@ -40,7 +40,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
           )}
           {showPercentage && (
             <span className="text-sm font-medium text-accent-600">
-              {Math.round(clampedProgress)}%
+              %{Math.round(clampedProgress)}
             </span>
           )}
         </div>

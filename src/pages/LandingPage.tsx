@@ -128,7 +128,7 @@ export const LandingPage: React.FC = () => {
             >
               <Card className="p-6 text-center bg-white border-orange-200">
                 <div className="text-4xl mb-3">⚡</div>
-                <div className="text-3xl font-bold text-orange-600 mb-2">70%</div>
+                <div className="text-3xl font-bold text-orange-600 mb-2">%70</div>
                 <p className="text-orange-700 text-sm">dünya suyu tarımda kullanılıyor</p>
               </Card>
             </motion.div>
@@ -155,7 +155,7 @@ export const LandingPage: React.FC = () => {
               <Card className="p-6 text-center bg-white border-red-200">
                 <div className="text-4xl mb-3">💧</div>
                 <div className="text-3xl font-bold text-red-600 mb-2">1 Hamburger</div>
-                <p className="text-red-700 text-sm">= 2,400 litre su</p>
+                <p className="text-red-700 text-sm">= 2.400 litre su</p>
               </Card>
             </motion.div>
           </div>
