@@ -156,14 +156,7 @@ export class WaterCalculator {
     categoryBreakdown = categoryUsage
     lifestyleBreakdown = lifestyleUsage
 
-    // Generate suggestions based on answers and actual usage
-    const suggestionCategories = this.getRelevantSuggestionCategories(answers, categoryBreakdown)
-    
-    suggestionCategories.forEach(category => {
-      const categorySuggestions = this.suggestions[category] || []
-      relevantSuggestions.push(...categorySuggestions)
-    })
-
+    // Generate dynamic suggestions based on user's actual answers
     const bestOptionSuggestions = this.getBestOptionSuggestions(answers)
     relevantSuggestions.push(...bestOptionSuggestions)
 
@@ -183,11 +176,14 @@ export class WaterCalculator {
     // Calculate comparison data (mock data for now)
     const comparison = this.calculateComparison(totalDailyUsage, householdSize)
 
+    // The potential for savings cannot exceed current consumption.
+    const actualDailySavings = Math.min(potentialSavings, totalDailyUsage)
+
     return {
       currentDailyUsage: Math.max(0, totalDailyUsage),
       currentYearlyUsage: Math.max(0, totalDailyUsage * 365),
-      potentialDailySavings: potentialSavings,
-      potentialYearlySavings: potentialSavings * 365,
+      potentialDailySavings: actualDailySavings,
+      potentialYearlySavings: actualDailySavings * 365,
       suggestions: prioritizedSuggestions,
       comparison,
       categoryBreakdown,
@@ -278,33 +274,36 @@ export class WaterCalculator {
       if (currentIndex === -1) return
 
       const currentOption = optionsWithUsage[currentIndex]
-      const nextOption = optionsWithUsage[currentIndex + 1]
-      if (!nextOption) return
+      // Best option (lowest water consumption)
+      const bestOption = optionsWithUsage[optionsWithUsage.length - 1]
+
+      // Skip if user already selected the best option
+      if (currentOption.value === bestOption.value) return
 
       if (question.id === 'faucet_flow_intensity') return
 
       let currentWeekly = currentOption.usage
-      let nextWeekly = nextOption.usage
+      let bestWeekly = bestOption.usage
 
       if (question.id === 'shower_flow_intensity') {
         const weeklyShowerMinutes = this.getNumericAnswer(answers, 'weekly_shower_total_minutes') || 0
         const baseWeekly = weeklyShowerMinutes * WATER_CALCULATIONS.shower_liters_per_minute_weekly
         currentWeekly = baseWeekly * currentOption.usage
-        nextWeekly = baseWeekly * nextOption.usage
+        bestWeekly = baseWeekly * bestOption.usage
       }
 
-      const weeklySavings = currentWeekly - nextWeekly
+      const weeklySavings = currentWeekly - bestWeekly
       if (weeklySavings <= 0) return
 
       const currentDaily = currentWeekly / 7
-      const nextDaily = nextWeekly / 7
+      const bestDaily = bestWeekly / 7
       const dailySavings = weeklySavings / 7
       const category = this.getSuggestionCategoryForQuestion(question.id)
 
       suggestions.push({
         id: `best_option_${question.id}`,
         title: question.title,
-        description: `Bu soru için mevcut seçiminiz: "${currentOption.label}" (~${currentDaily.toFixed(1)} L/gün). Bir alt seçenek: "${nextOption.label}" (~${nextDaily.toFixed(1)} L/gün). Günlük yaklaşık ${dailySavings.toFixed(1)} L tasarruf edebilirsiniz.`,
+        description: `Mevcut seçiminiz: "${currentOption.label}" (~${currentDaily.toFixed(1)} L/gün). En iyi seçenek: "${bestOption.label}" (~${bestDaily.toFixed(1)} L/gün). Maksimum günlük tasarruf: ${dailySavings.toFixed(1)} L.`,
         impact: dailySavings,
         difficulty: 'easy',
         feasibility: 0.85,
