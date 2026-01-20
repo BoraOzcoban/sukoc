@@ -5,9 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { useAppStore } from '../store'
 import { Button } from '../components/ui/Button'
 import { Card } from '../components/ui/Card'
-import { Input } from '../components/ui/Input'
 import { Select } from '../components/ui/Select'
-import { RadioGroup } from '../components/ui/RadioGroup'
 
 export const OnboardingPage: React.FC = () => {
   const navigate = useNavigate()

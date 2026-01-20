@@ -13,24 +13,6 @@ export const LandingPage: React.FC = () => {
     navigate('/quiz')
   }
 
-  const features = [
-    {
-      icon: '🎯',
-      title: t('landing.features.personalized.title'),
-      description: t('landing.features.personalized.description'),
-    },
-    {
-      icon: '💡',
-      title: t('landing.features.actionable.title'),
-      description: t('landing.features.actionable.description'),
-    },
-    {
-      icon: '📊',
-      title: t('landing.features.tracking.title'),
-      description: t('landing.features.tracking.description'),
-    },
-  ]
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50">
       {/* Hero Section */}
@@ -170,9 +152,6 @@ export const LandingPage: React.FC = () => {
             <h3 className="text-2xl font-bold mb-4">SuKoç</h3>
             <p className="text-accent-300 mb-4">
               Su tasarrufu için akıllı çözümler
-            </p>
-            <p className="text-accent-400 text-sm">
-              © 2024 SuKoç. Tüm hakları saklıdır.
             </p>
           </div>
         </div>

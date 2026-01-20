@@ -25,8 +25,6 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
   error,
   className = '',
 }) => {
-  const groupId = `radio-group-${name}`
-  
   return (
     <div className={`w-full ${className}`}>
       {label && (

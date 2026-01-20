@@ -58,6 +58,5 @@ describe('LandingPage', () => {
     render(<LandingPageWithRouter />)
     
     expect(screen.getByText(/SuKoç/i)).toBeInTheDocument()
-    expect(screen.getByText(/Tüm hakları saklıdır/i)).toBeInTheDocument()
   })
 })

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
 import { useAppStore } from '../store'
 import { waterCalculator } from '../utils/waterCalculator'
 import { QuestionCard } from '../components/quiz/QuestionCard'
@@ -11,7 +10,6 @@ import type { Question, QuizAnswer } from '../types'
 
 export const QuizPage: React.FC = () => {
   const navigate = useNavigate()
-  const { t } = useTranslation()
   const { user, quizAnswers, addQuizAnswer, setCurrentQuiz, setResults } = useAppStore()
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
@@ -30,6 +28,9 @@ export const QuizPage: React.FC = () => {
         if (!dependentAnswer) return false
         
         const dependentValue = dependentAnswer.value
+        if (Array.isArray(dependentValue)) {
+          return dependentValue.some((value) => question.dependsOn!.values.includes(value))
+        }
         return question.dependsOn.values.includes(dependentValue)
       }
       

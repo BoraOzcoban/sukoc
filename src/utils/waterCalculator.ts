@@ -151,7 +151,7 @@ export class WaterCalculator {
     const relevantSuggestions: Suggestion[] = []
 
     // Calculate actual water usage based on user answers
-    const { totalDailyUsage: dailyUsage, categoryUsage, lifestyleUsage } = this.calculateActualUsage(answers, householdSize)
+    const { totalDailyUsage: dailyUsage, categoryUsage, lifestyleUsage } = this.calculateActualUsage(answers)
     totalDailyUsage = dailyUsage
     categoryBreakdown = categoryUsage
     lifestyleBreakdown = lifestyleUsage
@@ -202,7 +202,7 @@ export class WaterCalculator {
     categories.push('general')
 
     // Check specific answer patterns
-    Object.entries(answers).forEach(([questionId, answer]) => {
+    Object.keys(answers).forEach((questionId) => {
       switch (questionId) {
         // Daily hygiene
         case 'weekly_shower_total_minutes':
@@ -352,13 +352,13 @@ export class WaterCalculator {
     message: string
   } {
     // Mock comparison data - in real app, this would come from database
-    const percentile = 50
+    const percentile = currentUsage > householdSize * 4500 ? 60 : 40
     const message = 'Türkiye\'de ortalama kişi başı su kullanımı günlük yaklaşık 4500 litre, dünya ortalaması ise yaklaşık 3800 litredir.'
 
     return { percentile, message }
   }
 
-  private calculateActualUsage(answers: Record<string, QuizAnswer>, householdSize: number): { totalDailyUsage: number, categoryUsage: Record<string, number>, lifestyleUsage: Record<string, number> } {
+  private calculateActualUsage(answers: Record<string, QuizAnswer>): { totalDailyUsage: number, categoryUsage: Record<string, number>, lifestyleUsage: Record<string, number> } {
     let weeklyUsage = 0
     const categoryUsage: Record<string, number> = {}
     const lifestyleUsage: Record<string, number> = {}
