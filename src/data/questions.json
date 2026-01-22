@@ -242,21 +242,21 @@
     "id": "clothing_purchase_frequency",
     "category": "weekly",
     "type": "single",
-    "title": "Yeni kıyafet (özellikle pamuklu) alışveriş sıklığınız nedir?",
+    "title": "Yeni kıyafet (özellikle pamuklu) alışveriş sıklığınız (kaç adet giyim ürünü) nedir?",
     "options": [
       {
         "id": "week_1_2",
-        "label": "Haftada 1-2 kere",
+        "label": "Haftada 1-2 adet",
         "value": "week_1_2"
       },
       {
         "id": "month_1_2",
-        "label": "Ayda 1-2 kere",
+        "label": "Ayda 1-2 adet",
         "value": "month_1_2"
       },
       {
         "id": "year_1_2",
-        "label": "Yılda 1-2 kere",
+        "label": "Yılda 1-2 adet",
         "value": "year_1_2"
       }
     ],
@@ -316,40 +316,6 @@
         "id": "gt2",
         "label": "2 kilodan fazla",
         "value": "gt2"
-      }
-    ],
-    "required": false
-  },
-  {
-    "id": "garden_style",
-    "category": "weekly",
-    "type": "single",
-    "title": "Bahçenizin/bitki düzeninizin su ihtiyacı nasıl?",
-    "options": [
-      {
-        "id": "none",
-        "label": "Bahçe/bitki yok",
-        "value": "none"
-      },
-      {
-        "id": "drought",
-        "label": "Düşük su (kaktüs/sukulent/xeriscape)",
-        "value": "drought"
-      },
-      {
-        "id": "mixed",
-        "label": "Karışık bitkiler/orta su ihtiyacı",
-        "value": "mixed"
-      },
-      {
-        "id": "lawn_heavy",
-        "label": "Çim/ağaç ağırlıklı, yüksek su ihtiyacı",
-        "value": "lawn_heavy"
-      },
-      {
-        "id": "balcony_pots",
-        "label": "Balkon/saksı bitkileri",
-        "value": "balcony_pots"
       }
     ],
     "required": false

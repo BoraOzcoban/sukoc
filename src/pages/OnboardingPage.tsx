@@ -6,6 +6,7 @@ import { useAppStore } from '../store'
 import { Button } from '../components/ui/Button'
 import { Card } from '../components/ui/Card'
 import { Select } from '../components/ui/Select'
+import clubLogo from '../assets/club-logo.png'
 
 export const OnboardingPage: React.FC = () => {
   const navigate = useNavigate()
@@ -122,7 +123,11 @@ export const OnboardingPage: React.FC = () => {
         <Card className="p-8">
           {/* Header */}
           <div className="text-center mb-8">
-            <div className="text-6xl mb-4">👋</div>
+            <img
+              src={clubLogo}
+              alt="SuKoç logo"
+              className="mx-auto mb-4 h-28 w-28 object-contain"
+            />
             <h1 className="text-3xl font-bold text-accent-900 mb-2">
               {t('onboarding.title')}
             </h1>

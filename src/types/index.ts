@@ -63,6 +63,7 @@ export interface Suggestion {
   priority: number // calculated score
   isChallenge?: boolean
   challengeText?: string
+  isOtherTip?: boolean
 }
 
 export interface WaterUsageAnalysis {
@@ -72,7 +73,6 @@ export interface WaterUsageAnalysis {
   potentialYearlySavings: number
   suggestions: Suggestion[]
   comparison: {
-    percentile: number
     message: string
   }
   categoryBreakdown?: Record<string, number> // daily liters by category

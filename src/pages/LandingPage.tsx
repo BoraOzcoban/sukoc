@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Button } from '../components/ui/Button'
 import { Card } from '../components/ui/Card'
+import clubLogo from '../assets/club-logo.png'
 
 export const LandingPage: React.FC = () => {
   const navigate = useNavigate()
@@ -19,11 +20,12 @@ export const LandingPage: React.FC = () => {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-primary-600/10 to-secondary-600/10"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
-          <div className="text-center">
+          <div className="grid gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
+              className="text-center md:text-left"
             >
               <h1 className="text-5xl md:text-6xl font-bold text-accent-900 mb-6">
                 <span className="text-primary-600">SuKoç</span>
@@ -41,6 +43,27 @@ export const LandingPage: React.FC = () => {
               >
                 {t('landing.hero.cta')}
               </Button>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="md:justify-self-end"
+            >
+              <div className="relative rounded-3xl border border-primary-100 bg-white/70 p-8 shadow-xl backdrop-blur">
+                <div className="flex items-center gap-4">
+                  <img
+                    src={clubLogo}
+                    alt="SuKoç logo"
+                    className="h-24 w-24 object-contain"
+                  />
+                </div>
+                <div className="mt-6 h-px w-full bg-gradient-to-r from-transparent via-primary-200 to-transparent"></div>
+                <p className="mt-6 text-sm text-accent-700 leading-relaxed">
+                  SuKoç, yalnızca farkındalık yaratmak amacıyla Naturel Rotaract tarafından
+                  geliştirilen bir projedir. Tahminler, profesyonel olmayan yaklaşık hesaplamalara dayanır.
+                </p>
+              </div>
             </motion.div>
           </div>
         </div>
@@ -99,6 +122,7 @@ export const LandingPage: React.FC = () => {
                 <div className="text-4xl mb-3">🌍</div>
                 <div className="text-3xl font-bold text-red-600 mb-2">2.2 Milyar</div>
                 <p className="text-red-700 text-sm">kişi güvenli suya erişemiyor</p>
+                <p className="mt-2 text-xs text-red-600/80">Kaynak: UNICEF</p>
               </Card>
             </motion.div>
 
@@ -112,6 +136,7 @@ export const LandingPage: React.FC = () => {
                 <div className="text-4xl mb-3">⚡</div>
                 <div className="text-3xl font-bold text-orange-600 mb-2">%70</div>
                 <p className="text-orange-700 text-sm">dünya suyu tarımda kullanılıyor</p>
+                <p className="mt-2 text-xs text-orange-600/80">Kaynak: UN</p>
               </Card>
             </motion.div>
 
@@ -125,6 +150,7 @@ export const LandingPage: React.FC = () => {
                 <div className="text-4xl mb-3">📈</div>
                 <div className="text-3xl font-bold text-yellow-600 mb-2">5.7 Milyar</div>
                 <p className="text-yellow-700 text-sm">kişi 2050'de etkilenecek</p>
+                <p className="mt-2 text-xs text-yellow-600/80">Kaynak: UN</p>
               </Card>
             </motion.div>
 
@@ -138,6 +164,7 @@ export const LandingPage: React.FC = () => {
                 <div className="text-4xl mb-3">💧</div>
                 <div className="text-3xl font-bold text-red-600 mb-2">1 Hamburger</div>
                 <p className="text-red-700 text-sm">= 2.400 litre su</p>
+                <p className="mt-2 text-xs text-red-600/80">Kaynak: The Game Changers belgeseli</p>
               </Card>
             </motion.div>
           </div>

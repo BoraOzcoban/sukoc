@@ -7,6 +7,7 @@ import { QuestionCard } from '../components/quiz/QuestionCard'
 import { Button } from '../components/ui/Button'
 import { Card } from '../components/ui/Card'
 import type { Question, QuizAnswer } from '../types'
+import clubLogo from '../assets/club-logo.png'
 
 export const QuizPage: React.FC = () => {
   const navigate = useNavigate()
@@ -125,6 +126,11 @@ export const QuizPage: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-8">
+          <img
+            src={clubLogo}
+            alt="SuKoç logo"
+            className="mx-auto mb-3 h-20 w-20 object-contain"
+          />
           <h1 className="text-3xl font-bold text-accent-900 mb-2">
             Su Kullanım Analizi
           </h1>

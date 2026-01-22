@@ -50,9 +50,15 @@ export const ResultItem: React.FC<ResultItemProps> = ({
       <Card hover className="relative overflow-hidden">
         {/* Priority indicator */}
         <div className="absolute top-4 right-4">
-          <Badge variant="primary" size="sm">
-            #{suggestion.priority}
-          </Badge>
+          {suggestion.isOtherTip ? (
+            <Badge variant="secondary" size="sm">
+              Diğer İpucu
+            </Badge>
+          ) : (
+            <Badge variant="primary" size="sm">
+              #{suggestion.priority}
+            </Badge>
+          )}
         </div>
 
         {/* Challenge indicator */}
@@ -74,27 +80,29 @@ export const ResultItem: React.FC<ResultItemProps> = ({
           </p>
 
           {/* Impact and difficulty */}
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center space-x-4">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-primary-600">
-                  {suggestion.impact.toFixed(1)}
+          {!suggestion.isOtherTip && (
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center space-x-4">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-primary-600">
+                    {suggestion.impact.toFixed(1)}
+                  </div>
+                  <div className="text-sm text-accent-500">L/gün</div>
                 </div>
-                <div className="text-sm text-accent-500">L/gün</div>
-              </div>
-              
-              <div className="h-8 w-px bg-accent-200"></div>
-              
-              <div>
-                <Badge variant={getDifficultyColor(suggestion.difficulty)}>
-                  {getDifficultyText(suggestion.difficulty)}
-                </Badge>
-                <div className="text-xs text-accent-500 mt-1">
-                  Uygulama Zorluğu
+
+                <div className="h-8 w-px bg-accent-200"></div>
+
+                <div>
+                  <Badge variant={getDifficultyColor(suggestion.difficulty)}>
+                    {getDifficultyText(suggestion.difficulty)}
+                  </Badge>
+                  <div className="text-xs text-accent-500 mt-1">
+                    Uygulama Zorluğu
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
 
           {/* Challenge text */}
           {suggestion.isChallenge && suggestion.challengeText && (

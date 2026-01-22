@@ -87,15 +87,6 @@ const WATER_CALCULATIONS = {
     gt2: 12000,
   },
 
-  // Garden style (weekly liters)
-  garden_style: {
-    none: 0,
-    drought: 80,
-    mixed: 250,
-    lawn_heavy: 500,
-    balcony_pots: 120,
-  },
-
   // Pool / hot tub top-ups (weekly liters)
   pool_hot_tub: {
     none: 0,
@@ -165,18 +156,23 @@ export class WaterCalculator {
     })
 
     const bestOptionSuggestions = this.getBestOptionSuggestions(answers)
-    relevantSuggestions.push(...bestOptionSuggestions)
+    const otherTips = relevantSuggestions.map(suggestion => ({
+      ...suggestion,
+      isOtherTip: true,
+    }))
 
     // Calculate potential savings from suggestions
-    relevantSuggestions.forEach(suggestion => {
+    bestOptionSuggestions.forEach(suggestion => {
       potentialSavings += suggestion.impact
     })
 
     // Calculate priority scores and sort suggestions
-    const prioritizedSuggestions = relevantSuggestions
+    const prioritizedSuggestions = [...bestOptionSuggestions, ...otherTips]
       .map(suggestion => ({
         ...suggestion,
-        priority: Math.round(suggestion.impact * suggestion.feasibility * 100) / 100,
+        priority: suggestion.isOtherTip
+          ? 0
+          : Math.round(suggestion.impact * suggestion.feasibility * 100) / 100,
       }))
       .sort((a, b) => b.priority - a.priority)
 
@@ -223,7 +219,6 @@ export class WaterCalculator {
         
         // Garden
         case 'weekly_garden_watering_minutes':
-        case 'garden_style':
         case 'pool_hot_tub':
         case 'irrigation_practice':
           if ((categoryUsage['garden'] || 0) > 0 && !categories.includes('garden')) categories.push('garden')
@@ -255,9 +250,39 @@ export class WaterCalculator {
     const suggestions: Suggestion[] = []
 
     this.questions.forEach((question) => {
-      if (question.type !== 'single' || !question.options?.length) return
       const answer = answers[question.id]
       if (!answer) return
+
+      if (question.type === 'numeric') {
+        if (question.id !== 'weekly_shower_total_minutes') return
+        const currentValue = this.getNumericAnswer(answers, question.id)
+        if (currentValue === null || currentValue <= 0) return
+
+        const step = question.step || 1
+        const targetValueRaw = currentValue / 2
+        const targetValue = Math.max(0, Math.round(targetValueRaw / step) * step)
+        if (targetValue >= currentValue) return
+
+        const showerFlow = this.getAnswerValue(answers, 'shower_flow_intensity') || 'high'
+        const flowMultiplier = this.getWaterValue(WATER_CALCULATIONS.shower_flow_intensity, showerFlow, 1)
+        const weeklySavings = (currentValue - targetValue) * WATER_CALCULATIONS.shower_liters_per_minute_weekly * flowMultiplier
+        const dailySavings = weeklySavings / 7
+        const category = this.getSuggestionCategoryForQuestion(question.id)
+
+        suggestions.push({
+          id: `best_option_${question.id}`,
+          title: question.title,
+          description: `Bu soru için mevcut cevabınız: ${currentValue} ${question.unit}. Öneri: ${targetValue} ${question.unit} (yarısı). Günlük yaklaşık ${dailySavings.toFixed(1)} L tasarruf edebilirsiniz.`,
+          impact: dailySavings,
+          difficulty: 'easy',
+          feasibility: 0.85,
+          category,
+          priority: 0,
+        })
+        return
+      }
+
+      if (question.type !== 'single' || !question.options?.length) return
 
       const calculations: Record<string, number> | undefined = (WATER_CALCULATIONS as any)[question.id]
       if (!calculations) return
@@ -329,7 +354,6 @@ export class WaterCalculator {
       case 'weekly_laundry_frequency':
         return 'laundry'
       case 'weekly_garden_watering_minutes':
-      case 'garden_style':
       case 'pool_hot_tub':
       case 'irrigation_practice':
         return 'garden'
@@ -347,15 +371,12 @@ export class WaterCalculator {
     }
   }
 
-  private calculateComparison(currentUsage: number, householdSize: number): {
-    percentile: number
+  private calculateComparison(_currentUsage: number, _householdSize: number): {
     message: string
   } {
-    // Mock comparison data - in real app, this would come from database
-    const percentile = currentUsage > householdSize * 4500 ? 60 : 40
-    const message = 'Türkiye\'de ortalama kişi başı su kullanımı günlük yaklaşık 4500 litre, dünya ortalaması ise yaklaşık 3800 litredir.'
+    const message = "TEMA'ya göre Türkiye'de kişi başına düşen ortalama günlük su ayak izi yaklaşık 4160 litre, dünya ortalaması ise yaklaşık 3405 litredir."
 
-    return { percentile, message }
+    return { message }
   }
 
   private calculateActualUsage(answers: Record<string, QuizAnswer>): { totalDailyUsage: number, categoryUsage: Record<string, number>, lifestyleUsage: Record<string, number> } {
@@ -464,13 +485,6 @@ export class WaterCalculator {
       weeklyUsage += electronicsUsage
       categoryUsage['lifestyle'] = (categoryUsage['lifestyle'] || 0) + electronicsUsage
       lifestyleUsage['electronics'] = (lifestyleUsage['electronics'] || 0) + electronicsUsage
-    }
-
-    // Garden style
-    const gardenStyle = this.getAnswerValue(answers, 'garden_style')
-    if (gardenStyle) {
-      weeklyUsage += this.getWaterValue(WATER_CALCULATIONS.garden_style, gardenStyle, 0)
-      categoryUsage['garden'] = (categoryUsage['garden'] || 0) + this.getWaterValue(WATER_CALCULATIONS.garden_style, gardenStyle, 0)
     }
 
     // Irrigation practice

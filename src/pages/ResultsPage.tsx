@@ -7,9 +7,9 @@ import { ResultItem } from '../components/results/ResultItem'
 import { ChartWrapper } from '../components/results/ChartWrapper'
 import { Button } from '../components/ui/Button'
 import { Card } from '../components/ui/Card'
-import { Badge } from '../components/ui/Badge'
 import html2canvas from 'html2canvas'
 import jsPDF from 'jspdf'
+import clubLogo from '../assets/club-logo.png'
 
 export const ResultsPage: React.FC = () => {
   const navigate = useNavigate()
@@ -117,6 +117,13 @@ export const ResultsPage: React.FC = () => {
             <div className="absolute bottom-0 -left-24 w-96 h-96 bg-emerald-400/20 rounded-full blur-3xl"></div>
             <div className="absolute top-1/3 right-10 w-40 h-40 border border-white/20 rounded-full"></div>
             <div className="absolute bottom-1/4 left-16 w-28 h-28 border border-white/10 rounded-full"></div>
+            <div className="absolute top-1/3 right-10 flex h-40 w-40 items-center justify-center rounded-full bg-slate-100/90">
+              <img
+                src={clubLogo}
+                alt="SuKoç logo"
+                className="h-28 w-28 object-contain"
+              />
+            </div>
 
             <div className="absolute inset-0 px-16 py-20 flex flex-col justify-between">
               <div>
@@ -137,18 +144,22 @@ export const ResultsPage: React.FC = () => {
                   <div className="rounded-2xl bg-white/10 p-6 backdrop-blur">
                     <div className="text-4xl font-bold">2.2 Milyar</div>
                     <p className="mt-2 text-sm text-white/70">kişi güvenli suya erişemiyor</p>
+                    <p className="mt-2 text-xs text-white/60">Kaynak: UNICEF</p>
                   </div>
                   <div className="rounded-2xl bg-white/10 p-6 backdrop-blur">
                     <div className="text-4xl font-bold">13.000 L</div>
                     <p className="mt-2 text-sm text-white/70">1 telefon üretimi için gereken su</p>
+                    <p className="mt-2 text-xs text-white/60">Kaynak: MindYourStep</p>
                   </div>
                   <div className="rounded-2xl bg-white/10 p-6 backdrop-blur">
                     <div className="text-4xl font-bold">2.400 L</div>
                     <p className="mt-2 text-sm text-white/70">1 hamburgerin su ayak izi</p>
+                    <p className="mt-2 text-xs text-white/60">Kaynak: The Game Changers belgeseli</p>
                   </div>
                   <div className="rounded-2xl bg-white/10 p-6 backdrop-blur">
                     <div className="text-4xl font-bold">2.700 L</div>
                     <p className="mt-2 text-sm text-white/70">1 tişört üretimi için su</p>
+                    <p className="mt-2 text-xs text-white/60">Kaynak: EEA</p>
                   </div>
                 </div>
 
@@ -166,6 +177,11 @@ export const ResultsPage: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
+          <img
+            src={clubLogo}
+            alt="SuKoç logo"
+            className="mx-auto mb-4 h-24 w-24 object-contain"
+          />
           <h1 className="text-4xl font-bold text-accent-900 mb-4">
             {t('results.title')}
           </h1>
@@ -190,10 +206,12 @@ export const ResultsPage: React.FC = () => {
                 2.2 Milyar
               </div>
               <p className="text-red-700 font-medium">kişi güvenli suya erişemiyor</p>
+              <p className="mt-2 text-xs text-red-700/80">Kaynak: UNICEF</p>
               <div className="text-2xl font-semibold text-red-800 mt-4">
                 4.2 Milyar
               </div>
               <p className="text-red-700">kişi güvenli sanitasyona erişemiyor</p>
+              <p className="mt-2 text-xs text-red-700/80">Kaynak: WHO</p>
             </Card>
           </motion.div>
 
@@ -211,10 +229,12 @@ export const ResultsPage: React.FC = () => {
                 %70
               </div>
               <p className="text-blue-700 font-medium">dünya suyu tarımda kullanılıyor</p>
+              <p className="mt-2 text-xs text-blue-700/80">Kaynak: UN</p>
               <div className="text-2xl font-semibold text-blue-800 mt-4">
                 %20
               </div>
               <p className="text-blue-700">endüstriyel kullanım</p>
+              <p className="mt-2 text-xs text-blue-700/80">Kaynak: UN</p>
             </Card>
           </motion.div>
         </div>
@@ -231,6 +251,7 @@ export const ResultsPage: React.FC = () => {
               <h4 className="text-lg font-bold text-yellow-900 mb-2">Endüstriyel Kullanım</h4>
               <div className="text-3xl font-bold text-yellow-600 mb-1">1 Hamburger</div>
               <p className="text-yellow-700 text-sm">= 2.400 litre su</p>
+              <p className="mt-2 text-xs text-yellow-700/80">Kaynak: The Game Changers belgeseli</p>
             </Card>
           </motion.div>
 
@@ -244,6 +265,7 @@ export const ResultsPage: React.FC = () => {
               <h4 className="text-lg font-bold text-green-900 mb-2">Tekstil Sektörü</h4>
               <div className="text-3xl font-bold text-green-600 mb-1">1 Tişört</div>
               <p className="text-green-700 text-sm">= 2.700 litre su</p>
+              <p className="mt-2 text-xs text-green-700/80">Kaynak: EEA</p>
             </Card>
           </motion.div>
 
@@ -257,6 +279,7 @@ export const ResultsPage: React.FC = () => {
               <h4 className="text-lg font-bold text-purple-900 mb-2">Teknoloji</h4>
               <div className="text-3xl font-bold text-purple-600 mb-1">1 Telefon</div>
               <p className="text-purple-700 text-sm">= 13.000 litre su</p>
+              <p className="mt-2 text-xs text-purple-700/80">Kaynak: MindYourStep</p>
             </Card>
           </motion.div>
         </div>
@@ -313,11 +336,6 @@ export const ResultsPage: React.FC = () => {
             <p className="text-lg text-accent-600 mb-4">
               {results.comparison.message}
             </p>
-            <div className="flex justify-center">
-              <Badge variant={results.comparison.percentile > 70 ? 'warning' : results.comparison.percentile < 30 ? 'success' : 'primary'}>
-                %{results.comparison.percentile} persentil
-              </Badge>
-            </div>
           </Card>
         </motion.div>
 
@@ -365,22 +383,57 @@ export const ResultsPage: React.FC = () => {
           </div>
 
           <div className="space-y-6">
-            {results.suggestions.map((suggestion, index) => (
-              <motion.div
-                key={suggestion.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8 + index * 0.1 }}
-              >
-                <ResultItem
-                  suggestion={suggestion}
-                  onAccept={suggestion.isChallenge ? () => handleAcceptChallenge(suggestion.id) : undefined}
-                  onDecline={suggestion.isChallenge ? () => handleDeclineChallenge(suggestion.id) : undefined}
-                />
-              </motion.div>
-            ))}
+            {results.suggestions
+              .filter(suggestion => !suggestion.isOtherTip)
+              .map((suggestion, index) => (
+                <motion.div
+                  key={suggestion.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8 + index * 0.1 }}
+                >
+                  <ResultItem
+                    suggestion={suggestion}
+                    onAccept={suggestion.isChallenge ? () => handleAcceptChallenge(suggestion.id) : undefined}
+                    onDecline={suggestion.isChallenge ? () => handleDeclineChallenge(suggestion.id) : undefined}
+                  />
+                </motion.div>
+              ))}
           </div>
         </motion.div>
+
+        {results.suggestions.some(suggestion => suggestion.isOtherTip) && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.85 }}
+            className="mb-12"
+          >
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-accent-900 mb-4">
+                Diğer İpuçları
+              </h2>
+              <p className="text-xl text-accent-600 max-w-2xl mx-auto">
+                Genel farkındalık ve alışkanlıklar için ek öneriler
+              </p>
+            </div>
+
+            <div className="space-y-6">
+              {results.suggestions
+                .filter(suggestion => suggestion.isOtherTip)
+                .map((suggestion, index) => (
+                  <motion.div
+                    key={suggestion.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.9 + index * 0.08 }}
+                  >
+                    <ResultItem suggestion={suggestion} />
+                  </motion.div>
+                ))}
+            </div>
+          </motion.div>
+        )}
 
         {/* Action Buttons */}
         <motion.div
@@ -395,7 +448,7 @@ export const ResultsPage: React.FC = () => {
             className="flex items-center space-x-2"
           >
             <span>📄</span>
-            <span>{exported ? 'PDF İndiriliyor...' : 'PDF Olarak İndir'}</span>
+            <span>{exported ? "Challenge'a Katılıyor..." : "Challenge'a Katıl"}</span>
           </Button>
         </motion.div>
 

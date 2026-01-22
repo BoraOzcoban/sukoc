@@ -65,11 +65,6 @@ describe('WaterCalculator', () => {
         value: 'lt1',
         category: 'weekly'
       },
-      garden_style: {
-        questionId: 'garden_style',
-        value: 'mixed',
-        category: 'weekly'
-      },
       irrigation_practice: {
         questionId: 'irrigation_practice',
         value: 'hose_controlled',
@@ -98,7 +93,6 @@ describe('WaterCalculator', () => {
       expect(result.currentDailyUsage).toBeGreaterThan(0)
       expect(result.currentYearlyUsage).toBe(result.currentDailyUsage * 365)
       expect(result.suggestions.length).toBeGreaterThan(0)
-      expect(result.comparison).toHaveProperty('percentile')
       expect(result.comparison).toHaveProperty('message')
     })
 
