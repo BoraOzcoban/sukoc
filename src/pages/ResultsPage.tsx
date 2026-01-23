@@ -105,7 +105,7 @@ export const ResultsPage: React.FC = () => {
     : []
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 py-6 sm:py-8">
       <div className="max-w-6xl mx-auto px-4">
         <div
           id="sukoc-story-export"
@@ -175,141 +175,47 @@ export const ResultsPage: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-12"
+          className="text-center mb-8 sm:mb-12"
         >
           <img
             src={clubLogo}
             alt="SuKoç logo"
-            className="mx-auto mb-4 h-24 w-24 object-contain"
+            className="mx-auto mb-4 h-16 w-16 sm:h-24 sm:w-24 object-contain"
           />
-          <h1 className="text-4xl font-bold text-accent-900 mb-4">
+          <h1 className="text-2xl sm:text-4xl font-bold text-accent-900 mb-3 sm:mb-4">
             {t('results.title')}
           </h1>
-          <p className="text-xl text-accent-600 max-w-2xl mx-auto">
+          <p className="text-base sm:text-xl text-accent-600 max-w-2xl mx-auto">
             Su kullanım alışkanlıklarınızın analizi tamamlandı. İşte sonuçlarınız ve önerilerimiz:
           </p>
         </motion.div>
-
-        {/* Global Water Crisis Stats */}
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
-          >
-            <Card className="p-8 text-center bg-gradient-to-br from-red-50 to-orange-50 border-red-200">
-              <div className="text-6xl mb-4">🌍</div>
-              <h3 className="text-2xl font-bold text-red-900 mb-2">
-                Dünya Su Krizi
-              </h3>
-              <div className="text-4xl font-bold text-red-600 mb-2">
-                2.2 Milyar
-              </div>
-              <p className="text-red-700 font-medium">kişi güvenli suya erişemiyor</p>
-              <p className="mt-2 text-xs text-red-700/80">Kaynak: UNICEF</p>
-              <div className="text-2xl font-semibold text-red-800 mt-4">
-                4.2 Milyar
-              </div>
-              <p className="text-red-700">kişi güvenli sanitasyona erişemiyor</p>
-              <p className="mt-2 text-xs text-red-700/80">Kaynak: WHO</p>
-            </Card>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3 }}
-          >
-            <Card className="p-8 text-center bg-gradient-to-br from-blue-50 to-cyan-50 border-blue-200">
-              <div className="text-6xl mb-4">⚡</div>
-              <h3 className="text-2xl font-bold text-blue-900 mb-2">
-                Su Tüketimi Gerçekleri
-              </h3>
-              <div className="text-4xl font-bold text-blue-600 mb-2">
-                %70
-              </div>
-              <p className="text-blue-700 font-medium">dünya suyu tarımda kullanılıyor</p>
-              <p className="mt-2 text-xs text-blue-700/80">Kaynak: UN</p>
-              <div className="text-2xl font-semibold text-blue-800 mt-4">
-                %20
-              </div>
-              <p className="text-blue-700">endüstriyel kullanım</p>
-              <p className="mt-2 text-xs text-blue-700/80">Kaynak: UN</p>
-            </Card>
-          </motion.div>
-        </div>
-
-        {/* Additional Global Stats */}
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-          >
-            <Card className="p-6 text-center bg-gradient-to-br from-yellow-50 to-orange-50 border-yellow-200">
-              <div className="text-4xl mb-3">🏭</div>
-              <h4 className="text-lg font-bold text-yellow-900 mb-2">Endüstriyel Kullanım</h4>
-              <div className="text-3xl font-bold text-yellow-600 mb-1">1 Hamburger</div>
-              <p className="text-yellow-700 text-sm">= 2.400 litre su</p>
-              <p className="mt-2 text-xs text-yellow-700/80">Kaynak: The Game Changers belgeseli</p>
-            </Card>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-          >
-            <Card className="p-6 text-center bg-gradient-to-br from-green-50 to-emerald-50 border-green-200">
-              <div className="text-4xl mb-3">👕</div>
-              <h4 className="text-lg font-bold text-green-900 mb-2">Tekstil Sektörü</h4>
-              <div className="text-3xl font-bold text-green-600 mb-1">1 Tişört</div>
-              <p className="text-green-700 text-sm">= 2.700 litre su</p>
-              <p className="mt-2 text-xs text-green-700/80">Kaynak: EEA</p>
-            </Card>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-          >
-            <Card className="p-6 text-center bg-gradient-to-br from-purple-50 to-pink-50 border-purple-200">
-              <div className="text-4xl mb-3">📱</div>
-              <h4 className="text-lg font-bold text-purple-900 mb-2">Teknoloji</h4>
-              <div className="text-3xl font-bold text-purple-600 mb-1">1 Telefon</div>
-              <p className="text-purple-700 text-sm">= 13.000 litre su</p>
-              <p className="mt-2 text-xs text-purple-700/80">Kaynak: MindYourStep</p>
-            </Card>
-          </motion.div>
-        </div>
 
         {/* Your Personal Impact */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7 }}
-          className="mb-12"
+          className="mb-8 sm:mb-12"
         >
-          <Card className="p-8 bg-gradient-to-r from-primary-50 to-secondary-50 border-primary-200">
+          <Card className="p-5 sm:p-8 bg-gradient-to-r from-primary-50 to-secondary-50 border-primary-200">
             <div className="text-center">
-              <h3 className="text-3xl font-bold text-accent-900 mb-4">
+              <h3 className="text-2xl sm:text-3xl font-bold text-accent-900 mb-4">
                 Sizin Etkiniz
               </h3>
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
                 <div>
-          <div className="text-4xl font-bold text-primary-600 mb-2">
+          <div className="text-3xl sm:text-4xl font-bold text-primary-600 mb-2">
             {results.currentDailyUsage.toFixed(1)} L
           </div>
-          <p className="text-accent-600 mb-4">Günlük su kullanımınız</p>
-          <div className="text-2xl font-semibold text-accent-700">
+          <p className="text-sm sm:text-base text-accent-600 mb-4">Günlük su kullanımınız</p>
+          <div className="text-xl sm:text-2xl font-semibold text-accent-700">
             {results.potentialDailySavings.toFixed(1)} L
           </div>
                   <p className="text-accent-600">Günlük tasarruf potansiyeliniz</p>
                 </div>
                 <div className="text-left">
-                  <h4 className="text-xl font-bold text-accent-900 mb-3">Neden Önemli?</h4>
-                  <ul className="space-y-2 text-accent-700">
+                  <h4 className="text-lg sm:text-xl font-bold text-accent-900 mb-3">Neden Önemli?</h4>
+                  <ul className="space-y-2 text-sm sm:text-base text-accent-700">
                     <li>• Her litre tasarruf, gelecek nesillere daha fazla su bırakır</li>
                     <li>• Su krizi 2050'de 5.7 milyar kişiyi etkileyecek</li>
                     <li>• Küçük değişiklikler büyük farklar yaratır</li>
@@ -326,21 +232,21 @@ export const ResultsPage: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="mb-12"
+          className="mb-8 sm:mb-12"
         >
-          <Card className="p-8 text-center">
-            <div className="text-5xl mb-4">📊</div>
-            <h3 className="text-xl font-semibold text-accent-900 mb-4">
+          <Card className="p-5 sm:p-8 text-center">
+            <div className="text-4xl sm:text-5xl mb-4">📊</div>
+            <h3 className="text-lg sm:text-xl font-semibold text-accent-900 mb-3 sm:mb-4">
               Benzer Profildekilerle Karşılaştırma
             </h3>
-            <p className="text-lg text-accent-600 mb-4">
+            <p className="text-sm sm:text-lg text-accent-600 mb-4">
               {results.comparison.message}
             </p>
           </Card>
         </motion.div>
 
         {/* Charts */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-12">
+        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -371,18 +277,18 @@ export const ResultsPage: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7 }}
-          className="mb-12"
+          className="mb-8 sm:mb-12"
         >
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-accent-900 mb-4">
+          <div className="text-center mb-6 sm:mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-accent-900 mb-3 sm:mb-4">
               Kişiselleştirilmiş Öneriler
             </h2>
-            <p className="text-xl text-accent-600 max-w-2xl mx-auto">
+            <p className="text-base sm:text-xl text-accent-600 max-w-2xl mx-auto">
               Size özel olarak hazırlanmış, uygulanabilir su tasarruf önerileri
             </p>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             {results.suggestions
               .filter(suggestion => !suggestion.isOtherTip)
               .map((suggestion, index) => (
@@ -407,18 +313,18 @@ export const ResultsPage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.85 }}
-            className="mb-12"
+            className="mb-8 sm:mb-12"
           >
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-accent-900 mb-4">
+            <div className="text-center mb-6 sm:mb-8">
+              <h2 className="text-2xl sm:text-3xl font-bold text-accent-900 mb-3 sm:mb-4">
                 Diğer İpuçları
               </h2>
-              <p className="text-xl text-accent-600 max-w-2xl mx-auto">
+              <p className="text-base sm:text-xl text-accent-600 max-w-2xl mx-auto">
                 Genel farkındalık ve alışkanlıklar için ek öneriler
               </p>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               {results.suggestions
                 .filter(suggestion => suggestion.isOtherTip)
                 .map((suggestion, index) => (
@@ -440,12 +346,12 @@ export const ResultsPage: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.0 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
+          className="flex flex-col sm:flex-row gap-4 justify-center mb-6 sm:mb-8"
         >
           <Button
             size="lg"
             onClick={handleExportPDF}
-            className="flex items-center space-x-2"
+            className="flex w-full sm:w-auto items-center justify-center space-x-2"
           >
             <span>📄</span>
             <span>{exported ? "Challenge'a Katılıyor..." : "Challenge'a Katıl"}</span>
@@ -457,12 +363,13 @@ export const ResultsPage: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.1 }}
+          className="mb-6"
         >
-          <Card className="p-8 text-center bg-primary-50 border-primary-200">
-            <h3 className="text-2xl font-bold text-primary-900 mb-4">
+          <Card className="p-5 sm:p-8 text-center bg-primary-50 border-primary-200">
+            <h3 className="text-xl sm:text-2xl font-bold text-primary-900 mb-4">
               🚀 Sıradaki Adımlar
             </h3>
-            <div className="grid md:grid-cols-3 gap-6 text-left">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 text-left">
               <div>
                 <h4 className="font-semibold text-primary-800 mb-2">1. Başlayın</h4>
                 <p className="text-primary-700 text-sm">
@@ -484,6 +391,100 @@ export const ResultsPage: React.FC = () => {
             </div>
           </Card>
         </motion.div>
+
+        {/* Global Water Crisis Stats */}
+        <div className="grid md:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-12">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            <Card className="p-5 sm:p-8 text-center bg-gradient-to-br from-red-50 to-orange-50 border-red-200">
+              <div className="text-4xl sm:text-6xl mb-3 sm:mb-4">🌍</div>
+              <h3 className="text-xl sm:text-2xl font-bold text-red-900 mb-2">
+                Dünya Su Krizi
+              </h3>
+              <div className="text-3xl sm:text-4xl font-bold text-red-600 mb-2">
+                2.2 Milyar
+              </div>
+              <p className="text-sm sm:text-base text-red-700 font-medium">kişi güvenli suya erişemiyor</p>
+              <p className="mt-2 text-xs text-red-700/80">Kaynak: UNICEF</p>
+              <div className="text-xl sm:text-2xl font-semibold text-red-800 mt-4">
+                4.2 Milyar
+              </div>
+              <p className="text-sm sm:text-base text-red-700">kişi güvenli sanitasyona erişemiyor</p>
+              <p className="mt-2 text-xs text-red-700/80">Kaynak: WHO</p>
+            </Card>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3 }}
+          >
+            <Card className="p-5 sm:p-8 text-center bg-gradient-to-br from-blue-50 to-cyan-50 border-blue-200">
+              <div className="text-4xl sm:text-6xl mb-3 sm:mb-4">⚡</div>
+              <h3 className="text-xl sm:text-2xl font-bold text-blue-900 mb-2">
+                Su Tüketimi Gerçekleri
+              </h3>
+              <div className="text-3xl sm:text-4xl font-bold text-blue-600 mb-2">
+                %70
+              </div>
+              <p className="text-sm sm:text-base text-blue-700 font-medium">dünya suyu tarımda kullanılıyor</p>
+              <p className="mt-2 text-xs text-blue-700/80">Kaynak: UN</p>
+              <div className="text-xl sm:text-2xl font-semibold text-blue-800 mt-4">
+                %20
+              </div>
+              <p className="text-sm sm:text-base text-blue-700">endüstriyel kullanım</p>
+              <p className="mt-2 text-xs text-blue-700/80">Kaynak: UN</p>
+            </Card>
+          </motion.div>
+        </div>
+
+        {/* Additional Global Stats */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 mb-8 sm:mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+          >
+            <Card className="p-5 sm:p-6 text-center bg-gradient-to-br from-yellow-50 to-orange-50 border-yellow-200">
+              <div className="text-3xl sm:text-4xl mb-3">🏭</div>
+              <h4 className="text-base sm:text-lg font-bold text-yellow-900 mb-2">Endüstriyel Kullanım</h4>
+              <div className="text-2xl sm:text-3xl font-bold text-yellow-600 mb-1">1 Hamburger</div>
+              <p className="text-yellow-700 text-sm sm:text-base">= 2.400 litre su</p>
+              <p className="mt-2 text-xs text-yellow-700/80">Kaynak: The Game Changers belgeseli</p>
+            </Card>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+          >
+            <Card className="p-5 sm:p-6 text-center bg-gradient-to-br from-green-50 to-emerald-50 border-green-200">
+              <div className="text-3xl sm:text-4xl mb-3">👕</div>
+              <h4 className="text-base sm:text-lg font-bold text-green-900 mb-2">Tekstil Sektörü</h4>
+              <div className="text-2xl sm:text-3xl font-bold text-green-600 mb-1">1 Tişört</div>
+              <p className="text-green-700 text-sm sm:text-base">= 2.700 litre su</p>
+              <p className="mt-2 text-xs text-green-700/80">Kaynak: EEA</p>
+            </Card>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+          >
+            <Card className="p-5 sm:p-6 text-center bg-gradient-to-br from-purple-50 to-pink-50 border-purple-200">
+              <div className="text-3xl sm:text-4xl mb-3">📱</div>
+              <h4 className="text-base sm:text-lg font-bold text-purple-900 mb-2">Teknoloji</h4>
+              <div className="text-2xl sm:text-3xl font-bold text-purple-600 mb-1">1 Telefon</div>
+              <p className="text-purple-700 text-sm sm:text-base">= 13.000 litre su</p>
+              <p className="mt-2 text-xs text-purple-700/80">Kaynak: MindYourStep</p>
+            </Card>
+          </motion.div>
+        </div>
       </div>
     </div>
   )

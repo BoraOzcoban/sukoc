@@ -57,9 +57,9 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
       className="w-full max-w-2xl mx-auto"
     >
       {/* Progress */}
-      <div className="mb-8">
-        <div className="flex justify-between items-center mb-2">
-          <span className="text-sm font-medium text-accent-600">
+      <div className="mb-6 sm:mb-8">
+        <div className="flex flex-wrap justify-between items-center gap-2 mb-2">
+          <span className="text-xs sm:text-sm font-medium text-accent-600">
             İlerleme: %{Math.round(progress)}
           </span>
           <Badge variant="primary">{question.category}</Badge>
@@ -74,19 +74,19 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
         </div>
       </div>
 
-      <Card className="p-8">
+      <Card className="p-5 sm:p-8">
         {/* Question Header */}
-        <div className="mb-6">
-          <h2 className="text-2xl font-semibold text-accent-900 mb-3">
+        <div className="mb-5 sm:mb-6">
+          <h2 className="text-xl sm:text-2xl font-semibold text-accent-900 mb-3">
             {question.title}
           </h2>
           {question.description && (
-            <p className="text-accent-600 leading-relaxed">
+            <p className="text-sm sm:text-base text-accent-600 leading-relaxed">
               {question.description}
             </p>
           )}
           {question.isChallenge && question.challengeText && (
-            <div className="mt-4 p-4 bg-primary-50 border border-primary-200 rounded-xl">
+            <div className="mt-4 p-3 sm:p-4 bg-primary-50 border border-primary-200 rounded-xl">
               <div className="flex items-start">
                 <div className="flex-shrink-0">
                   <svg className="w-5 h-5 text-primary-600 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
@@ -95,7 +95,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
                 </div>
                 <div className="ml-3">
                   <h3 className="text-sm font-medium text-primary-800">Meydan Okuma</h3>
-                  <p className="text-sm text-primary-700 mt-1">{question.challengeText}</p>
+                  <p className="text-xs sm:text-sm text-primary-700 mt-1">{question.challengeText}</p>
                 </div>
               </div>
             </div>
@@ -103,7 +103,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
         </div>
 
         {/* Question Content */}
-        <div className="mb-8">
+        <div className="mb-6 sm:mb-8">
           {question.type === 'single' && question.options && (
             <RadioGroup
               name={question.id}
@@ -126,10 +126,10 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
                 max={question.max}
                 step={question.step}
                 placeholder={`0 ${question.unit || ''}`}
-                className="text-center text-xl"
+                className="text-center text-lg sm:text-xl"
               />
               {question.unit && (
-                <p className="text-sm text-accent-500 text-center">
+                <p className="text-xs sm:text-sm text-accent-500 text-center">
                   Birim: {question.unit}
                 </p>
               )}
@@ -148,7 +148,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
                   onChange={handleSliderChange}
                   className="w-full h-3 bg-accent-200 rounded-lg appearance-none cursor-pointer slider"
                 />
-                <div className="flex justify-between text-sm text-accent-500 mt-2">
+                <div className="flex justify-between text-xs sm:text-sm text-accent-500 mt-2">
                   <span>{question.min || 0}</span>
                   <span className="font-medium text-accent-700">
                     {value as number || question.min || 0} {question.unit || ''}
@@ -161,11 +161,11 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
         </div>
 
         {/* Navigation */}
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center">
           <button
             onClick={onPrevious}
             disabled={isFirst}
-            className={`px-6 py-3 rounded-xl font-medium transition-colors ${
+            className={`w-full sm:w-auto px-5 sm:px-6 py-3 rounded-xl font-medium transition-colors ${
               isFirst
                 ? 'text-accent-400 cursor-not-allowed'
                 : 'text-accent-600 hover:text-accent-800 hover:bg-accent-50'
@@ -174,11 +174,11 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
             Önceki
           </button>
 
-          <div className="flex space-x-3">
+          <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
             {!question.required && (
               <button
                 onClick={onSkip}
-                className="px-6 py-3 rounded-xl font-medium text-accent-600 hover:text-accent-800 hover:bg-accent-50 transition-colors"
+                className="w-full sm:w-auto px-5 sm:px-6 py-3 rounded-xl font-medium text-accent-600 hover:text-accent-800 hover:bg-accent-50 transition-colors"
               >
                 Geç
               </button>
@@ -186,7 +186,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
             <button
               onClick={onNext}
               disabled={!canProceed()}
-              className={`px-6 py-3 rounded-xl font-medium transition-colors ${
+              className={`w-full sm:w-auto px-5 sm:px-6 py-3 rounded-xl font-medium transition-colors ${
                 canProceed()
                   ? 'bg-primary-500 hover:bg-primary-600 text-white'
                   : 'bg-accent-200 text-accent-400 cursor-not-allowed'

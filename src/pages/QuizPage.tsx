@@ -122,19 +122,19 @@ export const QuizPage: React.FC = () => {
   const currentAnswer = quizAnswers[currentQuestion.id]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 py-6 sm:py-8">
       <div className="max-w-4xl mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-6 sm:mb-8">
           <img
             src={clubLogo}
             alt="SuKoç logo"
-            className="mx-auto mb-3 h-20 w-20 object-contain"
+            className="mx-auto mb-3 h-16 w-16 sm:h-20 sm:w-20 object-contain"
           />
-          <h1 className="text-3xl font-bold text-accent-900 mb-2">
+          <h1 className="text-2xl sm:text-3xl font-bold text-accent-900 mb-2">
             Su Kullanım Analizi
           </h1>
-          <p className="text-accent-600">
+          <p className="text-sm sm:text-base text-accent-600">
             Soru {currentQuestionIndex + 1} / {questions.length}
           </p>
         </div>
@@ -156,22 +156,22 @@ export const QuizPage: React.FC = () => {
         </AnimatePresence>
 
         {/* Navigation hints */}
-        <div className="mt-8 text-center">
-          <div className="flex justify-center items-center space-x-4 text-sm text-accent-500">
+        <div className="mt-6 sm:mt-8 text-center">
+          <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2 text-xs sm:text-sm text-accent-500">
             <span>← Önceki soru için</span>
-            <span>•</span>
+            <span className="hidden sm:inline">•</span>
             <span>İleri → sonraki soru için</span>
-            <span>•</span>
+            <span className="hidden sm:inline">•</span>
             <span>Enter tuşu ile ilerle</span>
           </div>
         </div>
 
         {/* Exit option */}
-        <div className="mt-8 text-center">
+        <div className="mt-6 sm:mt-8 text-center">
           <Button
             variant="outline"
             onClick={() => navigate('/')}
-            className="text-sm"
+            className="text-xs sm:text-sm"
           >
             Ana Sayfaya Dön
           </Button>

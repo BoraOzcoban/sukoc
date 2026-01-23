@@ -48,46 +48,33 @@ export const ResultItem: React.FC<ResultItemProps> = ({
       transition={{ duration: 0.3 }}
     >
       <Card hover className="relative overflow-hidden">
-        {/* Priority indicator */}
-        <div className="absolute top-4 right-4">
-          {suggestion.isOtherTip ? (
-            <Badge variant="secondary" size="sm">
-              Diğer İpucu
-            </Badge>
-          ) : (
-            <Badge variant="primary" size="sm">
-              #{suggestion.priority}
-            </Badge>
-          )}
-        </div>
-
         {/* Challenge indicator */}
         {suggestion.isChallenge && (
-          <div className="absolute top-4 left-4">
+          <div className="flex flex-wrap gap-2 mb-4 sm:mb-0 sm:absolute sm:top-4 sm:left-4">
             <Badge variant="warning" size="sm">
               🎯 Meydan Okuma
             </Badge>
           </div>
         )}
 
-        <div className="pr-20">
-          <h3 className="text-xl font-semibold text-accent-900 mb-3">
+        <div className="sm:pr-20">
+          <h3 className="text-lg sm:text-xl font-semibold text-accent-900 mb-3">
             {suggestion.title}
           </h3>
           
-          <p className="text-accent-600 mb-4 leading-relaxed">
+          <p className="text-sm sm:text-base text-accent-600 mb-4 leading-relaxed">
             {suggestion.description}
           </p>
 
           {/* Impact and difficulty */}
           {!suggestion.isOtherTip && (
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
               <div className="flex items-center space-x-4">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-primary-600">
+                  <div className="text-xl sm:text-2xl font-bold text-primary-600">
                     {suggestion.impact.toFixed(1)}
                   </div>
-                  <div className="text-sm text-accent-500">L/gün</div>
+                  <div className="text-xs sm:text-sm text-accent-500">L/gün</div>
                 </div>
 
                 <div className="h-8 w-px bg-accent-200"></div>
@@ -106,7 +93,7 @@ export const ResultItem: React.FC<ResultItemProps> = ({
 
           {/* Challenge text */}
           {suggestion.isChallenge && suggestion.challengeText && (
-            <div className="mb-6 p-4 bg-primary-50 border border-primary-200 rounded-xl">
+            <div className="mb-6 p-3 sm:p-4 bg-primary-50 border border-primary-200 rounded-xl">
               <h4 className="font-medium text-primary-800 mb-2">Meydan Okuma:</h4>
               <p className="text-sm text-primary-700">{suggestion.challengeText}</p>
             </div>
@@ -114,11 +101,11 @@ export const ResultItem: React.FC<ResultItemProps> = ({
 
           {/* Actions */}
           {(onAccept || onDecline) && (
-            <div className="flex space-x-3">
+            <div className="flex flex-col sm:flex-row gap-3">
               {onAccept && (
                 <button
                   onClick={onAccept}
-                  className="flex-1 bg-primary-500 hover:bg-primary-600 text-white font-medium px-4 py-2 rounded-xl transition-colors"
+                  className="w-full sm:flex-1 bg-primary-500 hover:bg-primary-600 text-white font-medium px-4 py-2 rounded-xl transition-colors"
                 >
                   Kabul Et
                 </button>
@@ -126,7 +113,7 @@ export const ResultItem: React.FC<ResultItemProps> = ({
               {onDecline && (
                 <button
                   onClick={onDecline}
-                  className="flex-1 bg-accent-100 hover:bg-accent-200 text-accent-700 font-medium px-4 py-2 rounded-xl transition-colors"
+                  className="w-full sm:flex-1 bg-accent-100 hover:bg-accent-200 text-accent-700 font-medium px-4 py-2 rounded-xl transition-colors"
                 >
                   Daha Sonra
                 </button>

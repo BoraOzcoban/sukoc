@@ -56,10 +56,10 @@ export const ChartWrapper: React.FC<ChartWrapperProps> = ({
   }
 
   return (
-    <Card className={`p-6 ${className}`}>
-      <h3 className="text-lg font-semibold text-accent-900 mb-6">{title}</h3>
+    <Card className={`p-4 sm:p-6 ${className}`}>
+      <h3 className="text-base sm:text-lg font-semibold text-accent-900 mb-4 sm:mb-6">{title}</h3>
       
-      <div className="h-80">
+      <div className="h-64 sm:h-80">
         {type === 'bar' ? (
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
@@ -67,11 +67,11 @@ export const ChartWrapper: React.FC<ChartWrapperProps> = ({
               <XAxis 
                 dataKey="name" 
                 stroke="#64748b"
-                fontSize={12}
+                fontSize={11}
               />
               <YAxis 
                 stroke="#64748b"
-                fontSize={12}
+                fontSize={11}
                 label={{ value: 'Litre', angle: -90, position: 'insideLeft' }}
               />
               <Tooltip content={<CustomTooltip />} />
@@ -106,6 +106,7 @@ export const ChartWrapper: React.FC<ChartWrapperProps> = ({
               }} />
               <Legend
                 verticalAlign="bottom"
+                wrapperStyle={{ fontSize: 11 }}
                 formatter={(value, entry: any) =>
                   `${value} ${entry?.payload?.percent ? `(%${Math.round(entry.payload.percent * 100)})` : ''}`
                 }
