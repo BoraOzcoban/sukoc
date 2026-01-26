@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
@@ -7,15 +7,32 @@ import { ResultItem } from '../components/results/ResultItem'
 import { ChartWrapper } from '../components/results/ChartWrapper'
 import { Button } from '../components/ui/Button'
 import { Card } from '../components/ui/Card'
+import { Badge } from '../components/ui/Badge'
+import { waterCalculator } from '../utils/waterCalculator'
 import html2canvas from 'html2canvas'
 import jsPDF from 'jspdf'
 import clubLogo from '../assets/club-logo.png'
 
 export const ResultsPage: React.FC = () => {
   const navigate = useNavigate()
-  const { t } = useTranslation()
-  const { results } = useAppStore()
+  const { t, i18n } = useTranslation()
+  const { results, quizAnswers, user, setResults } = useAppStore()
   const [exported, setExported] = useState(false)
+
+  useEffect(() => {
+    if (!results) return
+    const effectiveUser = user || {
+      id: 'guest',
+      householdSize: 1,
+      region: '',
+      mainWaterUses: [],
+    }
+    const analysis = waterCalculator.calculateWaterUsage(
+      quizAnswers,
+      effectiveUser.householdSize || 1
+    )
+    setResults(analysis)
+  }, [i18n.language, quizAnswers, setResults, user])
 
   if (!results) {
     navigate('/')
@@ -56,27 +73,27 @@ export const ResultsPage: React.FC = () => {
 
   // Prepare chart data
   const usageData = [
-    { name: 'Mevcut Kullanım', value: results.currentDailyUsage },
-    { name: 'Potansiyel Tasarruf', value: results.potentialDailySavings },
+    { name: t('results.usageChart.current'), value: results.currentDailyUsage },
+    { name: t('results.usageChart.savings'), value: results.potentialDailySavings },
   ]
 
   const categoryLabels: Record<string, string> = {
-    daily_hygiene: 'Duş/Banyo',
-    kitchen: 'Mutfak',
-    laundry: 'Çamaşır',
-    garden: 'Bahçe',
-    bathroom: 'Banyo',
-    lifestyle: 'Yaşam Tarzı',
-    other: 'Diğer',
+    daily_hygiene: t('results.categories.dailyHygiene'),
+    kitchen: t('results.categories.kitchen'),
+    laundry: t('results.categories.laundry'),
+    garden: t('results.categories.garden'),
+    bathroom: t('results.categories.bathroom'),
+    lifestyle: t('results.categories.lifestyle'),
+    other: t('results.categories.other'),
   }
 
   const lifestyleLabels: Record<string, string> = {
-    red_meat: 'Kırmızı Et',
-    dairy: 'Süt Ürünleri',
-    clothing: 'Giyim',
-    white_meat: 'Beyaz Et',
-    car_wash: 'Araç Yıkama',
-    electronics: 'Elektronik',
+    red_meat: t('results.lifestyle.redMeat'),
+    dairy: t('results.lifestyle.dairy'),
+    clothing: t('results.lifestyle.clothing'),
+    white_meat: t('results.lifestyle.whiteMeat'),
+    car_wash: t('results.lifestyle.carWash'),
+    electronics: t('results.lifestyle.electronics'),
   }
 
   const lifestyleData = results.lifestyleBreakdown
@@ -92,6 +109,50 @@ export const ResultsPage: React.FC = () => {
     0,
     results.currentDailyUsage - results.potentialDailySavings
   )
+
+  const usageGroups = [
+    {
+      min: 5000,
+      label: t('results.usageGroups.veryHigh.label'),
+      badge: t('results.usageGroups.veryHigh.badge'),
+      variant: 'error' as const,
+    },
+    {
+      min: 4000,
+      max: 5000,
+      label: t('results.usageGroups.high.label'),
+      badge: t('results.usageGroups.high.badge'),
+      variant: 'warning' as const,
+    },
+    {
+      min: 3000,
+      max: 4000,
+      label: t('results.usageGroups.medium.label'),
+      badge: t('results.usageGroups.medium.badge'),
+      variant: 'secondary' as const,
+    },
+    {
+      min: 2000,
+      max: 3000,
+      label: t('results.usageGroups.low.label'),
+      badge: t('results.usageGroups.low.badge'),
+      variant: 'success' as const,
+    },
+    {
+      min: 0,
+      max: 2000,
+      label: t('results.usageGroups.sustainable.label'),
+      badge: t('results.usageGroups.sustainable.badge'),
+      variant: 'primary' as const,
+    },
+  ]
+
+  const usageGroup =
+    usageGroups.find((group) =>
+      typeof group.max === 'number'
+        ? results.currentDailyUsage >= group.min && results.currentDailyUsage < group.max
+        : results.currentDailyUsage >= group.min
+    ) || usageGroups[usageGroups.length - 1]
 
   const categoryData = results.categoryBreakdown
     ? Object.entries(results.categoryBreakdown)
@@ -117,54 +178,85 @@ export const ResultsPage: React.FC = () => {
             <div className="absolute bottom-0 -left-24 w-96 h-96 bg-emerald-400/20 rounded-full blur-3xl"></div>
             <div className="absolute top-1/3 right-10 w-40 h-40 border border-white/20 rounded-full"></div>
             <div className="absolute bottom-1/4 left-16 w-28 h-28 border border-white/10 rounded-full"></div>
-            <div className="absolute top-1/3 right-10 flex h-40 w-40 items-center justify-center rounded-full bg-slate-100/90">
-              <img
-                src={clubLogo}
-                alt="SuKoç logo"
-                className="h-28 w-28 object-contain"
-              />
-            </div>
+            <div className="absolute top-1/3 right-10 flex h-40 w-40 items-center justify-center rounded-full bg-slate-100/90"></div>
 
             <div className="absolute inset-0 px-16 py-20 flex flex-col justify-between">
               <div>
-                <div className="text-sm tracking-[0.4em] uppercase text-white/70">
-                  SuKoç
+                <div className="text-sm tracking-[0.2em] uppercase text-white/70">
+                  {t('results.story.branding')}
                 </div>
                 <h2 className="mt-6 text-5xl font-bold leading-tight">
-                  Günlük su ayak izim {results.currentDailyUsage.toFixed(1)} litre civarında,
-                  bunu {targetDailyUsage.toFixed(1)} litreye düşürmek için SuKoç'un önerilerini uygulayacağım.
+                  {t('results.story.headline', {
+                    current: results.currentDailyUsage.toFixed(1),
+                    target: targetDailyUsage.toFixed(1),
+                  })}
                 </h2>
                 <p className="mt-8 text-xl text-white/80">
-                  Küçük değişiklikler, büyük tasarruf.
+                  {t('results.story.tagline')}
                 </p>
               </div>
 
               <div className="space-y-8">
+                <div className="rounded-2xl bg-white/10 p-6 backdrop-blur">
+                  <div className="text-sm tracking-[0.2em] uppercase text-white/70">
+                    {t('results.story.groupLabel')}
+                  </div>
+                  <div className="mt-3 text-3xl font-semibold text-white">
+                    {usageGroup.label}
+                  </div>
+                  <div className="mt-3 text-base text-white/80">
+                    {usageGroup.badge}
+                  </div>
+                </div>
                 <div className="grid grid-cols-2 gap-8 text-white/90">
                   <div className="rounded-2xl bg-white/10 p-6 backdrop-blur">
-                    <div className="text-4xl font-bold">2.2 Milyar</div>
-                    <p className="mt-2 text-sm text-white/70">kişi güvenli suya erişemiyor</p>
-                    <p className="mt-2 text-xs text-white/60">Kaynak: UNICEF</p>
+                    <div className="text-4xl font-bold">
+                      {t('results.story.stats.safeWater.value')}
+                    </div>
+                    <p className="mt-2 text-sm text-white/70">
+                      {t('results.story.stats.safeWater.label')}
+                    </p>
+                    <p className="mt-2 text-xs text-white/60">
+                      {t('results.story.stats.safeWater.source')}
+                    </p>
                   </div>
                   <div className="rounded-2xl bg-white/10 p-6 backdrop-blur">
-                    <div className="text-4xl font-bold">13.000 L</div>
-                    <p className="mt-2 text-sm text-white/70">1 telefon üretimi için gereken su</p>
-                    <p className="mt-2 text-xs text-white/60">Kaynak: MindYourStep</p>
+                    <div className="text-4xl font-bold">
+                      {t('results.story.stats.phone.value')}
+                    </div>
+                    <p className="mt-2 text-sm text-white/70">
+                      {t('results.story.stats.phone.label')}
+                    </p>
+                    <p className="mt-2 text-xs text-white/60">
+                      {t('results.story.stats.phone.source')}
+                    </p>
                   </div>
                   <div className="rounded-2xl bg-white/10 p-6 backdrop-blur">
-                    <div className="text-4xl font-bold">2.400 L</div>
-                    <p className="mt-2 text-sm text-white/70">1 hamburgerin su ayak izi</p>
-                    <p className="mt-2 text-xs text-white/60">Kaynak: The Game Changers belgeseli</p>
+                    <div className="text-4xl font-bold">
+                      {t('results.story.stats.burger.value')}
+                    </div>
+                    <p className="mt-2 text-sm text-white/70">
+                      {t('results.story.stats.burger.label')}
+                    </p>
+                    <p className="mt-2 text-xs text-white/60">
+                      {t('results.story.stats.burger.source')}
+                    </p>
                   </div>
                   <div className="rounded-2xl bg-white/10 p-6 backdrop-blur">
-                    <div className="text-4xl font-bold">2.700 L</div>
-                    <p className="mt-2 text-sm text-white/70">1 tişört üretimi için su</p>
-                    <p className="mt-2 text-xs text-white/60">Kaynak: EEA</p>
+                    <div className="text-4xl font-bold">
+                      {t('results.story.stats.tshirt.value')}
+                    </div>
+                    <p className="mt-2 text-sm text-white/70">
+                      {t('results.story.stats.tshirt.label')}
+                    </p>
+                    <p className="mt-2 text-xs text-white/60">
+                      {t('results.story.stats.tshirt.source')}
+                    </p>
                   </div>
                 </div>
 
                 <div className="flex items-center justify-between text-white/70">
-                  <span className="text-sm">#SuKoç #SuAyakİzi</span>
+                  <span className="text-sm">{t('results.story.hashtags')}</span>
                   <span className="text-sm">sukoc.app</span>
                 </div>
               </div>
@@ -179,14 +271,14 @@ export const ResultsPage: React.FC = () => {
         >
           <img
             src={clubLogo}
-            alt="SuKoç logo"
+            alt={t('common.logoAlt')}
             className="mx-auto mb-4 h-16 w-16 sm:h-24 sm:w-24 object-contain"
           />
           <h1 className="text-2xl sm:text-4xl font-bold text-accent-900 mb-3 sm:mb-4">
             {t('results.title')}
           </h1>
           <p className="text-base sm:text-xl text-accent-600 max-w-2xl mx-auto">
-            Su kullanım alışkanlıklarınızın analizi tamamlandı. İşte sonuçlarınız ve önerilerimiz:
+            {t('results.subtitle')}
           </p>
         </motion.div>
 
@@ -200,28 +292,48 @@ export const ResultsPage: React.FC = () => {
           <Card className="p-5 sm:p-8 bg-gradient-to-r from-primary-50 to-secondary-50 border-primary-200">
             <div className="text-center">
               <h3 className="text-2xl sm:text-3xl font-bold text-accent-900 mb-4">
-                Sizin Etkiniz
+                {t('results.personalImpact.title')}
               </h3>
               <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
                 <div>
           <div className="text-3xl sm:text-4xl font-bold text-primary-600 mb-2">
             {results.currentDailyUsage.toFixed(1)} L
           </div>
-          <p className="text-sm sm:text-base text-accent-600 mb-4">Günlük su kullanımınız</p>
+          <p className="text-sm sm:text-base text-accent-600 mb-4">
+            {t('results.personalImpact.currentUsageLabel')}
+          </p>
           <div className="text-xl sm:text-2xl font-semibold text-accent-700">
             {results.potentialDailySavings.toFixed(1)} L
           </div>
-                  <p className="text-accent-600">Günlük tasarruf potansiyeliniz</p>
+                  <p className="text-accent-600">
+                    {t('results.personalImpact.savingsLabel')}
+                  </p>
                 </div>
                 <div className="text-left">
-                  <h4 className="text-lg sm:text-xl font-bold text-accent-900 mb-3">Neden Önemli?</h4>
+                  <h4 className="text-lg sm:text-xl font-bold text-accent-900 mb-3">
+                    {t('results.personalImpact.whyTitle')}
+                  </h4>
                   <ul className="space-y-2 text-sm sm:text-base text-accent-700">
-                    <li>• Her litre tasarruf, gelecek nesillere daha fazla su bırakır</li>
-                    <li>• Su krizi 2050'de 5.7 milyar kişiyi etkileyecek</li>
-                    <li>• Küçük değişiklikler büyük farklar yaratır</li>
-                    <li>• Su tasarrufu iklim değişikliğiyle mücadelede kritik</li>
+                    <li>• {t('results.personalImpact.whyItem1')}</li>
+                    <li>• {t('results.personalImpact.whyItem2')}</li>
+                    <li>• {t('results.personalImpact.whyItem3')}</li>
+                    <li>• {t('results.personalImpact.whyItem4')}</li>
                   </ul>
                 </div>
+              </div>
+              <div className="mt-6 sm:mt-8 flex flex-col items-center gap-3 rounded-2xl bg-white/70 p-4 sm:p-6">
+                <p className="text-sm sm:text-base text-accent-600">
+                  {t('results.usageGroupLabel')}
+                </p>
+                <div className="text-xl sm:text-2xl font-semibold text-accent-900">
+                  {usageGroup.label}
+                </div>
+                <Badge variant={usageGroup.variant} size="lg">
+                  {usageGroup.badge}
+                </Badge>
+                <p className="text-xs sm:text-sm text-accent-600 text-center">
+                  {t('results.usageGroupNote')}
+                </p>
               </div>
             </div>
           </Card>
@@ -237,7 +349,7 @@ export const ResultsPage: React.FC = () => {
           <Card className="p-5 sm:p-8 text-center">
             <div className="text-4xl sm:text-5xl mb-4">📊</div>
             <h3 className="text-lg sm:text-xl font-semibold text-accent-900 mb-3 sm:mb-4">
-              Benzer Profildekilerle Karşılaştırma
+              {t('results.comparison.title')}
             </h3>
             <p className="text-sm sm:text-lg text-accent-600 mb-4">
               {results.comparison.message}
@@ -255,7 +367,7 @@ export const ResultsPage: React.FC = () => {
             <ChartWrapper
               type="bar"
               data={usageData}
-              title="Su Kullanımı ve Tasarruf Potansiyeli"
+              title={t('results.charts.usageSavings')}
             />
           </motion.div>
 
@@ -267,7 +379,7 @@ export const ResultsPage: React.FC = () => {
             <ChartWrapper
               type="pie"
               data={categoryData}
-              title="Kullanım Kategorileri"
+              title={t('results.charts.categories')}
             />
           </motion.div>
         </div>
@@ -281,10 +393,10 @@ export const ResultsPage: React.FC = () => {
         >
           <div className="text-center mb-6 sm:mb-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-accent-900 mb-3 sm:mb-4">
-              Kişiselleştirilmiş Öneriler
+              {t('results.suggestionsSection.title')}
             </h2>
             <p className="text-base sm:text-xl text-accent-600 max-w-2xl mx-auto">
-              Size özel olarak hazırlanmış, uygulanabilir su tasarruf önerileri
+              {t('results.suggestionsSection.subtitle')}
             </p>
           </div>
 
@@ -317,10 +429,10 @@ export const ResultsPage: React.FC = () => {
           >
             <div className="text-center mb-6 sm:mb-8">
               <h2 className="text-2xl sm:text-3xl font-bold text-accent-900 mb-3 sm:mb-4">
-                Diğer İpuçları
+                {t('results.otherTips.title')}
               </h2>
               <p className="text-base sm:text-xl text-accent-600 max-w-2xl mx-auto">
-                Genel farkındalık ve alışkanlıklar için ek öneriler
+                {t('results.otherTips.subtitle')}
               </p>
             </div>
 
@@ -354,7 +466,9 @@ export const ResultsPage: React.FC = () => {
             className="flex w-full sm:w-auto items-center justify-center space-x-2"
           >
             <span>📄</span>
-            <span>{exported ? "Challenge'a Katılıyor..." : "Challenge'a Katıl"}</span>
+            <span>
+              {exported ? t('results.challenge.joining') : t('results.challenge.join')}
+            </span>
           </Button>
         </motion.div>
 
@@ -367,25 +481,31 @@ export const ResultsPage: React.FC = () => {
         >
           <Card className="p-5 sm:p-8 text-center bg-primary-50 border-primary-200">
             <h3 className="text-xl sm:text-2xl font-bold text-primary-900 mb-4">
-              🚀 Sıradaki Adımlar
+              {t('results.nextSteps.title')}
             </h3>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 text-left">
               <div>
-                <h4 className="font-semibold text-primary-800 mb-2">1. Başlayın</h4>
+                <h4 className="font-semibold text-primary-800 mb-2">
+                  {t('results.nextSteps.step1.title')}
+                </h4>
                 <p className="text-primary-700 text-sm">
-                  En kolay önerilerden birini seçin ve bugün uygulamaya başlayın
+                  {t('results.nextSteps.step1.description')}
                 </p>
               </div>
               <div>
-                <h4 className="font-semibold text-primary-800 mb-2">2. Takip Edin</h4>
+                <h4 className="font-semibold text-primary-800 mb-2">
+                  {t('results.nextSteps.step2.title')}
+                </h4>
                 <p className="text-primary-700 text-sm">
-                  Su sayacı okumalarınızı takip ederek ilerlemenizi ölçün
+                  {t('results.nextSteps.step2.description')}
                 </p>
               </div>
               <div>
-                <h4 className="font-semibold text-primary-800 mb-2">3. Paylaşın</h4>
+                <h4 className="font-semibold text-primary-800 mb-2">
+                  {t('results.nextSteps.step3.title')}
+                </h4>
                 <p className="text-primary-700 text-sm">
-                  Başarılarınızı paylaşın ve başkalarına ilham verin
+                  {t('results.nextSteps.step3.description')}
                 </p>
               </div>
             </div>
@@ -402,18 +522,26 @@ export const ResultsPage: React.FC = () => {
             <Card className="p-5 sm:p-8 text-center bg-gradient-to-br from-red-50 to-orange-50 border-red-200">
               <div className="text-4xl sm:text-6xl mb-3 sm:mb-4">🌍</div>
               <h3 className="text-xl sm:text-2xl font-bold text-red-900 mb-2">
-                Dünya Su Krizi
+                {t('results.globalStats.crisis.title')}
               </h3>
               <div className="text-3xl sm:text-4xl font-bold text-red-600 mb-2">
-                2.2 Milyar
+                {t('results.globalStats.crisis.safeWaterValue')}
               </div>
-              <p className="text-sm sm:text-base text-red-700 font-medium">kişi güvenli suya erişemiyor</p>
-              <p className="mt-2 text-xs text-red-700/80">Kaynak: UNICEF</p>
+              <p className="text-sm sm:text-base text-red-700 font-medium">
+                {t('results.globalStats.crisis.safeWaterLabel')}
+              </p>
+              <p className="mt-2 text-xs text-red-700/80">
+                {t('results.globalStats.crisis.safeWaterSource')}
+              </p>
               <div className="text-xl sm:text-2xl font-semibold text-red-800 mt-4">
-                4.2 Milyar
+                {t('results.globalStats.crisis.sanitationValue')}
               </div>
-              <p className="text-sm sm:text-base text-red-700">kişi güvenli sanitasyona erişemiyor</p>
-              <p className="mt-2 text-xs text-red-700/80">Kaynak: WHO</p>
+              <p className="text-sm sm:text-base text-red-700">
+                {t('results.globalStats.crisis.sanitationLabel')}
+              </p>
+              <p className="mt-2 text-xs text-red-700/80">
+                {t('results.globalStats.crisis.sanitationSource')}
+              </p>
             </Card>
           </motion.div>
 
@@ -425,18 +553,26 @@ export const ResultsPage: React.FC = () => {
             <Card className="p-5 sm:p-8 text-center bg-gradient-to-br from-blue-50 to-cyan-50 border-blue-200">
               <div className="text-4xl sm:text-6xl mb-3 sm:mb-4">⚡</div>
               <h3 className="text-xl sm:text-2xl font-bold text-blue-900 mb-2">
-                Su Tüketimi Gerçekleri
+                {t('results.globalStats.usage.title')}
               </h3>
               <div className="text-3xl sm:text-4xl font-bold text-blue-600 mb-2">
-                %70
+                {t('results.globalStats.usage.agricultureValue')}
               </div>
-              <p className="text-sm sm:text-base text-blue-700 font-medium">dünya suyu tarımda kullanılıyor</p>
-              <p className="mt-2 text-xs text-blue-700/80">Kaynak: UN</p>
+              <p className="text-sm sm:text-base text-blue-700 font-medium">
+                {t('results.globalStats.usage.agricultureLabel')}
+              </p>
+              <p className="mt-2 text-xs text-blue-700/80">
+                {t('results.globalStats.usage.agricultureSource')}
+              </p>
               <div className="text-xl sm:text-2xl font-semibold text-blue-800 mt-4">
-                %20
+                {t('results.globalStats.usage.industrialValue')}
               </div>
-              <p className="text-sm sm:text-base text-blue-700">endüstriyel kullanım</p>
-              <p className="mt-2 text-xs text-blue-700/80">Kaynak: UN</p>
+              <p className="text-sm sm:text-base text-blue-700">
+                {t('results.globalStats.usage.industrialLabel')}
+              </p>
+              <p className="mt-2 text-xs text-blue-700/80">
+                {t('results.globalStats.usage.industrialSource')}
+              </p>
             </Card>
           </motion.div>
         </div>
@@ -450,10 +586,18 @@ export const ResultsPage: React.FC = () => {
           >
             <Card className="p-5 sm:p-6 text-center bg-gradient-to-br from-yellow-50 to-orange-50 border-yellow-200">
               <div className="text-3xl sm:text-4xl mb-3">🏭</div>
-              <h4 className="text-base sm:text-lg font-bold text-yellow-900 mb-2">Endüstriyel Kullanım</h4>
-              <div className="text-2xl sm:text-3xl font-bold text-yellow-600 mb-1">1 Hamburger</div>
-              <p className="text-yellow-700 text-sm sm:text-base">= 2.400 litre su</p>
-              <p className="mt-2 text-xs text-yellow-700/80">Kaynak: The Game Changers belgeseli</p>
+              <h4 className="text-base sm:text-lg font-bold text-yellow-900 mb-2">
+                {t('results.additionalStats.industry.title')}
+              </h4>
+              <div className="text-2xl sm:text-3xl font-bold text-yellow-600 mb-1">
+                {t('results.additionalStats.industry.value')}
+              </div>
+              <p className="text-yellow-700 text-sm sm:text-base">
+                {t('results.additionalStats.industry.label')}
+              </p>
+              <p className="mt-2 text-xs text-yellow-700/80">
+                {t('results.additionalStats.industry.source')}
+              </p>
             </Card>
           </motion.div>
 
@@ -464,10 +608,18 @@ export const ResultsPage: React.FC = () => {
           >
             <Card className="p-5 sm:p-6 text-center bg-gradient-to-br from-green-50 to-emerald-50 border-green-200">
               <div className="text-3xl sm:text-4xl mb-3">👕</div>
-              <h4 className="text-base sm:text-lg font-bold text-green-900 mb-2">Tekstil Sektörü</h4>
-              <div className="text-2xl sm:text-3xl font-bold text-green-600 mb-1">1 Tişört</div>
-              <p className="text-green-700 text-sm sm:text-base">= 2.700 litre su</p>
-              <p className="mt-2 text-xs text-green-700/80">Kaynak: EEA</p>
+              <h4 className="text-base sm:text-lg font-bold text-green-900 mb-2">
+                {t('results.additionalStats.textile.title')}
+              </h4>
+              <div className="text-2xl sm:text-3xl font-bold text-green-600 mb-1">
+                {t('results.additionalStats.textile.value')}
+              </div>
+              <p className="text-green-700 text-sm sm:text-base">
+                {t('results.additionalStats.textile.label')}
+              </p>
+              <p className="mt-2 text-xs text-green-700/80">
+                {t('results.additionalStats.textile.source')}
+              </p>
             </Card>
           </motion.div>
 
@@ -478,10 +630,18 @@ export const ResultsPage: React.FC = () => {
           >
             <Card className="p-5 sm:p-6 text-center bg-gradient-to-br from-purple-50 to-pink-50 border-purple-200">
               <div className="text-3xl sm:text-4xl mb-3">📱</div>
-              <h4 className="text-base sm:text-lg font-bold text-purple-900 mb-2">Teknoloji</h4>
-              <div className="text-2xl sm:text-3xl font-bold text-purple-600 mb-1">1 Telefon</div>
-              <p className="text-purple-700 text-sm sm:text-base">= 13.000 litre su</p>
-              <p className="mt-2 text-xs text-purple-700/80">Kaynak: MindYourStep</p>
+              <h4 className="text-base sm:text-lg font-bold text-purple-900 mb-2">
+                {t('results.additionalStats.technology.title')}
+              </h4>
+              <div className="text-2xl sm:text-3xl font-bold text-purple-600 mb-1">
+                {t('results.additionalStats.technology.value')}
+              </div>
+              <p className="text-purple-700 text-sm sm:text-base">
+                {t('results.additionalStats.technology.label')}
+              </p>
+              <p className="mt-2 text-xs text-purple-700/80">
+                {t('results.additionalStats.technology.source')}
+              </p>
             </Card>
           </motion.div>
         </div>

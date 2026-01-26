@@ -1,0 +1,463 @@
+[
+  {
+    "id": "weekly_shower_total_minutes",
+    "category": "weekly",
+    "type": "numeric",
+    "title": "Your total weekly shower time (in minutes)",
+    "min": 0,
+    "max": 600,
+    "step": 5,
+    "unit": "minutes",
+    "required": true
+  },
+  {
+    "id": "general_faucet_closure",
+    "category": "daily",
+    "type": "single",
+    "title": "Do you generally turn off the tap while using it?",
+    "options": [
+      {
+        "id": "kapatirim",
+        "label": "I turn it off",
+        "value": "kapatirim"
+      },
+      {
+        "id": "arada_kapatirim",
+        "label": "I sometimes turn it off",
+        "value": "arada_kapatirim"
+      },
+      {
+        "id": "hic_kapatmam",
+        "label": "I never turn it off",
+        "value": "hic_kapatmam"
+      }
+    ],
+    "required": true
+  },
+  {
+    "id": "dishwashing_method_detailed",
+    "category": "daily",
+    "type": "single",
+    "title": "How do you usually wash dishes?",
+    "options": [
+      {
+        "id": "dishwasher_eco",
+        "label": "Dishwasher - eco program",
+        "value": "dishwasher_eco"
+      },
+      {
+        "id": "dishwasher_standard",
+        "label": "Dishwasher - standard program",
+        "value": "dishwasher_standard"
+      },
+      {
+        "id": "hand_tap_controlled",
+        "label": "By hand - turning the tap on/off",
+        "value": "hand_tap_controlled"
+      },
+      {
+        "id": "hand_tap_open",
+        "label": "By hand - tap running",
+        "value": "hand_tap_open"
+      }
+    ],
+    "required": true
+  },
+  {
+    "id": "fruit_vegetable_washing_method",
+    "category": "daily",
+    "type": "single",
+    "title": "How do you wash fruits/vegetables?",
+    "options": [
+      {
+        "id": "bowl_water",
+        "label": "In a bowl",
+        "value": "bowl_water"
+      },
+      {
+        "id": "tap_low_flow",
+        "label": "Tap partly open, short time",
+        "value": "tap_low_flow"
+      },
+      {
+        "id": "tap_long_open",
+        "label": "Tap running, long time",
+        "value": "tap_long_open"
+      }
+    ],
+    "required": true
+  },
+  {
+    "id": "weekly_laundry_frequency",
+    "category": "weekly",
+    "type": "single",
+    "title": "How many times do you do laundry per week?",
+    "options": [
+      {
+        "id": "1-2",
+        "label": "1-2 per week",
+        "value": "1-2"
+      },
+      {
+        "id": "3-4",
+        "label": "3-4 per week",
+        "value": "3-4"
+      },
+      {
+        "id": "5+",
+        "label": "5+ per week",
+        "value": "5+"
+      }
+    ],
+    "required": true
+  },
+  {
+    "id": "weekly_toilet_flushes",
+    "category": "weekly",
+    "type": "single",
+    "title": "On average, how many times do you flush per day?",
+    "options": [
+      {
+        "id": "per_day_1_3",
+        "label": "1-3 per day",
+        "value": "per_day_1_3"
+      },
+      {
+        "id": "per_day_4_6",
+        "label": "4-6 per day",
+        "value": "per_day_4_6"
+      },
+      {
+        "id": "per_day_7_9",
+        "label": "7-9 per day",
+        "value": "per_day_7_9"
+      },
+      {
+        "id": "per_day_10_plus",
+        "label": "10+ per day",
+        "value": "per_day_10_plus"
+      }
+    ],
+    "required": false
+  },
+  {
+    "id": "weekly_ai_usage",
+    "category": "weekly",
+    "type": "single",
+    "title": "How much do you use AI tools per week?",
+    "options": [
+      {
+        "id": "lt1",
+        "label": "Less than 1 hour",
+        "value": "lt1"
+      },
+      {
+        "id": "1_3",
+        "label": "1-3 hours",
+        "value": "1_3"
+      },
+      {
+        "id": "3_7",
+        "label": "3-7 hours",
+        "value": "3_7"
+      },
+      {
+        "id": "gt7",
+        "label": "More than 7 hours",
+        "value": "gt7"
+      }
+    ],
+    "required": false
+  },
+  {
+    "id": "weekly_garden_watering_minutes",
+    "category": "weekly",
+    "type": "numeric",
+    "title": "How many total minutes per week do you spend watering the garden/plants?",
+    "min": 0,
+    "max": 600,
+    "step": 5,
+    "unit": "minutes",
+    "required": false
+  },
+  {
+    "id": "weekly_red_meat_kg",
+    "category": "weekly",
+    "type": "single",
+    "title": "How many kilos of red meat do you consume per week?",
+    "options": [
+      {
+        "id": "none",
+        "label": "I don't consume",
+        "value": "none"
+      },
+      {
+        "id": "lt1",
+        "label": "Less than 1 kg",
+        "value": "lt1"
+      },
+      {
+        "id": "1_2",
+        "label": "1-2 kg",
+        "value": "1_2"
+      },
+      {
+        "id": "gt2",
+        "label": "More than 2 kg",
+        "value": "gt2"
+      }
+    ],
+    "required": false
+  },
+  {
+    "id": "weekly_dairy_consumption",
+    "category": "weekly",
+    "type": "single",
+    "title": "Do you consume milk/dairy frequently?",
+    "options": [
+      {
+        "id": "very_often",
+        "label": "Very often",
+        "value": "very_often"
+      },
+      {
+        "id": "average",
+        "label": "Average",
+        "value": "average"
+      },
+      {
+        "id": "low",
+        "label": "Low",
+        "value": "low"
+      },
+      {
+        "id": "none",
+        "label": "Never",
+        "value": "none"
+      }
+    ],
+    "required": false
+  },
+  {
+    "id": "clothing_purchase_frequency",
+    "category": "weekly",
+    "type": "single",
+    "title": "How often do you buy new clothes (especially cotton)? (number of items)",
+    "options": [
+      {
+        "id": "week_1_2",
+        "label": "1-2 items per week",
+        "value": "week_1_2"
+      },
+      {
+        "id": "month_1_2",
+        "label": "1-2 items per month",
+        "value": "month_1_2"
+      },
+      {
+        "id": "year_1_2",
+        "label": "1-2 items per year",
+        "value": "year_1_2"
+      }
+    ],
+    "required": false
+  },
+  {
+    "id": "car_wash_frequency",
+    "category": "weekly",
+    "type": "single",
+    "title": "How often do you wash your car?",
+    "options": [
+      {
+        "id": "never",
+        "label": "I don't wash",
+        "value": "never"
+      },
+      {
+        "id": "week_3_plus",
+        "label": "3+ per week",
+        "value": "week_3_plus"
+      },
+      {
+        "id": "week_1",
+        "label": "Once a week",
+        "value": "week_1"
+      },
+      {
+        "id": "month_1",
+        "label": "Once a month",
+        "value": "month_1"
+      }
+    ],
+    "required": false
+  },
+  {
+    "id": "weekly_white_meat_kg",
+    "category": "weekly",
+    "type": "single",
+    "title": "How many kilos of white meat (chicken/turkey) do you consume per week?",
+    "options": [
+      {
+        "id": "none",
+        "label": "I don't consume",
+        "value": "none"
+      },
+      {
+        "id": "lt1",
+        "label": "Less than 1 kg",
+        "value": "lt1"
+      },
+      {
+        "id": "1_2",
+        "label": "1-2 kg",
+        "value": "1_2"
+      },
+      {
+        "id": "gt2",
+        "label": "More than 2 kg",
+        "value": "gt2"
+      }
+    ],
+    "required": false
+  },
+  {
+    "id": "pool_hot_tub",
+    "category": "weekly",
+    "type": "single",
+    "title": "Do you need to add water weekly for a pool/hot tub?",
+    "options": [
+      {
+        "id": "none",
+        "label": "No pool/hot tub",
+        "value": "none"
+      },
+      {
+        "id": "small_inflatable",
+        "label": "Small inflatable pool",
+        "value": "small_inflatable"
+      },
+      {
+        "id": "above_ground",
+        "label": "Medium/large above-ground pool",
+        "value": "above_ground"
+      },
+      {
+        "id": "inground",
+        "label": "In-ground pool/hot tub",
+        "value": "inground"
+      }
+    ],
+    "required": false
+  },
+  {
+    "id": "irrigation_practice",
+    "category": "weekly",
+    "type": "single",
+    "title": "Irrigation method (for garden/agriculture)",
+    "options": [
+      {
+        "id": "none",
+        "label": "I don't irrigate",
+        "value": "none"
+      },
+      {
+        "id": "drip_or_timer",
+        "label": "Drip/automatic timer (efficient)",
+        "value": "drip_or_timer"
+      },
+      {
+        "id": "hose_controlled",
+        "label": "Hose/bucket controlled",
+        "value": "hose_controlled"
+      },
+      {
+        "id": "sprinkler_midday",
+        "label": "Sprinkler / midday/hot hours",
+        "value": "sprinkler_midday"
+      },
+      {
+        "id": "flood_irrigation",
+        "label": "Flood irrigation (uses a lot of water)",
+        "value": "flood_irrigation"
+      }
+    ],
+    "required": false
+  },
+  {
+    "id": "weekly_electronics_shopping",
+    "category": "weekly",
+    "type": "single",
+    "title": "How often do you buy electronics?",
+    "options": [
+      {
+        "id": "year_0_1",
+        "label": "Once a year or less",
+        "value": "year_0_1"
+      },
+      {
+        "id": "year_1_2",
+        "label": "1-2 per year",
+        "value": "year_1_2"
+      },
+      {
+        "id": "year_3_4",
+        "label": "3-4 per year",
+        "value": "year_3_4"
+      },
+      {
+        "id": "month_1_plus",
+        "label": "Once a month or more",
+        "value": "month_1_plus"
+      }
+    ],
+    "required": false
+  },
+  {
+    "id": "shower_flow_intensity",
+    "category": "weekly",
+    "type": "single",
+    "title": "How much do you open the shower flow?",
+    "options": [
+      {
+        "id": "low",
+        "label": "Low/half pressure",
+        "value": "low"
+      },
+      {
+        "id": "medium",
+        "label": "Medium pressure",
+        "value": "medium"
+      },
+      {
+        "id": "high",
+        "label": "Full pressure",
+        "value": "high"
+      }
+    ],
+    "required": false
+  },
+  {
+    "id": "faucet_flow_intensity",
+    "category": "weekly",
+    "type": "single",
+    "title": "How much do you open the tap? (kitchen/bathroom)",
+    "options": [
+      {
+        "id": "low",
+        "label": "Low/half pressure",
+        "value": "low"
+      },
+      {
+        "id": "medium",
+        "label": "Medium pressure",
+        "value": "medium"
+      },
+      {
+        "id": "high",
+        "label": "Full pressure",
+        "value": "high"
+      }
+    ],
+    "required": false
+  }
+]

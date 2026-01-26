@@ -22,49 +22,49 @@ export const OnboardingPage: React.FC = () => {
   const [errors, setErrors] = useState<Record<string, string>>({})
 
   const householdSizeOptions = [
-    { value: '1', label: '1 kişi' },
-    { value: '2', label: '2 kişi' },
-    { value: '3', label: '3 kişi' },
-    { value: '4', label: '4 kişi' },
-    { value: '5', label: '5 kişi' },
-    { value: '6+', label: '6 veya daha fazla' },
+    { value: '1', label: t('onboarding.householdSize.options.one') },
+    { value: '2', label: t('onboarding.householdSize.options.two') },
+    { value: '3', label: t('onboarding.householdSize.options.three') },
+    { value: '4', label: t('onboarding.householdSize.options.four') },
+    { value: '5', label: t('onboarding.householdSize.options.five') },
+    { value: '6+', label: t('onboarding.householdSize.options.sixPlus') },
   ]
 
   const regionOptions = [
-    { value: 'marmara', label: 'Marmara' },
-    { value: 'ege', label: 'Ege' },
-    { value: 'akdeniz', label: 'Akdeniz' },
-    { value: 'ic-anadolu', label: 'İç Anadolu' },
-    { value: 'karadeniz', label: 'Karadeniz' },
-    { value: 'dogu-anadolu', label: 'Doğu Anadolu' },
-    { value: 'guneydogu-anadolu', label: 'Güneydoğu Anadolu' },
+    { value: 'marmara', label: t('onboarding.region.options.marmara') },
+    { value: 'ege', label: t('onboarding.region.options.ege') },
+    { value: 'akdeniz', label: t('onboarding.region.options.akdeniz') },
+    { value: 'ic-anadolu', label: t('onboarding.region.options.icAnadolu') },
+    { value: 'karadeniz', label: t('onboarding.region.options.karadeniz') },
+    { value: 'dogu-anadolu', label: t('onboarding.region.options.doguAnadolu') },
+    { value: 'guneydogu-anadolu', label: t('onboarding.region.options.guneydoguAnadolu') },
   ]
 
   const waterUseOptions = [
     {
       value: 'shower',
       label: t('onboarding.mainWaterUses.options.shower'),
-      description: 'Günlük duş ve banyo kullanımı',
+      description: t('onboarding.mainWaterUses.descriptions.shower'),
     },
     {
       value: 'kitchen',
       label: t('onboarding.mainWaterUses.options.kitchen'),
-      description: 'Mutfak ve bulaşık yıkama',
+      description: t('onboarding.mainWaterUses.descriptions.kitchen'),
     },
     {
       value: 'laundry',
       label: t('onboarding.mainWaterUses.options.laundry'),
-      description: 'Çamaşır yıkama ve temizlik',
+      description: t('onboarding.mainWaterUses.descriptions.laundry'),
     },
     {
       value: 'garden',
       label: t('onboarding.mainWaterUses.options.garden'),
-      description: 'Bahçe ve bitki sulama',
+      description: t('onboarding.mainWaterUses.descriptions.garden'),
     },
     {
       value: 'car',
       label: t('onboarding.mainWaterUses.options.car'),
-      description: 'Araç yıkama ve temizlik',
+      description: t('onboarding.mainWaterUses.descriptions.car'),
     },
   ]
 
@@ -72,15 +72,15 @@ export const OnboardingPage: React.FC = () => {
     const newErrors: Record<string, string> = {}
 
     if (!formData.householdSize) {
-      newErrors.householdSize = 'Lütfen aile büyüklüğünüzü seçin'
+      newErrors.householdSize = t('onboarding.errors.householdSize')
     }
 
     if (!formData.region) {
-      newErrors.region = 'Lütfen yaşadığınız bölgeyi seçin'
+      newErrors.region = t('onboarding.errors.region')
     }
 
     if (formData.mainWaterUses.length === 0) {
-      newErrors.mainWaterUses = 'Lütfen en az bir su kullanım alanı seçin'
+      newErrors.mainWaterUses = t('onboarding.errors.mainWaterUses')
     }
 
     setErrors(newErrors)
@@ -125,7 +125,7 @@ export const OnboardingPage: React.FC = () => {
           <div className="text-center mb-8">
             <img
               src={clubLogo}
-              alt="SuKoç logo"
+              alt={t('common.logoAlt')}
               className="mx-auto mb-4 h-28 w-28 object-contain"
             />
             <h1 className="text-3xl font-bold text-accent-900 mb-2">
@@ -221,7 +221,9 @@ export const OnboardingPage: React.FC = () => {
                 />
               ))}
             </div>
-            <p className="text-sm text-accent-500 mt-2">1 / 3</p>
+            <p className="text-sm text-accent-500 mt-2">
+              {t('onboarding.stepCount', { current: 1, total: 3 })}
+            </p>
           </div>
         </Card>
       </motion.div>

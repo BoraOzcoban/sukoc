@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface SelectOption {
   value: string
@@ -21,6 +22,7 @@ export const Select: React.FC<SelectProps> = ({
   id,
   ...props
 }) => {
+  const { t } = useTranslation()
   const selectId = id || `select-${Math.random().toString(36).substr(2, 9)}`
   
   return (
@@ -37,7 +39,7 @@ export const Select: React.FC<SelectProps> = ({
         {...props}
       >
         {!props.value && (
-          <option value="">Seçiniz</option>
+          <option value="">{t('common.select')}</option>
         )}
         {options.map((option) => (
           <option key={option.value} value={option.value}>

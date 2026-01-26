@@ -1,6 +1,9 @@
 import { Question, QuizAnswer, WaterUsageAnalysis, Suggestion } from '../types'
-import questionsData from '../data/questions.json'
-import suggestionsData from '../data/suggestions.json'
+import i18n from '../i18n'
+import questionsTr from '../data/questions.json'
+import questionsEn from '../data/questions.en.json'
+import suggestionsTr from '../data/suggestions.json'
+import suggestionsEn from '../data/suggestions.en.json'
 
 // Realistic water usage calculations based on actual behaviors
 // Values are weekly totals (liters per week) unless stated otherwise.
@@ -126,12 +129,12 @@ const WATER_CALCULATIONS = {
 }
 
 export class WaterCalculator {
-  private questions: Question[]
-  private suggestions: { [key: string]: any[] }
+  private getQuestions(): Question[] {
+    return (i18n.language?.startsWith('en') ? questionsEn : questionsTr) as Question[]
+  }
 
-  constructor() {
-    this.questions = questionsData as Question[]
-    this.suggestions = suggestionsData
+  private getSuggestions(): { [key: string]: any[] } {
+    return i18n.language?.startsWith('en') ? suggestionsEn : suggestionsTr
   }
 
   calculateWaterUsage(answers: Record<string, QuizAnswer>, householdSize: number): WaterUsageAnalysis {
@@ -151,7 +154,7 @@ export class WaterCalculator {
     const suggestionCategories = this.getRelevantSuggestionCategories(answers, categoryBreakdown)
     
     suggestionCategories.forEach(category => {
-      const categorySuggestions = this.suggestions[category] || []
+      const categorySuggestions = this.getSuggestions()[category] || []
       relevantSuggestions.push(...categorySuggestions)
     })
 
@@ -249,7 +252,7 @@ export class WaterCalculator {
   private getBestOptionSuggestions(answers: Record<string, QuizAnswer>): Suggestion[] {
     const suggestions: Suggestion[] = []
 
-    this.questions.forEach((question) => {
+    this.getQuestions().forEach((question) => {
       const answer = answers[question.id]
       if (!answer) return
 
@@ -272,7 +275,12 @@ export class WaterCalculator {
         suggestions.push({
           id: `best_option_${question.id}`,
           title: question.title,
-          description: `Bu soru için mevcut cevabınız: ${currentValue} ${question.unit}. Öneri: ${targetValue} ${question.unit} (yarısı). Günlük yaklaşık ${dailySavings.toFixed(1)} L tasarruf edebilirsiniz.`,
+          description: i18n.t('quiz.bestOption.numeric', {
+            currentValue,
+            targetValue,
+            unit: question.unit,
+            savings: dailySavings.toFixed(1),
+          }),
           impact: dailySavings,
           difficulty: 'easy',
           feasibility: 0.85,
@@ -329,7 +337,13 @@ export class WaterCalculator {
       suggestions.push({
         id: `best_option_${question.id}`,
         title: question.title,
-        description: `Bu soru için mevcut seçiminiz: "${currentOption.label}" (~${currentDaily.toFixed(1)} L/gün). Bir alt seçenek: "${nextOption.label}" (~${nextDaily.toFixed(1)} L/gün). Günlük yaklaşık ${dailySavings.toFixed(1)} L tasarruf edebilirsiniz.`,
+        description: i18n.t('quiz.bestOption.single', {
+          currentOption: currentOption.label,
+          currentDaily: currentDaily.toFixed(1),
+          nextOption: nextOption.label,
+          nextDaily: nextDaily.toFixed(1),
+          savings: dailySavings.toFixed(1),
+        }),
         impact: dailySavings,
         difficulty: 'easy',
         feasibility: 0.85,
@@ -374,7 +388,7 @@ export class WaterCalculator {
   private calculateComparison(_currentUsage: number, _householdSize: number): {
     message: string
   } {
-    const message = "TEMA'ya göre Türkiye'de kişi başına düşen ortalama günlük su ayak izi yaklaşık 4160 litre, dünya ortalaması ise yaklaşık 3405 litredir."
+    const message = i18n.t('results.comparison.message')
 
     return { message }
   }
@@ -536,15 +550,15 @@ export class WaterCalculator {
   }
 
   getQuestionsByCategory(category: string): Question[] {
-    return this.questions.filter(q => q.category === category)
+    return this.getQuestions().filter(q => q.category === category)
   }
 
   getAllQuestions(): Question[] {
-    return this.questions
+    return this.getQuestions()
   }
 
   getQuestionById(id: string): Question | undefined {
-    return this.questions.find(q => q.id === id)
+    return this.getQuestions().find(q => q.id === id)
   }
 }
 

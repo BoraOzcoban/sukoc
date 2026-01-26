@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useAppStore } from '../store'
 import { waterCalculator } from '../utils/waterCalculator'
 import { QuestionCard } from '../components/quiz/QuestionCard'
@@ -11,6 +12,7 @@ import clubLogo from '../assets/club-logo.png'
 
 export const QuizPage: React.FC = () => {
   const navigate = useNavigate()
+  const { t, i18n } = useTranslation()
   const { user, quizAnswers, addQuizAnswer, setCurrentQuiz, setResults } = useAppStore()
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
@@ -41,7 +43,7 @@ export const QuizPage: React.FC = () => {
 
     setQuestions(filteredQuestions)
     setIsLoading(false)
-  }, [user, quizAnswers, navigate])
+  }, [user, quizAnswers, navigate, i18n.language])
 
   const currentQuestion = questions[currentQuestionIndex]
   const progress = ((currentQuestionIndex + 1) / questions.length) * 100
@@ -100,7 +102,7 @@ export const QuizPage: React.FC = () => {
       <div className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 flex items-center justify-center">
         <Card className="p-8 text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500 mx-auto mb-4"></div>
-          <p className="text-accent-600">Sorular yükleniyor...</p>
+          <p className="text-accent-600">{t('quiz.loading')}</p>
         </Card>
       </div>
     )
@@ -110,9 +112,9 @@ export const QuizPage: React.FC = () => {
     return (
       <div className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 flex items-center justify-center">
         <Card className="p-8 text-center">
-          <p className="text-accent-600">Quiz tamamlandı!</p>
+          <p className="text-accent-600">{t('quiz.completed')}</p>
           <Button onClick={handleFinishQuiz} className="mt-4">
-            Sonuçları Gör
+            {t('quiz.viewResults')}
           </Button>
         </Card>
       </div>
@@ -128,14 +130,17 @@ export const QuizPage: React.FC = () => {
         <div className="text-center mb-6 sm:mb-8">
           <img
             src={clubLogo}
-            alt="SuKoç logo"
+            alt={t('common.logoAlt')}
             className="mx-auto mb-3 h-16 w-16 sm:h-20 sm:w-20 object-contain"
           />
           <h1 className="text-2xl sm:text-3xl font-bold text-accent-900 mb-2">
-            Su Kullanım Analizi
+            {t('quiz.title')}
           </h1>
           <p className="text-sm sm:text-base text-accent-600">
-            Soru {currentQuestionIndex + 1} / {questions.length}
+            {t('quiz.questionCount', {
+              current: currentQuestionIndex + 1,
+              total: questions.length,
+            })}
           </p>
         </div>
 
@@ -158,11 +163,11 @@ export const QuizPage: React.FC = () => {
         {/* Navigation hints */}
         <div className="mt-6 sm:mt-8 text-center">
           <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2 text-xs sm:text-sm text-accent-500">
-            <span>← Önceki soru için</span>
+            <span>{t('quiz.hints.previous')}</span>
             <span className="hidden sm:inline">•</span>
-            <span>İleri → sonraki soru için</span>
+            <span>{t('quiz.hints.next')}</span>
             <span className="hidden sm:inline">•</span>
-            <span>Enter tuşu ile ilerle</span>
+            <span>{t('quiz.hints.enter')}</span>
           </div>
         </div>
 
@@ -173,7 +178,7 @@ export const QuizPage: React.FC = () => {
             onClick={() => navigate('/')}
             className="text-xs sm:text-sm"
           >
-            Ana Sayfaya Dön
+            {t('quiz.backHome')}
           </Button>
         </div>
       </div>

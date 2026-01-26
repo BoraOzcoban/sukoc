@@ -1,0 +1,374 @@
+{
+  "app": {
+    "title": "SuKoç",
+    "subtitle": "Water Saving Guide",
+    "tagline": "Analyze your water use habits and get personalized saving recommendations"
+  },
+  "navigation": {
+    "home": "Home",
+    "quiz": "Quiz",
+    "results": "Results",
+    "admin": "Admin"
+  },
+  "landing": {
+    "hero": {
+      "title": "Starting to save water has never been this easy!",
+      "description": "Learn your water use habits in a 5-minute quiz and get personalized recommendations.",
+      "cta": "Start the Quiz",
+      "note": "SuKoç is a project developed by Naturel Rotaract to raise awareness. The estimates are based on approximate, non-professional calculations."
+    },
+    "features": {
+      "personalized": {
+        "title": "Personalized Analysis",
+        "description": "Tailored recommendations based on your home type, region, and habits"
+      },
+      "actionable": {
+        "title": "Actionable Tips",
+        "description": "Practical solutions you can apply right away"
+      },
+      "tracking": {
+        "title": "Progress Tracking",
+        "description": "Track your saving goals and celebrate your wins"
+      }
+    },
+    "testimonial": {
+      "text": "Thanks to SuKoç, I reduced my monthly water bill by 30%. The suggestions are very practical and doable.",
+      "author": "Ayşe K., Istanbul"
+    },
+    "stats": {
+      "title": "Global Water Crisis Facts",
+      "subtitle": "The water crisis is not just a future issue, it is a real crisis today",
+      "cards": {
+        "safeWater": {
+          "value": "2.2 Billion",
+          "label": "people lack access to safe water",
+          "source": "Source: UNICEF"
+        },
+        "agriculture": {
+          "value": "70%",
+          "label": "of global water is used in agriculture",
+          "source": "Source: UN"
+        },
+        "affected": {
+          "value": "5.7 Billion",
+          "label": "people will be affected by 2050",
+          "source": "Source: UN"
+        },
+        "burger": {
+          "value": "1 Burger",
+          "label": "= 2,400 liters of water",
+          "source": "Source: The Game Changers documentary"
+        }
+      }
+    },
+    "footer": {
+      "subtitle": "Smart solutions for water saving"
+    }
+  },
+  "onboarding": {
+    "title": "Let's get to know you!",
+    "subtitle": "We need to ask a few questions to provide the best recommendations.",
+    "householdSize": {
+      "label": "How many people are in your household?",
+      "placeholder": "Select",
+      "options": {
+        "one": "1 person",
+        "two": "2 people",
+        "three": "3 people",
+        "four": "4 people",
+        "five": "5 people",
+        "sixPlus": "6 or more"
+      }
+    },
+    "region": {
+      "label": "Which region do you live in?",
+      "placeholder": "Select region",
+      "options": {
+        "marmara": "Marmara",
+        "ege": "Aegean",
+        "akdeniz": "Mediterranean",
+        "icAnadolu": "Central Anatolia",
+        "karadeniz": "Black Sea",
+        "doguAnadolu": "Eastern Anatolia",
+        "guneydoguAnadolu": "Southeastern Anatolia"
+      }
+    },
+    "mainWaterUses": {
+      "label": "Main water use areas (you can select more than one)",
+      "options": {
+        "shower": "Shower/Bath",
+        "kitchen": "Kitchen",
+        "laundry": "Laundry",
+        "garden": "Garden",
+        "car": "Car Wash"
+      },
+      "descriptions": {
+        "shower": "Daily shower and bath use",
+        "kitchen": "Kitchen and dishwashing",
+        "laundry": "Laundry and cleaning",
+        "garden": "Garden and plant watering",
+        "car": "Car washing and cleaning"
+      }
+    },
+    "continue": "Continue",
+    "errors": {
+      "householdSize": "Please select your household size",
+      "region": "Please select your region",
+      "mainWaterUses": "Please select at least one water use area"
+    },
+    "stepCount": "{{current}} / {{total}}"
+  },
+  "quiz": {
+    "title": "Water Use Analysis",
+    "progress": "Progress",
+    "progressLabel": "Progress: %{{percent}}",
+    "skip": "Skip",
+    "previous": "Previous",
+    "next": "Next",
+    "finish": "Finish",
+    "loading": "Loading questions...",
+    "completed": "Quiz completed!",
+    "viewResults": "View Results",
+    "questionCount": "Question {{current}} / {{total}}",
+    "hints": {
+      "previous": "← For previous question",
+      "next": "Next → for the next question",
+      "enter": "Press Enter to continue"
+    },
+    "backHome": "Back to Home",
+    "numericPlaceholder": "0 {{unit}}",
+    "unitLabel": "Unit: {{unit}}",
+    "challenge": {
+      "title": "Challenge"
+    },
+    "categories": {
+      "daily": "Daily",
+      "weekly": "Weekly",
+      "monthly": "Monthly",
+      "annual": "Annual"
+    },
+    "bestOption": {
+      "numeric": "Your current answer: {{currentValue}} {{unit}}. Suggestion: {{targetValue}} {{unit}} (half). You can save about {{savings}} L per day.",
+      "single": "Your current choice: \"{{currentOption}}\" (~{{currentDaily}} L/day). Next lower option: \"{{nextOption}}\" (~{{nextDaily}} L/day). You can save about {{savings}} L per day."
+    }
+  },
+  "results": {
+    "title": "Your Water Usage Analysis",
+    "subtitle": "Your water use habits have been analyzed. Here are your results and recommendations:",
+    "currentUsage": "Current Usage",
+    "potentialSavings": "Potential Savings",
+    "daily": "Daily",
+    "yearly": "Yearly",
+    "units": {
+      "liters": "liters",
+      "litersPerDay": "L/day"
+    },
+    "usageChart": {
+      "current": "Current Usage",
+      "savings": "Potential Savings"
+    },
+    "categories": {
+      "dailyHygiene": "Shower/Bath",
+      "kitchen": "Kitchen",
+      "laundry": "Laundry",
+      "garden": "Garden",
+      "bathroom": "Bathroom",
+      "lifestyle": "Lifestyle",
+      "other": "Other"
+    },
+    "lifestyle": {
+      "redMeat": "Red Meat",
+      "dairy": "Dairy",
+      "clothing": "Clothing",
+      "whiteMeat": "White Meat",
+      "carWash": "Car Wash",
+      "electronics": "Electronics"
+    },
+    "personalImpact": {
+      "title": "Your Impact",
+      "currentUsageLabel": "Your daily water use",
+      "savingsLabel": "Your daily savings potential",
+      "whyTitle": "Why it matters",
+      "whyItem1": "Every liter saved leaves more water for future generations",
+      "whyItem2": "The water crisis could affect 5.7 billion people by 2050",
+      "whyItem3": "Small changes create big impact",
+      "whyItem4": "Water saving is critical in the fight against climate change"
+    },
+    "usageGroupLabel": "Your water usage group",
+    "usageGroupNote": "You are in this group and earned this badge.",
+    "usageGroups": {
+      "veryHigh": {
+        "label": "Very high consumption",
+        "badge": "🚨 inefficient use"
+      },
+      "high": {
+        "label": "High consumption",
+        "badge": "📈 improvement needed"
+      },
+      "medium": {
+        "label": "Medium level",
+        "badge": "⚖️ borderline level"
+      },
+      "low": {
+        "label": "Low consumption",
+        "badge": "♻️ resource-friendly"
+      },
+      "sustainable": {
+        "label": "Sustainable Level",
+        "badge": "🌟 sustainable level"
+      }
+    },
+    "suggestions": {
+      "title": "Suggestions",
+      "impact": "Impact",
+      "difficulty": "Difficulty",
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    },
+    "suggestionsSection": {
+      "title": "Personalized Recommendations",
+      "subtitle": "Practical water-saving tips tailored for you"
+    },
+    "otherTips": {
+      "title": "Other Tips",
+      "subtitle": "Additional tips for general awareness and habits"
+    },
+    "comparison": {
+      "title": "Comparison with Similar Profiles",
+      "more": "You use %{{percent}} more water than similar profiles",
+      "less": "You use %{{percent}} less water than similar profiles",
+      "average": "You are at the same level as similar profiles",
+      "message": "According to TEMA, the average daily water footprint per person in Turkey is around 4,160 liters, while the global average is about 3,405 liters."
+    },
+    "charts": {
+      "usageSavings": "Water Usage and Savings Potential",
+      "categories": "Usage Categories"
+    },
+    "challenge": {
+      "badge": "🎯 Challenge",
+      "title": "Challenge:",
+      "accept": "Accept",
+      "later": "Later",
+      "join": "Join the Challenge",
+      "joining": "Joining the Challenge..."
+    },
+    "nextSteps": {
+      "title": "🚀 Next Steps",
+      "step1": {
+        "title": "1. Start",
+        "description": "Pick one of the easiest tips and start today"
+      },
+      "step2": {
+        "title": "2. Track",
+        "description": "Measure your progress by tracking water meter readings"
+      },
+      "step3": {
+        "title": "3. Share",
+        "description": "Share your wins and inspire others"
+      }
+    },
+    "globalStats": {
+      "crisis": {
+        "title": "Global Water Crisis",
+        "safeWaterValue": "2.2 Billion",
+        "safeWaterLabel": "people lack access to safe water",
+        "safeWaterSource": "Source: UNICEF",
+        "sanitationValue": "4.2 Billion",
+        "sanitationLabel": "people lack access to safe sanitation",
+        "sanitationSource": "Source: WHO"
+      },
+      "usage": {
+        "title": "Water Use Facts",
+        "agricultureValue": "70%",
+        "agricultureLabel": "of global water is used in agriculture",
+        "agricultureSource": "Source: UN",
+        "industrialValue": "20%",
+        "industrialLabel": "industrial use",
+        "industrialSource": "Source: UN"
+      }
+    },
+    "additionalStats": {
+      "industry": {
+        "title": "Industrial Use",
+        "value": "1 Burger",
+        "label": "= 2,400 liters of water",
+        "source": "Source: The Game Changers documentary"
+      },
+      "textile": {
+        "title": "Textile Industry",
+        "value": "1 T-Shirt",
+        "label": "= 2,700 liters of water",
+        "source": "Source: EEA"
+      },
+      "technology": {
+        "title": "Technology",
+        "value": "1 Phone",
+        "label": "= 13,000 liters of water",
+        "source": "Source: MindYourStep"
+      }
+    },
+    "story": {
+      "branding": "SuKoç by Naturel Rotaract",
+      "groupLabel": "Your Water Usage Group",
+      "headline": "My daily water footprint is around {{current}} liters, and I will apply SuKoç's recommendations to reduce it to {{target}} liters.",
+      "tagline": "Small changes, big savings.",
+      "stats": {
+        "safeWater": {
+          "value": "2.2 Billion",
+          "label": "people lack access to safe water",
+          "source": "Source: UNICEF"
+        },
+        "phone": {
+          "value": "13,000 L",
+          "label": "water needed to produce one phone",
+          "source": "Source: MindYourStep"
+        },
+        "burger": {
+          "value": "2,400 L",
+          "label": "water footprint of one burger",
+          "source": "Source: The Game Changers documentary"
+        },
+        "tshirt": {
+          "value": "2,700 L",
+          "label": "water needed to produce one t-shirt",
+          "source": "Source: EEA"
+        }
+      },
+      "hashtags": "#SuKoç #WaterFootprint"
+    },
+    "export": {
+      "pdf": "Download as PDF",
+      "share": "Share"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Try Again",
+    "save": "Save",
+    "cancel": "Cancel",
+    "close": "Close",
+    "yes": "Yes",
+    "no": "No",
+    "required": "Required",
+    "optional": "Optional",
+    "select": "Select",
+    "value": "Value",
+    "logoAlt": "SuKoç logo"
+  },
+  "badges": {
+    "waterSaver": {
+      "title": "Water Saver",
+      "description": "You completed your first quiz"
+    },
+    "ecoWarrior": {
+      "title": "Eco Warrior",
+      "description": "You completed 5 recommendations"
+    },
+    "conservationist": {
+      "title": "Conservation Expert",
+      "description": "You achieved 20% monthly savings"
+    }
+  }
+}

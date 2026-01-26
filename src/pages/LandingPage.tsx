@@ -54,15 +54,13 @@ export const LandingPage: React.FC = () => {
                 <div className="flex items-center gap-4">
                   <img
                     src={clubLogo}
-                    alt="SuKoç logo"
+                    alt={t('common.logoAlt')}
                     className="h-20 w-20 sm:h-24 sm:w-24 object-contain"
                   />
                 </div>
                 <div className="mt-6 h-px w-full bg-gradient-to-r from-transparent via-primary-200 to-transparent"></div>
                 <p className="mt-6 text-xs sm:text-sm text-accent-700 leading-relaxed">
-                  SuKoç, yalnızca farkındalık yaratmak amacıyla Naturel Rotaract
-                  tarafından geliştirilen bir projedir. Tahminler, profesyonel
-                  olmayan yaklaşık hesaplamalara dayanır.
+                  {t('landing.hero.note')}
                 </p>
               </div>
             </motion.div>
@@ -105,11 +103,10 @@ export const LandingPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10 sm:mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-red-900 mb-3 sm:mb-4">
-              Dünya Su Krizi Gerçekleri
+              {t('landing.stats.title')}
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-red-700 max-w-3xl mx-auto">
-              Su krizi sadece bir gelecek sorunu değil, bugün yaşadığımız gerçek
-              bir krizdir
+              {t('landing.stats.subtitle')}
             </p>
           </div>
 
@@ -123,12 +120,14 @@ export const LandingPage: React.FC = () => {
               <Card className="p-5 sm:p-6 text-center bg-white border-red-200">
                 <div className="text-4xl mb-3">🌍</div>
                 <div className="text-2xl sm:text-3xl font-bold text-red-600 mb-2">
-                  2.2 Milyar
+                  {t('landing.stats.cards.safeWater.value')}
                 </div>
                 <p className="text-red-700 text-sm sm:text-base">
-                  kişi güvenli suya erişemiyor
+                  {t('landing.stats.cards.safeWater.label')}
                 </p>
-                <p className="mt-2 text-xs text-red-600/80">Kaynak: UNICEF</p>
+                <p className="mt-2 text-xs text-red-600/80">
+                  {t('landing.stats.cards.safeWater.source')}
+                </p>
               </Card>
             </motion.div>
 
@@ -141,12 +140,14 @@ export const LandingPage: React.FC = () => {
               <Card className="p-5 sm:p-6 text-center bg-white border-orange-200">
                 <div className="text-4xl mb-3">⚡</div>
                 <div className="text-2xl sm:text-3xl font-bold text-orange-600 mb-2">
-                  %70
+                  {t('landing.stats.cards.agriculture.value')}
                 </div>
                 <p className="text-orange-700 text-sm sm:text-base">
-                  dünya suyu tarımda kullanılıyor
+                  {t('landing.stats.cards.agriculture.label')}
                 </p>
-                <p className="mt-2 text-xs text-orange-600/80">Kaynak: UN</p>
+                <p className="mt-2 text-xs text-orange-600/80">
+                  {t('landing.stats.cards.agriculture.source')}
+                </p>
               </Card>
             </motion.div>
 
@@ -159,12 +160,14 @@ export const LandingPage: React.FC = () => {
               <Card className="p-5 sm:p-6 text-center bg-white border-yellow-200">
                 <div className="text-4xl mb-3">📈</div>
                 <div className="text-2xl sm:text-3xl font-bold text-yellow-600 mb-2">
-                  5.7 Milyar
+                  {t('landing.stats.cards.affected.value')}
                 </div>
                 <p className="text-yellow-700 text-sm sm:text-base">
-                  kişi 2050'de etkilenecek
+                  {t('landing.stats.cards.affected.label')}
                 </p>
-                <p className="mt-2 text-xs text-yellow-600/80">Kaynak: UN</p>
+                <p className="mt-2 text-xs text-yellow-600/80">
+                  {t('landing.stats.cards.affected.source')}
+                </p>
               </Card>
             </motion.div>
 
@@ -177,13 +180,13 @@ export const LandingPage: React.FC = () => {
               <Card className="p-5 sm:p-6 text-center bg-white border-red-200">
                 <div className="text-4xl mb-3">💧</div>
                 <div className="text-2xl sm:text-3xl font-bold text-red-600 mb-2">
-                  1 Hamburger
+                  {t('landing.stats.cards.burger.value')}
                 </div>
                 <p className="text-red-700 text-sm sm:text-base">
-                  = 2.400 litre su
+                  {t('landing.stats.cards.burger.label')}
                 </p>
                 <p className="mt-2 text-xs text-red-600/80">
-                  Kaynak: The Game Changers belgeseli
+                  {t('landing.stats.cards.burger.source')}
                 </p>
               </Card>
             </motion.div>
@@ -199,7 +202,7 @@ export const LandingPage: React.FC = () => {
               SuKoç
             </h3>
             <p className="text-sm sm:text-base text-accent-300 mb-4">
-              Su tasarrufu için akıllı çözümler
+              {t('landing.footer.subtitle')}
             </p>
           </div>
         </div>

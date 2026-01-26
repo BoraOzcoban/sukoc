@@ -1,0 +1,350 @@
+{
+  "daily_hygiene": [
+    {
+      "id": "teeth_brushing_water_off",
+      "title": "Turn Off the Tap While Brushing",
+      "description": "You can save 10-13 liters of water per day by turning off the tap while brushing. A 2-minute brushing uses about 15L if the tap is left open, and only 2L when closed.",
+      "impact": 13,
+      "difficulty": "easy",
+      "feasibility": 0.95,
+      "category": "daily_hygiene"
+    },
+    {
+      "id": "shower_timer",
+      "title": "Shorten Your Shower Time",
+      "description": "Reducing your shower from 15 minutes to 8 minutes can save about 50 liters per person per day. An average showerhead uses 7 liters per minute.",
+      "impact": 50,
+      "difficulty": "easy",
+      "feasibility": 0.8,
+      "category": "daily_hygiene"
+    },
+    {
+      "id": "shower_water_off",
+      "title": "Turn Off the Water While Showering",
+      "description": "Turning off the water while shampooing and soaping can save 15-20 liters per person per day. It only means pausing the water for 2-3 minutes.",
+      "impact": 18,
+      "difficulty": "easy",
+      "feasibility": 0.8,
+      "category": "daily_hygiene"
+    },
+    {
+      "id": "hand_washing_efficient",
+      "title": "Turn Off the Tap While Washing Hands",
+      "description": "Turning off the tap while soaping can save 12-22 liters per day. It makes a big difference over 8-10 hand washes a day.",
+      "impact": 15,
+      "difficulty": "easy",
+      "feasibility": 0.9,
+      "category": "daily_hygiene"
+    },
+    {
+      "id": "reduce_shower_frequency",
+      "title": "Reduce Shower Frequency",
+      "description": "Taking 1 shower instead of 2 per day can save 50-100 liters per person daily. Avoid extra showers unless needed.",
+      "impact": 75,
+      "difficulty": "medium",
+      "feasibility": 0.6,
+      "category": "daily_hygiene"
+    }
+  ],
+  "kitchen": [
+    {
+      "id": "hand_dishwashing_efficient",
+      "title": "Efficient Hand Dishwashing",
+      "description": "Wash dishes in soapy water first and rinse after to save 20-25 liters per day. Controlled use is far better than leaving the tap running.",
+      "impact": 25,
+      "difficulty": "easy",
+      "feasibility": 0.9,
+      "category": "kitchen"
+    },
+    {
+      "id": "dishwasher_full_loads",
+      "title": "Run the Dishwasher Full",
+      "description": "Running the dishwasher only when full can save 3-8 liters per day. Full loads are much more efficient than half loads.",
+      "impact": 5,
+      "difficulty": "easy",
+      "feasibility": 0.85,
+      "category": "kitchen"
+    },
+    {
+      "id": "fruit_vegetable_bowl_washing",
+      "title": "Wash Produce in a Bowl",
+      "description": "Wash fruits and vegetables in a large bowl instead of under running water to save 8-12 liters per day. Running water can use 15L; a bowl uses about 3L.",
+      "impact": 12,
+      "difficulty": "easy",
+      "feasibility": 0.9,
+      "category": "kitchen"
+    },
+    {
+      "id": "measured_water_boiling",
+      "title": "Measure Water Before Boiling",
+      "description": "Measuring the water needed for coffee or tea saves both water and energy.",
+      "impact": 5,
+      "difficulty": "easy",
+      "feasibility": 0.8,
+      "category": "kitchen"
+    },
+    {
+      "id": "cooking_water_reuse",
+      "title": "Reuse Cooking Water",
+      "description": "Let pasta and vegetable boiling water cool and use it to water plants.",
+      "impact": 12,
+      "difficulty": "easy",
+      "feasibility": 0.7,
+      "category": "kitchen"
+    }
+  ],
+  "laundry": [
+    {
+      "id": "laundry_full_loads",
+      "title": "Run the Washer Full",
+      "description": "Running the washing machine only when full can save 30 liters of water per week.",
+      "impact": 4,
+      "difficulty": "easy",
+      "feasibility": 0.9,
+      "category": "laundry"
+    },
+    {
+      "id": "reduce_laundry_frequency",
+      "title": "Reduce Laundry Frequency",
+      "description": "Doing 3-4 loads instead of 5+ per week can save about 40 liters weekly.",
+      "impact": 6,
+      "difficulty": "medium",
+      "feasibility": 0.8,
+      "category": "laundry"
+    },
+    {
+      "id": "cold_water_washing",
+      "title": "Wash with Cold Water",
+      "description": "Washing clothes with cold water saves both water and energy. Around 5 liters saved per day.",
+      "impact": 5,
+      "difficulty": "easy",
+      "feasibility": 0.8,
+      "category": "laundry"
+    }
+  ],
+  "bathroom": [
+    {
+      "id": "dual_flush_toilets",
+      "title": "Dual-Flush Toilet",
+      "description": "A dual-flush toilet can save about 30% water. Use the small flush for small needs.",
+      "impact": 15,
+      "difficulty": "medium",
+      "feasibility": 0.7,
+      "category": "bathroom"
+    },
+    {
+      "id": "toilet_water_saver",
+      "title": "Toilet Tank Saver",
+      "description": "Placing a water-saving device in the tank can save around 20% water.",
+      "impact": 10,
+      "difficulty": "easy",
+      "feasibility": 0.8,
+      "category": "bathroom"
+    },
+    {
+      "id": "reduce_unnecessary_flushes",
+      "title": "Reduce Unnecessary Flushes",
+      "description": "Dispose of small waste like tissues in the trash to avoid unnecessary flushing.",
+      "impact": 8,
+      "difficulty": "easy",
+      "feasibility": 0.9,
+      "category": "bathroom"
+    }
+  ],
+  "garden": [
+    {
+      "id": "morning_evening_watering",
+      "title": "Water in the Morning/Evening",
+      "description": "Watering early morning or late evening reduces evaporation and can save about 20% water.",
+      "impact": 20,
+      "difficulty": "easy",
+      "feasibility": 0.8,
+      "category": "garden"
+    },
+    {
+      "id": "drip_irrigation",
+      "title": "Use Drip Irrigation",
+      "description": "Using drip irrigation instead of a traditional hose can save up to 50% water.",
+      "impact": 50,
+      "difficulty": "medium",
+      "feasibility": 0.6,
+      "category": "garden"
+    },
+    {
+      "id": "drought_resistant_plants",
+      "title": "Drought-Resistant Plants",
+      "description": "Replace lawns with drought-resistant plants to cut water use by up to 50%.",
+      "impact": 40,
+      "difficulty": "medium",
+      "feasibility": 0.5,
+      "category": "garden"
+    },
+    {
+      "id": "rainwater_harvesting",
+      "title": "Rainwater Harvesting",
+      "description": "Collecting rainwater can reduce tap water use for gardening by up to 80%.",
+      "impact": 60,
+      "difficulty": "hard",
+      "feasibility": 0.4,
+      "category": "garden"
+    }
+  ],
+  "lifestyle": [
+    {
+      "id": "reduce_meat_consumption",
+      "title": "Reduce Meat Consumption",
+      "description": "Choosing vegetables/legumes instead of meat 1-2 days per week can save hundreds of liters of virtual water.",
+      "impact": 50,
+      "difficulty": "medium",
+      "feasibility": 0.6,
+      "category": "lifestyle"
+    },
+    {
+      "id": "sustainable_clothing",
+      "title": "Sustainable Clothing Habits",
+      "description": "Buying less but better quality items and choosing second-hand reduces your water footprint.",
+      "impact": 30,
+      "difficulty": "medium",
+      "feasibility": 0.6,
+      "category": "lifestyle"
+    },
+    {
+      "id": "tap_water_use",
+      "title": "Use Tap Water",
+      "description": "Using filtered tap water instead of bottled water reduces water use from production and transport.",
+      "impact": 20,
+      "difficulty": "easy",
+      "feasibility": 0.8,
+      "category": "lifestyle"
+    },
+    {
+      "id": "reduce_food_waste",
+      "title": "Reduce Food Waste",
+      "description": "Wasted food also wastes the water used to produce it. Plan portions ahead.",
+      "impact": 35,
+      "difficulty": "medium",
+      "feasibility": 0.7,
+      "category": "lifestyle"
+    }
+  ],
+  "general": [
+    {
+      "id": "upgrade_appliances",
+      "title": "Upgrade to Efficient Appliances",
+      "description": "Upgrading all water-using devices to A+++ class can save about 35 liters per day.",
+      "impact": 35,
+      "difficulty": "hard",
+      "feasibility": 0.4,
+      "category": "general"
+    },
+    {
+      "id": "low_flow_shower",
+      "title": "Low-Flow Showerhead",
+      "description": "Using an efficient showerhead can reduce water use by 30%. Low cost, high savings.",
+      "impact": 30,
+      "difficulty": "easy",
+      "feasibility": 0.8,
+      "category": "general"
+    },
+    {
+      "id": "faucet_aerator",
+      "title": "Faucet Aerator",
+      "description": "Installing aerators on taps can save up to 50% water. Cheap and easy to implement.",
+      "impact": 25,
+      "difficulty": "easy",
+      "feasibility": 0.8,
+      "category": "general"
+    },
+    {
+      "id": "leak_check",
+      "title": "Regular Leak Checks",
+      "description": "Check all taps and pipes regularly to detect leaks early. Saves about 15 liters per day.",
+      "impact": 15,
+      "difficulty": "easy",
+      "feasibility": 0.9,
+      "category": "general"
+    },
+    {
+      "id": "fix_dripping_taps",
+      "title": "Fix Dripping Taps",
+      "description": "Fix dripping taps immediately. A single dripping tap can waste 20 liters per day.",
+      "impact": 20,
+      "difficulty": "easy",
+      "feasibility": 0.9,
+      "category": "general"
+    },
+    {
+      "id": "water_meter_tracking",
+      "title": "Track Your Water Meter",
+      "description": "Track monthly water meter readings to spot abnormal usage early. Around 10% savings.",
+      "impact": 10,
+      "difficulty": "medium",
+      "feasibility": 0.6,
+      "category": "general"
+    },
+    {
+      "id": "water_bill_analysis",
+      "title": "Analyze Water Bills",
+      "description": "Analyze monthly water bills to follow changes and set savings targets.",
+      "impact": 8,
+      "difficulty": "medium",
+      "feasibility": 0.6,
+      "category": "general"
+    },
+    {
+      "id": "build_water_awareness",
+      "title": "Build Water Awareness",
+      "description": "Raise awareness of water-saving habits with household members. Small changes make a big difference.",
+      "impact": 12,
+      "difficulty": "easy",
+      "feasibility": 0.7,
+      "category": "general"
+    }
+  ],
+  "challenges": [
+    {
+      "id": "shower_time_challenge",
+      "title": "Shower Time Challenge",
+      "description": "Reduce your shower time by 2 minutes this week and see the difference!",
+      "impact": 20,
+      "difficulty": "easy",
+      "feasibility": 0.9,
+      "category": "daily_hygiene",
+      "isChallenge": true,
+      "challengeText": "Reduce your shower time by 2 minutes this week and see the difference!"
+    },
+    {
+      "id": "teeth_brushing_challenge",
+      "title": "Brushing Habit Challenge",
+      "description": "Make a habit of turning off the tap while brushing this week!",
+      "impact": 15,
+      "difficulty": "easy",
+      "feasibility": 0.9,
+      "category": "daily_hygiene",
+      "isChallenge": true,
+      "challengeText": "Make a habit of turning off the tap while brushing this week!"
+    },
+    {
+      "id": "meatless_day_challenge",
+      "title": "Meatless Day Challenge",
+      "description": "Skip meat at least one day this month and see the difference!",
+      "impact": 40,
+      "difficulty": "medium",
+      "feasibility": 0.7,
+      "category": "lifestyle",
+      "isChallenge": true,
+      "challengeText": "Skip meat at least one day this month and see the difference!"
+    },
+    {
+      "id": "bottled_water_challenge",
+      "title": "Bottled Water Challenge",
+      "description": "Use only tap water this week!",
+      "impact": 20,
+      "difficulty": "easy",
+      "feasibility": 0.8,
+      "category": "lifestyle",
+      "isChallenge": true,
+      "challengeText": "Use only tap water this week!"
+    }
+  ]
+}

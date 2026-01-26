@@ -3,10 +3,14 @@ import { initReactI18next } from 'react-i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
 
 import tr from './locales/tr.json'
+import en from './locales/en.json'
 
 const resources = {
   tr: {
     translation: tr,
+  },
+  en: {
+    translation: en,
   },
 }
 
@@ -15,10 +19,11 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
+    supportedLngs: ['tr', 'en'],
     fallbackLng: 'tr',
     defaultNS: 'translation',
     detection: {
-      order: ['localStorage', 'navigator', 'htmlTag'],
+      order: ['localStorage', 'htmlTag'],
       caches: ['localStorage'],
     },
     interpolation: {

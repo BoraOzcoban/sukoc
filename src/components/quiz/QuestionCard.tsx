@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import { Question } from '../../types'
 import { Card } from '../ui/Card'
 import { RadioGroup } from '../ui/RadioGroup'
@@ -29,6 +30,9 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   isLast,
   progress,
 }) => {
+  const { t } = useTranslation()
+  const categoryLabel = t(`quiz.categories.${question.category}`)
+
   const handleRadioChange = (selectedValue: string) => {
     onChange(selectedValue)
   }
@@ -60,9 +64,9 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
       <div className="mb-6 sm:mb-8">
         <div className="flex flex-wrap justify-between items-center gap-2 mb-2">
           <span className="text-xs sm:text-sm font-medium text-accent-600">
-            İlerleme: %{Math.round(progress)}
+            {t('quiz.progressLabel', { percent: Math.round(progress) })}
           </span>
-          <Badge variant="primary">{question.category}</Badge>
+          <Badge variant="primary">{categoryLabel}</Badge>
         </div>
         <div className="w-full bg-accent-200 rounded-full h-2">
           <motion.div
@@ -94,7 +98,9 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
                   </svg>
                 </div>
                 <div className="ml-3">
-                  <h3 className="text-sm font-medium text-primary-800">Meydan Okuma</h3>
+                  <h3 className="text-sm font-medium text-primary-800">
+                    {t('quiz.challenge.title')}
+                  </h3>
                   <p className="text-xs sm:text-sm text-primary-700 mt-1">{question.challengeText}</p>
                 </div>
               </div>
@@ -125,12 +131,12 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
                 min={question.min}
                 max={question.max}
                 step={question.step}
-                placeholder={`0 ${question.unit || ''}`}
+                placeholder={t('quiz.numericPlaceholder', { unit: question.unit || '' })}
                 className="text-center text-lg sm:text-xl"
               />
               {question.unit && (
                 <p className="text-xs sm:text-sm text-accent-500 text-center">
-                  Birim: {question.unit}
+                  {t('quiz.unitLabel', { unit: question.unit })}
                 </p>
               )}
             </div>
@@ -171,7 +177,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
                 : 'text-accent-600 hover:text-accent-800 hover:bg-accent-50'
             }`}
           >
-            Önceki
+            {t('quiz.previous')}
           </button>
 
           <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
@@ -180,7 +186,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
                 onClick={onSkip}
                 className="w-full sm:w-auto px-5 sm:px-6 py-3 rounded-xl font-medium text-accent-600 hover:text-accent-800 hover:bg-accent-50 transition-colors"
               >
-                Geç
+                {t('quiz.skip')}
               </button>
             )}
             <button
@@ -192,7 +198,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
                   : 'bg-accent-200 text-accent-400 cursor-not-allowed'
               }`}
             >
-              {isLast ? 'Bitir' : 'İleri'}
+              {isLast ? t('quiz.finish') : t('quiz.next')}
             </button>
           </div>
         </div>

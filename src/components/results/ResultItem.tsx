@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import { Suggestion } from '../../types'
 import { Card } from '../ui/Card'
 import { Badge } from '../ui/Badge'
@@ -15,6 +16,8 @@ export const ResultItem: React.FC<ResultItemProps> = ({
   onAccept,
   onDecline,
 }) => {
+  const { t } = useTranslation()
+
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
       case 'easy':
@@ -31,11 +34,11 @@ export const ResultItem: React.FC<ResultItemProps> = ({
   const getDifficultyText = (difficulty: string) => {
     switch (difficulty) {
       case 'easy':
-        return 'Kolay'
+        return t('results.suggestions.easy')
       case 'medium':
-        return 'Orta'
+        return t('results.suggestions.medium')
       case 'hard':
-        return 'Zor'
+        return t('results.suggestions.hard')
       default:
         return difficulty
     }
@@ -52,7 +55,7 @@ export const ResultItem: React.FC<ResultItemProps> = ({
         {suggestion.isChallenge && (
           <div className="flex flex-wrap gap-2 mb-4 sm:mb-0 sm:absolute sm:top-4 sm:left-4">
             <Badge variant="warning" size="sm">
-              🎯 Meydan Okuma
+              {t('results.challenge.badge')}
             </Badge>
           </div>
         )}
@@ -74,7 +77,9 @@ export const ResultItem: React.FC<ResultItemProps> = ({
                   <div className="text-xl sm:text-2xl font-bold text-primary-600">
                     {suggestion.impact.toFixed(1)}
                   </div>
-                  <div className="text-xs sm:text-sm text-accent-500">L/gün</div>
+                  <div className="text-xs sm:text-sm text-accent-500">
+                    {t('results.units.litersPerDay')}
+                  </div>
                 </div>
 
                 <div className="h-8 w-px bg-accent-200"></div>
@@ -84,7 +89,7 @@ export const ResultItem: React.FC<ResultItemProps> = ({
                     {getDifficultyText(suggestion.difficulty)}
                   </Badge>
                   <div className="text-xs text-accent-500 mt-1">
-                    Uygulama Zorluğu
+                    {t('results.suggestions.difficulty')}
                   </div>
                 </div>
               </div>
@@ -94,7 +99,9 @@ export const ResultItem: React.FC<ResultItemProps> = ({
           {/* Challenge text */}
           {suggestion.isChallenge && suggestion.challengeText && (
             <div className="mb-6 p-3 sm:p-4 bg-primary-50 border border-primary-200 rounded-xl">
-              <h4 className="font-medium text-primary-800 mb-2">Meydan Okuma:</h4>
+              <h4 className="font-medium text-primary-800 mb-2">
+                {t('results.challenge.title')}
+              </h4>
               <p className="text-sm text-primary-700">{suggestion.challengeText}</p>
             </div>
           )}
@@ -107,7 +114,7 @@ export const ResultItem: React.FC<ResultItemProps> = ({
                   onClick={onAccept}
                   className="w-full sm:flex-1 bg-primary-500 hover:bg-primary-600 text-white font-medium px-4 py-2 rounded-xl transition-colors"
                 >
-                  Kabul Et
+                  {t('results.challenge.accept')}
                 </button>
               )}
               {onDecline && (
@@ -115,7 +122,7 @@ export const ResultItem: React.FC<ResultItemProps> = ({
                   onClick={onDecline}
                   className="w-full sm:flex-1 bg-accent-100 hover:bg-accent-200 text-accent-700 font-medium px-4 py-2 rounded-xl transition-colors"
                 >
-                  Daha Sonra
+                  {t('results.challenge.later')}
                 </button>
               )}
             </div>

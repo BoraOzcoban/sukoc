@@ -14,7 +14,8 @@
     "hero": {
       "title": "Su tasarrufuna başlamak hiç bu kadar kolay olmamıştı!",
       "description": "5 dakikalık quiz ile su kullanım alışkanlıklarınızı öğrenin ve kişiselleştirilmiş öneriler alın.",
-      "cta": "Quiz'e Başla"
+      "cta": "Quiz'e Başla",
+      "note": "SuKoç, yalnızca farkındalık yaratmak amacıyla Naturel Rotaract tarafından geliştirilen bir projedir. Tahminler, profesyonel olmayan yaklaşık hesaplamalara dayanır."
     },
     "features": {
       "personalized": {
@@ -33,6 +34,35 @@
     "testimonial": {
       "text": "SuKoç sayesinde aylık su faturasında %30 tasarruf sağladım. Öneriler çok pratik ve uygulanabilir.",
       "author": "Ayşe K., İstanbul"
+    },
+    "stats": {
+      "title": "Dünya Su Krizi Gerçekleri",
+      "subtitle": "Su krizi sadece bir gelecek sorunu değil, bugün yaşadığımız gerçek bir krizdir",
+      "cards": {
+        "safeWater": {
+          "value": "2.2 Milyar",
+          "label": "kişi güvenli suya erişemiyor",
+          "source": "Kaynak: UNICEF"
+        },
+        "agriculture": {
+          "value": "%70",
+          "label": "dünya suyu tarımda kullanılıyor",
+          "source": "Kaynak: UN"
+        },
+        "affected": {
+          "value": "5.7 Milyar",
+          "label": "kişi 2050'de etkilenecek",
+          "source": "Kaynak: UN"
+        },
+        "burger": {
+          "value": "1 Hamburger",
+          "label": "= 2.400 litre su",
+          "source": "Kaynak: The Game Changers belgeseli"
+        }
+      }
+    },
+    "footer": {
+      "subtitle": "Su tasarrufu için akıllı çözümler"
     }
   },
   "onboarding": {
@@ -40,11 +70,28 @@
     "subtitle": "Size en uygun önerileri verebilmek için birkaç soru sormamız gerekiyor.",
     "householdSize": {
       "label": "Kaç kişilik bir aile?",
-      "placeholder": "Seçiniz"
+      "placeholder": "Seçiniz",
+      "options": {
+        "one": "1 kişi",
+        "two": "2 kişi",
+        "three": "3 kişi",
+        "four": "4 kişi",
+        "five": "5 kişi",
+        "sixPlus": "6 veya daha fazla"
+      }
     },
     "region": {
       "label": "Hangi bölgede yaşıyorsunuz?",
-      "placeholder": "Bölge seçiniz"
+      "placeholder": "Bölge seçiniz",
+      "options": {
+        "marmara": "Marmara",
+        "ege": "Ege",
+        "akdeniz": "Akdeniz",
+        "icAnadolu": "İç Anadolu",
+        "karadeniz": "Karadeniz",
+        "doguAnadolu": "Doğu Anadolu",
+        "guneydoguAnadolu": "Güneydoğu Anadolu"
+      }
     },
     "mainWaterUses": {
       "label": "Ana su kullanım alanlarınız (birden fazla seçebilirsiniz)",
@@ -54,43 +101,241 @@
         "laundry": "Çamaşır",
         "garden": "Bahçe",
         "car": "Araç Yıkama"
+      },
+      "descriptions": {
+        "shower": "Günlük duş ve banyo kullanımı",
+        "kitchen": "Mutfak ve bulaşık yıkama",
+        "laundry": "Çamaşır yıkama ve temizlik",
+        "garden": "Bahçe ve bitki sulama",
+        "car": "Araç yıkama ve temizlik"
       }
     },
-    "continue": "Devam Et"
+    "continue": "Devam Et",
+    "errors": {
+      "householdSize": "Lütfen aile büyüklüğünüzü seçin",
+      "region": "Lütfen yaşadığınız bölgeyi seçin",
+      "mainWaterUses": "Lütfen en az bir su kullanım alanı seçin"
+    },
+    "stepCount": "{{current}} / {{total}}"
   },
   "quiz": {
+    "title": "Su Kullanım Analizi",
     "progress": "İlerleme",
+    "progressLabel": "İlerleme: %{{percent}}",
     "skip": "Geç",
     "previous": "Önceki",
     "next": "İleri",
     "finish": "Bitir",
+    "loading": "Sorular yükleniyor...",
+    "completed": "Quiz tamamlandı!",
+    "viewResults": "Sonuçları Gör",
+    "questionCount": "Soru {{current}} / {{total}}",
+    "hints": {
+      "previous": "← Önceki soru için",
+      "next": "İleri → sonraki soru için",
+      "enter": "Enter tuşu ile ilerle"
+    },
+    "backHome": "Ana Sayfaya Dön",
+    "numericPlaceholder": "0 {{unit}}",
+    "unitLabel": "Birim: {{unit}}",
+    "challenge": {
+      "title": "Meydan Okuma"
+    },
     "categories": {
       "daily": "Günlük",
       "weekly": "Haftalık",
       "monthly": "Aylık",
       "annual": "Yıllık"
+    },
+    "bestOption": {
+      "numeric": "Bu soru için mevcut cevabınız: {{currentValue}} {{unit}}. Öneri: {{targetValue}} {{unit}} (yarısı). Günlük yaklaşık {{savings}} L tasarruf edebilirsiniz.",
+      "single": "Bu soru için mevcut seçiminiz: \"{{currentOption}}\" (~{{currentDaily}} L/gün). Bir alt seçenek: \"{{nextOption}}\" (~{{nextDaily}} L/gün). Günlük yaklaşık {{savings}} L tasarruf edebilirsiniz."
     }
   },
   "results": {
     "title": "Su Kullanım Analiziniz",
+    "subtitle": "Su kullanım alışkanlıklarınızın analizi tamamlandı. İşte sonuçlarınız ve önerilerimiz:",
     "currentUsage": "Mevcut Kullanım",
     "potentialSavings": "Potansiyel Tasarruf",
     "daily": "Günlük",
     "yearly": "Yıllık",
-    "liters": "Litre",
+    "units": {
+      "liters": "Litre",
+      "litersPerDay": "L/gün"
+    },
+    "usageChart": {
+      "current": "Mevcut Kullanım",
+      "savings": "Potansiyel Tasarruf"
+    },
+    "categories": {
+      "dailyHygiene": "Duş/Banyo",
+      "kitchen": "Mutfak",
+      "laundry": "Çamaşır",
+      "garden": "Bahçe",
+      "bathroom": "Banyo",
+      "lifestyle": "Yaşam Tarzı",
+      "other": "Diğer"
+    },
+    "lifestyle": {
+      "redMeat": "Kırmızı Et",
+      "dairy": "Süt Ürünleri",
+      "clothing": "Giyim",
+      "whiteMeat": "Beyaz Et",
+      "carWash": "Araç Yıkama",
+      "electronics": "Elektronik"
+    },
+    "personalImpact": {
+      "title": "Sizin Etkiniz",
+      "currentUsageLabel": "Günlük su kullanımınız",
+      "savingsLabel": "Günlük tasarruf potansiyeliniz",
+      "whyTitle": "Neden Önemli?",
+      "whyItem1": "Her litre tasarruf, gelecek nesillere daha fazla su bırakır",
+      "whyItem2": "Su krizi 2050'de 5.7 milyar kişiyi etkileyecek",
+      "whyItem3": "Küçük değişiklikler büyük farklar yaratır",
+      "whyItem4": "Su tasarrufu iklim değişikliğiyle mücadelede kritik"
+    },
+    "usageGroupLabel": "Su kullanım grubunuz",
+    "usageGroupNote": "Bu gruptasınız ve bu rozeti kazandınız.",
+    "usageGroups": {
+      "veryHigh": {
+        "label": "Çok yüksek tüketim",
+        "badge": "🚨 verimsiz kullanım"
+      },
+      "high": {
+        "label": "Yüksek tüketim",
+        "badge": "📈 iyileştirme gerekli"
+      },
+      "medium": {
+        "label": "Orta seviye",
+        "badge": "⚖️ Sınır seviyesi"
+      },
+      "low": {
+        "label": "Düşük tüketim",
+        "badge": "♻️ Kaynak Dostu"
+      },
+      "sustainable": {
+        "label": "Sürdürülebilir Seviye",
+        "badge": "🌟 Sürdürülebilir Seviye"
+      }
+    },
     "suggestions": {
       "title": "Öneriler",
       "impact": "Etki",
-      "difficulty": "Zorluk",
+      "difficulty": "Uygulama Zorluğu",
       "easy": "Kolay",
       "medium": "Orta",
       "hard": "Zor"
+    },
+    "suggestionsSection": {
+      "title": "Kişiselleştirilmiş Öneriler",
+      "subtitle": "Size özel olarak hazırlanmış, uygulanabilir su tasarruf önerileri"
+    },
+    "otherTips": {
+      "title": "Diğer İpuçları",
+      "subtitle": "Genel farkındalık ve alışkanlıklar için ek öneriler"
     },
     "comparison": {
       "title": "Benzer Profildekilerle Karşılaştırma",
       "more": "Benzer profildekilerden %{{percent}} daha fazla su kullanıyorsunuz",
       "less": "Benzer profildekilerden %{{percent}} daha az su kullanıyorsunuz",
-      "average": "Benzer profildekilerle aynı seviyedesiniz"
+      "average": "Benzer profildekilerle aynı seviyedesiniz",
+      "message": "TEMA'ya göre Türkiye'de kişi başına düşen ortalama günlük su ayak izi yaklaşık 4160 litre, dünya ortalaması ise yaklaşık 3405 litredir."
+    },
+    "charts": {
+      "usageSavings": "Su Kullanımı ve Tasarruf Potansiyeli",
+      "categories": "Kullanım Kategorileri"
+    },
+    "challenge": {
+      "badge": "🎯 Meydan Okuma",
+      "title": "Meydan Okuma:",
+      "accept": "Kabul Et",
+      "later": "Daha Sonra",
+      "join": "Challenge'a Katıl",
+      "joining": "Challenge'a Katılıyor..."
+    },
+    "nextSteps": {
+      "title": "🚀 Sıradaki Adımlar",
+      "step1": {
+        "title": "1. Başlayın",
+        "description": "En kolay önerilerden birini seçin ve bugün uygulamaya başlayın"
+      },
+      "step2": {
+        "title": "2. Takip Edin",
+        "description": "Su sayacı okumalarınızı takip ederek ilerlemenizi ölçün"
+      },
+      "step3": {
+        "title": "3. Paylaşın",
+        "description": "Başarılarınızı paylaşın ve başkalarına ilham verin"
+      }
+    },
+    "globalStats": {
+      "crisis": {
+        "title": "Dünya Su Krizi",
+        "safeWaterValue": "2.2 Milyar",
+        "safeWaterLabel": "kişi güvenli suya erişemiyor",
+        "safeWaterSource": "Kaynak: UNICEF",
+        "sanitationValue": "4.2 Milyar",
+        "sanitationLabel": "kişi güvenli sanitasyona erişemiyor",
+        "sanitationSource": "Kaynak: WHO"
+      },
+      "usage": {
+        "title": "Su Tüketimi Gerçekleri",
+        "agricultureValue": "%70",
+        "agricultureLabel": "dünya suyu tarımda kullanılıyor",
+        "agricultureSource": "Kaynak: UN",
+        "industrialValue": "%20",
+        "industrialLabel": "endüstriyel kullanım",
+        "industrialSource": "Kaynak: UN"
+      }
+    },
+    "additionalStats": {
+      "industry": {
+        "title": "Endüstriyel Kullanım",
+        "value": "1 Hamburger",
+        "label": "= 2.400 litre su",
+        "source": "Kaynak: The Game Changers belgeseli"
+      },
+      "textile": {
+        "title": "Tekstil Sektörü",
+        "value": "1 Tişört",
+        "label": "= 2.700 litre su",
+        "source": "Kaynak: EEA"
+      },
+      "technology": {
+        "title": "Teknoloji",
+        "value": "1 Telefon",
+        "label": "= 13.000 litre su",
+        "source": "Kaynak: MindYourStep"
+      }
+    },
+    "story": {
+      "branding": "SuKoç, bir Naturel Rotaract projesidir",
+      "groupLabel": "Su Kullanım Grubunuz",
+      "headline": "Günlük su ayak izim {{current}} litre civarında, bunu {{target}} litreye düşürmek için SuKoç'un önerilerini uygulayacağım.",
+      "tagline": "Küçük değişiklikler, büyük tasarruf.",
+      "stats": {
+        "safeWater": {
+          "value": "2.2 Milyar",
+          "label": "kişi güvenli suya erişemiyor",
+          "source": "Kaynak: UNICEF"
+        },
+        "phone": {
+          "value": "13.000 L",
+          "label": "1 telefon üretimi için gereken su",
+          "source": "Kaynak: MindYourStep"
+        },
+        "burger": {
+          "value": "2.400 L",
+          "label": "1 hamburgerin su ayak izi",
+          "source": "Kaynak: The Game Changers belgeseli"
+        },
+        "tshirt": {
+          "value": "2.700 L",
+          "label": "1 tişört üretimi için su",
+          "source": "Kaynak: EEA"
+        }
+      },
+      "hashtags": "#SuKoç #SuAyakİzi"
     },
     "export": {
       "pdf": "PDF Olarak İndir",
@@ -107,7 +352,10 @@
     "yes": "Evet",
     "no": "Hayır",
     "required": "Gerekli",
-    "optional": "Opsiyonel"
+    "optional": "Opsiyonel",
+    "select": "Seçiniz",
+    "value": "Değer",
+    "logoAlt": "SuKoç logosu"
   },
   "badges": {
     "waterSaver": {

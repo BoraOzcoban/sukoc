@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { Card } from '../ui/Card'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts'
 
@@ -17,6 +18,7 @@ export const ChartWrapper: React.FC<ChartWrapperProps> = ({
   title,
   className = '',
 }) => {
+  const { t } = useTranslation()
   const pieTotal = type === 'pie' ? data.reduce((sum, item) => sum + (item.value || 0), 0) : 0
   const pieData = type === 'pie'
     ? data.map((item) => ({
@@ -47,7 +49,7 @@ export const ChartWrapper: React.FC<ChartWrapperProps> = ({
         <div className="bg-white p-3 border border-accent-200 rounded-lg shadow-lg">
           <p className="font-medium text-accent-900">{label}</p>
           <p className="text-primary-600">
-            {formattedValue} litre
+            {formattedValue} {t('results.units.liters')}
           </p>
         </div>
       )
@@ -72,7 +74,7 @@ export const ChartWrapper: React.FC<ChartWrapperProps> = ({
               <YAxis 
                 stroke="#64748b"
                 fontSize={11}
-                label={{ value: 'Litre', angle: -90, position: 'insideLeft' }}
+                label={{ value: t('results.units.liters'), angle: -90, position: 'insideLeft' }}
               />
               <Tooltip content={<CustomTooltip />} />
               <Bar 
@@ -102,7 +104,10 @@ export const ChartWrapper: React.FC<ChartWrapperProps> = ({
               </Pie>
               <Tooltip formatter={(value) => {
                 const numericValue = typeof value === 'number' ? value : Number(value)
-                return [`${Number.isFinite(numericValue) ? numericValue.toFixed(1) : value} litre`, 'Değer']
+                return [
+                  `${Number.isFinite(numericValue) ? numericValue.toFixed(1) : value} ${t('results.units.liters')}`,
+                  t('common.value'),
+                ]
               }} />
               <Legend
                 verticalAlign="bottom"
