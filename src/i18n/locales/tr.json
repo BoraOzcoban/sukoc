@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "SuKoç",
+    "title": "Aqualytics",
     "subtitle": "Su Tasarrufu Rehberi",
     "tagline": "Su kullanım alışkanlıklarınızı analiz edin ve kişiselleştirilmiş tasarruf önerileri alın"
   },
@@ -15,7 +15,7 @@
       "title": "Su tasarrufuna başlamak hiç bu kadar kolay olmamıştı!",
       "description": "5 dakikalık quiz ile su kullanım alışkanlıklarınızı öğrenin ve kişiselleştirilmiş öneriler alın.",
       "cta": "Quiz'e Başla",
-      "note": "SuKoç, yalnızca farkındalık yaratmak amacıyla Naturel Rotaract tarafından geliştirilen bir projedir. Tahminler, profesyonel olmayan yaklaşık hesaplamalara dayanır."
+      "note": "Aqualytics, yalnızca farkındalık yaratmak amacıyla Naturel Rotaract tarafından geliştirilen bir projedir. Tahminler, profesyonel olmayan yaklaşık hesaplamalara dayanır."
     },
     "features": {
       "personalized": {
@@ -32,7 +32,7 @@
       }
     },
     "testimonial": {
-      "text": "SuKoç sayesinde aylık su faturasında %30 tasarruf sağladım. Öneriler çok pratik ve uygulanabilir.",
+      "text": "Aqualytics sayesinde aylık su faturasında %30 tasarruf sağladım. Öneriler çok pratik ve uygulanabilir.",
       "author": "Ayşe K., İstanbul"
     },
     "stats": {
@@ -309,9 +309,9 @@
       }
     },
     "story": {
-      "branding": "SuKoç, bir Naturel Rotaract projesidir",
+      "branding": "Aqualytics, bir Naturel Rotaract projesidir",
       "groupLabel": "Su Kullanım Grubunuz",
-      "headline": "Günlük su ayak izim {{current}} litre civarında, bunu {{target}} litreye düşürmek için SuKoç'un önerilerini uygulayacağım.",
+      "headline": "Günlük su ayak izim {{current}} litre civarında, bunu {{target}} litreye düşürmek için Aqualytics'un önerilerini uygulayacağım.",
       "tagline": "Küçük değişiklikler, büyük tasarruf.",
       "stats": {
         "safeWater": {
@@ -335,7 +335,7 @@
           "source": "Kaynak: EEA"
         }
       },
-      "hashtags": "#SuKoç #SuAyakİzi"
+      "hashtags": "#Aqualytics #SuAyakİzi"
     },
     "export": {
       "pdf": "PDF Olarak İndir",
@@ -355,7 +355,7 @@
     "optional": "Opsiyonel",
     "select": "Seçiniz",
     "value": "Değer",
-    "logoAlt": "SuKoç logosu"
+    "logoAlt": "Aqualytics logosu"
   },
   "badges": {
     "waterSaver": {

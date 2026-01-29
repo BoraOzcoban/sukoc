@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "SuKoç",
+    "title": "Aqualytics",
     "subtitle": "Water Saving Guide",
     "tagline": "Analyze your water use habits and get personalized saving recommendations"
   },
@@ -15,7 +15,7 @@
       "title": "Starting to save water has never been this easy!",
       "description": "Learn your water use habits in a 5-minute quiz and get personalized recommendations.",
       "cta": "Start the Quiz",
-      "note": "SuKoç is a project developed by Naturel Rotaract to raise awareness. The estimates are based on approximate, non-professional calculations."
+      "note": "Aqualytics is a project developed by Naturel Rotaract to raise awareness. The estimates are based on approximate, non-professional calculations."
     },
     "features": {
       "personalized": {
@@ -32,7 +32,7 @@
       }
     },
     "testimonial": {
-      "text": "Thanks to SuKoç, I reduced my monthly water bill by 30%. The suggestions are very practical and doable.",
+      "text": "Thanks to Aqualytics, I reduced my monthly water bill by 30%. The suggestions are very practical and doable.",
       "author": "Ayşe K., Istanbul"
     },
     "stats": {
@@ -309,9 +309,9 @@
       }
     },
     "story": {
-      "branding": "SuKoç by Naturel Rotaract",
+      "branding": "Aqualytics by Naturel Rotaract",
       "groupLabel": "Your Water Usage Group",
-      "headline": "My daily water footprint is around {{current}} liters, and I will apply SuKoç's recommendations to reduce it to {{target}} liters.",
+      "headline": "My daily water footprint is around {{current}} liters, and I will apply Aqualytics's recommendations to reduce it to {{target}} liters.",
       "tagline": "Small changes, big savings.",
       "stats": {
         "safeWater": {
@@ -335,7 +335,7 @@
           "source": "Source: EEA"
         }
       },
-      "hashtags": "#SuKoç #WaterFootprint"
+      "hashtags": "#Aqualytics #WaterFootprint"
     },
     "export": {
       "pdf": "Download as PDF",
@@ -355,7 +355,7 @@
     "optional": "Optional",
     "select": "Select",
     "value": "Value",
-    "logoAlt": "SuKoç logo"
+    "logoAlt": "Aqualytics logo"
   },
   "badges": {
     "waterSaver": {

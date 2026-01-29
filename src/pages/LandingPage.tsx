@@ -28,7 +28,7 @@ export const LandingPage: React.FC = () => {
               className="text-center md:text-left"
             >
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-accent-900 mb-4 sm:mb-6">
-                <span className="text-primary-600">SuKoç</span>
+                <span className="text-primary-600">Aqualytics</span>
               </h1>
               <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-accent-800 mb-3 sm:mb-4">
                 {t('landing.hero.title')}
@@ -199,7 +199,7 @@ export const LandingPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">
-              SuKoç
+              Aqualytics
             </h3>
             <p className="text-sm sm:text-base text-accent-300 mb-4">
               {t('landing.footer.subtitle')}

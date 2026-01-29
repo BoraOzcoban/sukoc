@@ -51,7 +51,7 @@ export const ResultsPage: React.FC = () => {
   }
 
   const handleExportPDF = () => {
-    const storyElement = document.getElementById('sukoc-story-export')
+    const storyElement = document.getElementById('aqualytics-story-export')
     if (!storyElement) return
 
     setExported(true)
@@ -64,7 +64,7 @@ export const ResultsPage: React.FC = () => {
           format: [1080, 1920],
         })
         pdf.addImage(imageData, 'PNG', 0, 0, 1080, 1920)
-        pdf.save('sukoc-story.pdf')
+        pdf.save('aqualytics-story.pdf')
       })
       .finally(() => {
         setTimeout(() => setExported(false), 1000)
@@ -169,7 +169,7 @@ export const ResultsPage: React.FC = () => {
     <div className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 py-6 sm:py-8">
       <div className="max-w-6xl mx-auto px-4">
         <div
-          id="sukoc-story-export"
+          id="aqualytics-story-export"
           className="fixed left-[-9999px] top-0"
           style={{ width: 1080, height: 1920 }}
         >
@@ -257,7 +257,7 @@ export const ResultsPage: React.FC = () => {
 
                 <div className="flex items-center justify-between text-white/70">
                   <span className="text-sm">{t('results.story.hashtags')}</span>
-                  <span className="text-sm">sukoc.app</span>
+                  <span className="text-sm">aqualytics.app</span>
                 </div>
               </div>
             </div>
