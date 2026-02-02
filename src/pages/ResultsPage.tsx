@@ -23,6 +23,7 @@ export const ResultsPage: React.FC = () => {
     if (!results) return
     const effectiveUser = user || {
       id: 'guest',
+      firstName: '',
       householdSize: 1,
       region: '',
       mainWaterUses: [],
@@ -110,6 +111,10 @@ export const ResultsPage: React.FC = () => {
     results.currentDailyUsage - results.potentialDailySavings
   )
 
+  const displayName = user?.firstName?.trim()
+    ? user.firstName.trim()
+    : t('results.story.guestName')
+
   const usageGroups = [
     {
       min: 5000,
@@ -184,6 +189,9 @@ export const ResultsPage: React.FC = () => {
               <div>
                 <div className="text-sm tracking-[0.2em] uppercase text-white/70">
                   {t('results.story.branding')}
+                </div>
+                <div className="mt-4 text-lg text-white/80">
+                  {t('results.story.preparedFor', { name: displayName })}
                 </div>
                 <h2 className="mt-6 text-5xl font-bold leading-tight">
                   {t('results.story.headline', {

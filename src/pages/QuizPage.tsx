@@ -7,17 +7,20 @@ import { waterCalculator } from '../utils/waterCalculator'
 import { QuestionCard } from '../components/quiz/QuestionCard'
 import { Button } from '../components/ui/Button'
 import { Card } from '../components/ui/Card'
+import { Input } from '../components/ui/Input'
 import type { Question, QuizAnswer } from '../types'
 import clubLogo from '../assets/club-logo.png'
 
 export const QuizPage: React.FC = () => {
   const navigate = useNavigate()
   const { t, i18n } = useTranslation()
-  const { user, quizAnswers, addQuizAnswer, setCurrentQuiz, setResults } = useAppStore()
+  const { user, quizAnswers, addQuizAnswer, setCurrentQuiz, setResults, setUser } = useAppStore()
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [questions, setQuestions] = useState<Question[]>([])
   const [isLoading, setIsLoading] = useState(true)
+  const [firstName, setFirstName] = useState(user?.firstName || '')
+  const [firstNameError, setFirstNameError] = useState('')
 
   useEffect(() => {
     // Load questions based on user's main water uses
@@ -79,7 +82,7 @@ export const QuizPage: React.FC = () => {
   }
 
   const handleFinishQuiz = () => {
-    const effectiveUser = user || { id: 'guest', householdSize: 1, region: '', mainWaterUses: [] }
+    const effectiveUser = user || { id: 'guest', firstName: '', householdSize: 1, region: '', mainWaterUses: [] }
     // Calculate results
     const analysis = waterCalculator.calculateWaterUsage(quizAnswers, effectiveUser.householdSize || 1)
     setResults(analysis)
@@ -103,6 +106,65 @@ export const QuizPage: React.FC = () => {
         <Card className="p-8 text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500 mx-auto mb-4"></div>
           <p className="text-accent-600">{t('quiz.loading')}</p>
+        </Card>
+      </div>
+    )
+  }
+
+  if (!user?.firstName) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 flex items-center justify-center py-6 sm:py-8">
+        <Card className="p-8 w-full max-w-lg">
+          <div className="text-center mb-6">
+            <img
+              src={clubLogo}
+              alt={t('common.logoAlt')}
+              className="mx-auto mb-3 h-16 w-16 sm:h-20 sm:w-20 object-contain"
+            />
+            <h1 className="text-2xl sm:text-3xl font-bold text-accent-900 mb-2">
+              {t('quiz.title')}
+            </h1>
+            <p className="text-sm sm:text-base text-accent-600">
+              {t('onboarding.subtitle')}
+            </p>
+          </div>
+
+          <Input
+            label={t('onboarding.firstName.label')}
+            placeholder={t('onboarding.firstName.placeholder')}
+            helperText={t('onboarding.firstName.helper')}
+            value={firstName}
+            onChange={(e) => {
+              setFirstName(e.target.value)
+              if (firstNameError) setFirstNameError('')
+            }}
+            error={firstNameError}
+            required
+          />
+
+          <div className="mt-6">
+            <Button
+              size="lg"
+              className="w-full"
+              onClick={() => {
+                const trimmed = firstName.trim()
+                if (!trimmed) {
+                  setFirstNameError(t('onboarding.errors.firstName'))
+                  return
+                }
+                setUser({
+                  id: user?.id || `user-${Date.now()}`,
+                  firstName: trimmed,
+                  householdSize: user?.householdSize || 1,
+                  region: user?.region || '',
+                  mainWaterUses: user?.mainWaterUses || [],
+                  createdAt: user?.createdAt || new Date(),
+                })
+              }}
+            >
+              {t('onboarding.continue')}
+            </Button>
+          </div>
         </Card>
       </div>
     )

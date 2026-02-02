@@ -68,6 +68,11 @@
   "onboarding": {
     "title": "Hadi tanışalım!",
     "subtitle": "Size en uygun önerileri verebilmek için birkaç soru sormamız gerekiyor.",
+    "firstName": {
+      "label": "Adınız",
+      "placeholder": "Adınızı yazın",
+      "helper": "Sadece adınızı yazın"
+    },
     "householdSize": {
       "label": "Kaç kişilik bir aile?",
       "placeholder": "Seçiniz",
@@ -112,6 +117,7 @@
     },
     "continue": "Devam Et",
     "errors": {
+      "firstName": "Lütfen adınızı yazın",
       "householdSize": "Lütfen aile büyüklüğünüzü seçin",
       "region": "Lütfen yaşadığınız bölgeyi seçin",
       "mainWaterUses": "Lütfen en az bir su kullanım alanı seçin"
@@ -310,6 +316,8 @@
     },
     "story": {
       "branding": "Aqualytics, bir Naturel Rotaract projesidir",
+      "preparedFor": "{{name}} için hazırlandı",
+      "guestName": "Dostum",
       "groupLabel": "Su Kullanım Grubunuz",
       "headline": "Günlük su ayak izim {{current}} litre civarında, bunu {{target}} litreye düşürmek için Aqualytics'un önerilerini uygulayacağım.",
       "tagline": "Küçük değişiklikler, büyük tasarruf.",

@@ -68,6 +68,11 @@
   "onboarding": {
     "title": "Let's get to know you!",
     "subtitle": "We need to ask a few questions to provide the best recommendations.",
+    "firstName": {
+      "label": "First name",
+      "placeholder": "Enter your first name",
+      "helper": "First name only"
+    },
     "householdSize": {
       "label": "How many people are in your household?",
       "placeholder": "Select",
@@ -112,6 +117,7 @@
     },
     "continue": "Continue",
     "errors": {
+      "firstName": "Please enter your first name",
       "householdSize": "Please select your household size",
       "region": "Please select your region",
       "mainWaterUses": "Please select at least one water use area"
@@ -310,6 +316,8 @@
     },
     "story": {
       "branding": "Aqualytics by Naturel Rotaract",
+      "preparedFor": "Prepared for {{name}}",
+      "guestName": "Friend",
       "groupLabel": "Your Water Usage Group",
       "headline": "My daily water footprint is around {{current}} liters, and I will apply Aqualytics's recommendations to reduce it to {{target}} liters.",
       "tagline": "Small changes, big savings.",

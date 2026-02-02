@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { useAppStore } from '../store'
 import { Button } from '../components/ui/Button'
 import { Card } from '../components/ui/Card'
+import { Input } from '../components/ui/Input'
 import { Select } from '../components/ui/Select'
 import clubLogo from '../assets/club-logo.png'
 
@@ -14,6 +15,7 @@ export const OnboardingPage: React.FC = () => {
   const { setUser, setOnboardingCompleted } = useAppStore()
 
   const [formData, setFormData] = useState({
+    firstName: '',
     householdSize: '',
     region: '',
     mainWaterUses: [] as string[],
@@ -71,6 +73,10 @@ export const OnboardingPage: React.FC = () => {
   const validateForm = () => {
     const newErrors: Record<string, string> = {}
 
+    if (!formData.firstName.trim()) {
+      newErrors.firstName = t('onboarding.errors.firstName')
+    }
+
     if (!formData.householdSize) {
       newErrors.householdSize = t('onboarding.errors.householdSize')
     }
@@ -92,6 +98,7 @@ export const OnboardingPage: React.FC = () => {
 
     const user = {
       id: `user-${Date.now()}`,
+      firstName: formData.firstName.trim(),
       householdSize: parseInt(formData.householdSize),
       region: formData.region,
       mainWaterUses: formData.mainWaterUses,
@@ -137,6 +144,17 @@ export const OnboardingPage: React.FC = () => {
           </div>
 
           <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }} className="space-y-6">
+            {/* First Name */}
+            <Input
+              label={t('onboarding.firstName.label')}
+              placeholder={t('onboarding.firstName.placeholder')}
+              helperText={t('onboarding.firstName.helper')}
+              value={formData.firstName}
+              onChange={(e) => setFormData(prev => ({ ...prev, firstName: e.target.value }))}
+              error={errors.firstName}
+              required
+            />
+
             {/* Household Size */}
             <Select
               label={t('onboarding.householdSize.label')}

@@ -1,5 +1,6 @@
 export interface User {
   id: string
+  firstName: string
   householdSize: number
   region: string
   mainWaterUses: string[]
