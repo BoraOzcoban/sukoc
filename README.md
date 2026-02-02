@@ -166,6 +166,7 @@ Uygulama şu anda Türkçe dilini desteklemektedir. Yeni diller eklemek için:
 npm run build
 # dist/ klasörünü deploy edin
 ```
+Not: iOS Safari hücresel bağlantı uyumluluğu için Edge runtime/middleware kullanılmaz. Vercel üzerinde yalnızca Node.js runtime tercih edilir (ör. `api/health.js`). Geri almak için Node zorlamasını kaldırın ve Edge ayarlarını yeniden etkinleştirin.
 
 ### Backend (Railway/Heroku)
 ```bash
