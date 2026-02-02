@@ -168,6 +168,13 @@ npm run build
 ```
 Not: iOS Safari hücresel bağlantı uyumluluğu için Edge runtime/middleware kullanılmaz. Vercel üzerinde yalnızca Node.js runtime tercih edilir (ör. `api/health.js`). Geri almak için Node zorlamasını kaldırın ve Edge ayarlarını yeniden etkinleştirin.
 
+### Frontend (Cloudflare Pages)
+```bash
+npm run build
+npx wrangler pages deploy dist
+```
+Not: SPA yönlendirmesi için `public/_redirects` dosyası kullanılır. Cloudflare Pages üzerinde `wrangler deploy` (Workers) yerine `wrangler pages deploy` kullanın.
+
 ### Backend (Railway/Heroku)
 ```bash
 cd backend
