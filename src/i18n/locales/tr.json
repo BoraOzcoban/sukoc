@@ -71,7 +71,7 @@
     "firstName": {
       "label": "Adınız",
       "placeholder": "Adınızı yazın",
-      "helper": "Sadece adınızı yazın"
+      "helper": ""
     },
     "householdSize": {
       "label": "Kaç kişilik bir aile?",

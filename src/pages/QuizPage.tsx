@@ -21,6 +21,7 @@ export const QuizPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [firstName, setFirstName] = useState(user?.firstName || '')
   const [firstNameError, setFirstNameError] = useState('')
+  const [hasConfirmedName, setHasConfirmedName] = useState(false)
 
   useEffect(() => {
     // Load questions based on user's main water uses
@@ -111,7 +112,7 @@ export const QuizPage: React.FC = () => {
     )
   }
 
-  if (!user?.firstName) {
+  if (!hasConfirmedName) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 flex items-center justify-center py-6 sm:py-8">
         <Card className="p-8 w-full max-w-lg">
@@ -160,6 +161,7 @@ export const QuizPage: React.FC = () => {
                   mainWaterUses: user?.mainWaterUses || [],
                   createdAt: user?.createdAt || new Date(),
                 })
+                setHasConfirmedName(true)
               }}
             >
               {t('onboarding.continue')}
